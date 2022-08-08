@@ -29,6 +29,9 @@
     "zustand": "^4.0.0"
   },
   "devDependencies": {
+    "@mantine/ds": "^5.0.3",
+    "@tabler/icons": "^1.78.1",
+    "@tailwindcss/forms": "^0.5.2",
     "@types/node": "18.6.4",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
