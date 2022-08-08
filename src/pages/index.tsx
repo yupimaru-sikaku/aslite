@@ -1,8 +1,14 @@
 import type { NextPage } from 'next'
+import { AboutTable } from 'src/components/AboutTable'
+import { Layout } from 'src/components/Layout'
 
 const Home: NextPage = () => {
   return (
-    <div></div>
+    <Layout title={'トップページ'}>
+      <div>
+        <AboutTable />
+      </div>
+    </Layout>
   )
 }
 
