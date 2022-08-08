@@ -194,6 +194,13 @@
   resolved "https://registry.yarnpkg.com/@mantine/dates/-/dates-4.2.5.tgz#7074046117fb44890947159a0d47da1ac8d2ae46"
   integrity sha512-qWgkTzNKP0OrNfvTHhBC+pF1rzZ8sfw6aRf1ZJMTADCNf3ol6yLlG9xl+Do9ekq1sOxllKngWnMGiYt2gNxBmQ==
 
+"@mantine/ds@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@mantine/ds/-/ds-5.0.3.tgz#ebb126c29fd5d766b01e6fbd7ccb7fedbc6b914c"
+  integrity sha512-IdNz9RyZGYLviqP7We56LCRm67/SweN+gp5Jl4q5Ep6O3Hpsl/viFxSoh2cANm4WLdA4buPVJx51qr1GGthjnw==
+  dependencies:
+    "@mantine/utils" "5.0.3"
+
 "@mantine/form@4.2.5":
   version "4.2.5"
   resolved "https://registry.yarnpkg.com/@mantine/form/-/form-4.2.5.tgz#dc34cc2d066368b41b435002068d85f225ba4fff"
@@ -243,6 +250,11 @@
     "@emotion/utils" "1.0.0"
     clsx "^1.1.1"
     csstype "3.0.9"
+
+"@mantine/utils@5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-5.0.3.tgz#6d878169644b015cee921ada2af4ebe32341c3af"
+  integrity sha512-WZRHF7A2YQhalYwMqkS1hyjK8tu639EQDJxaaptBHQvsAilNS4qD2PD87Cz7np1XhI87SEj5a0U4crzT1jTdDg==
 
 "@next/env@12.2.4":
   version "12.2.4"
@@ -495,6 +507,18 @@
   integrity sha512-6JrF+fdUK2zbGpJIlN7G3v966PQjyx/dPt1T9km2wj+EUBqgrxCk3uX4Kct16MIm9gGxfKRcfax2hVf5jvlTzA==
   dependencies:
     tslib "^2.4.0"
+
+"@tabler/icons@^1.78.1":
+  version "1.78.1"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-1.78.1.tgz#7577c1b22c736cec43718e512c89b4452c926e99"
+  integrity sha512-QT/94Hufvzn4PxsEyN9NTh96XmNaGGgMh7sKcBZ2216pE9B+Ala98KpdNwTKKBlEvRvHw9y14zW4qFYzxGOhZw==
+
+"@tailwindcss/forms@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.5.2.tgz#4ef45f9916dcb37838cbe7fecdcc4ba7a7c2ab59"
+  integrity sha512-pSrFeJB6Bg1Mrg9CdQW3+hqZXAKsBrSG9MAfFLKy1pVA4Mb4W7C0k7mEhlmS2Dfo/otxrQOET7NJiJ9RrS563w==
+  dependencies:
+    mini-svg-data-uri "^1.2.3"
 
 "@types/json5@^0.0.29":
   version "0.0.29"
@@ -2010,6 +2034,11 @@ mime-types@^2.1.12:
   integrity sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==
   dependencies:
     mime-db "1.52.0"
+
+mini-svg-data-uri@^1.2.3:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
+  integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
 
 minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2:
   version "3.1.2"
