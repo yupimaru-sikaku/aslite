@@ -2773,6 +2773,11 @@ tabler-icons-react@^1.54.0:
   resolved "https://registry.yarnpkg.com/tabler-icons-react/-/tabler-icons-react-1.54.0.tgz#c0ce4348b306eac443416bf691200690a7525377"
   integrity sha512-k+OlS1qm4Ab0RaSapBG3cyMTd2sFJOaBAhzXHek+Y7wZayoACYTOUtcNAtkD/Y+MmFM1DTs0dqOKGan3VXKyPA==
 
+tailwindcss-fluid-spacing@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-fluid-spacing/-/tailwindcss-fluid-spacing-0.4.0.tgz#ac2a5d2afbab4c1fe7ee0a35f55dc085fab7ce71"
+  integrity sha512-ktvokYjL6d+J7f6TB5wC9Xybwnj6dtCPLiRF+N/YfSluj6y2JE1+hfg0/YCHqaBk7YK+fay7r9gx9EUQY2UPbg==
+
 tailwindcss@^3.1.8:
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.1.8.tgz#4f8520550d67a835d32f2f4021580f9fddb7b741"

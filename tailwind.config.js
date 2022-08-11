@@ -7,7 +7,10 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwindcss-fluid-spacing'),
+  ],
   corePlugins: {
     preflight: false,
   },
