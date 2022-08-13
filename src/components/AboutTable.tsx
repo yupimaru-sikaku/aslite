@@ -2,8 +2,11 @@ import React from 'react'
 
 export const AboutTable = () => {
   return (
-    <div className='mx-5 md:mx-0'>
-      <p className="text-md text-center mb-5 md:text-xl md:mb-10">会社概要</p>
+    <div className="mx-5 md:mx-0">
+      <p className="text-md text-center md:text-xl">会社概要</p>
+
+      <div className="p-vw-8" />
+
       <table className="w-full">
         <thead></thead>
         <tbody className="">

@@ -1,19 +1,19 @@
 type linkType = {
-  link: string
-  label: string
-}
+  link: string;
+  label: string;
+};
 
 export const HeaderLink: linkType[] = [
   {
-    link: '#',
+    link: '/',
     label: 'Home',
   },
   {
-    link: '#',
-    label: 'Plants',
+    link: '/contact/create',
+    label: 'Contact',
   },
   {
     link: '#',
     label: 'Killifish',
   },
-]
+];

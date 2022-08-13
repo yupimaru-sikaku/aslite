@@ -1,19 +1,20 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import 'tailwindcss/tailwind.css'
-import { MantineProvider } from '@mantine/core'
-import { NotificationsProvider } from '@mantine/notifications'
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
+import 'src/styles/globals.css';
+import type { AppProps } from 'next/app';
+import 'tailwindcss/tailwind.css';
+import { MantineProvider } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: false,
       refetchOnWindowFocus: false,
+      suspense: true,
     },
   },
-})
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -32,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </MantineProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
