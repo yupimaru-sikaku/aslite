@@ -4,9 +4,22 @@ import Link from 'next/link';
 import { ActionIcon, Group } from '@mantine/core';
 import { IconBrandTwitter, IconBrandInstagram } from '@tabler/icons';
 import useStore from 'src/store';
+import { useQueryClient } from 'react-query';
+import { supabase } from 'src/utils/supabase';
 
 export const Footer = () => {
   const session = useStore((state) => state.session);
+  const queryClient = useQueryClient();
+  const resetProduct = useStore((state) => state.resetEditedProduct);
+  const resetProfile = useStore((state) => state.resetEditedProfile);
+
+  const signOut = () => {
+    resetProduct();
+    resetProfile();
+    supabase.auth.signOut();
+    queryClient.removeQueries(['product']);
+  };
+
   return (
     <>
       <footer className="bg-gray-700 p-4 dark:bg-gray-900 sm:p-6">
@@ -72,6 +85,16 @@ export const Footer = () => {
                 <li className="mb-4">
                   <Link href="/product">
                     <a className="text-gray-100 no-underline">情報登録</a>
+                  </Link>
+                </li>
+                <li className="mb-4">
+                  <Link href="/admin/register">
+                    <span
+                      className="text-gray-100 no-underline hover:cursor-pointer"
+                      onClick={signOut}
+                    >
+                      ログアウト
+                    </span>
                   </Link>
                 </li>
               </ul>

@@ -8,7 +8,6 @@ import useStore from 'src/store';
 
 const ProductList = () => {
   const session = useStore((state) => state.session);
-  console.log(session);
   return (
     <Layout title="商品">
       <ErrorBoundary

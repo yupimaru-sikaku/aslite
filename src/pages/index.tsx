@@ -8,6 +8,7 @@ import { supabase } from 'src/utils/supabase';
 const Home: NextPage = () => {
   // Zustandでセッション情報を格納している場合
   const session = useStore((state) => state.session);
+  console.log(session?.user?.id);
   const setSession = useStore((state) => state.setSession);
   useEffect(() => {
     setSession(supabase.auth.session());

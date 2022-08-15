@@ -10,7 +10,7 @@ type Props = {
 
 export const Layout: FC<Props> = ({ title = 'あすらいと', children }) => {
   return (
-    <div>
+    <>
       <Head>
         <title>{title}</title>
       </Head>
@@ -19,6 +19,6 @@ export const Layout: FC<Props> = ({ title = 'あすらいと', children }) => {
       <main className="mx-1 md:mx-20">{children}</main>
       <div className="p-vw-16" />
       <Footer />
-    </div>
+    </>
   );
 };
