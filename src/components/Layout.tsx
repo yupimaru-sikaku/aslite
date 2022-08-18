@@ -15,9 +15,7 @@ export const Layout: FC<Props> = ({ title = 'あすらいと', children }) => {
         <title>{title}</title>
       </Head>
       <Navbar />
-      <div className="p-vw-16" />
-      <main className="mx-1 md:mx-20">{children}</main>
-      <div className="p-vw-16" />
+      <main className="my-12 px-1 md:my-20 md:px-20">{children}</main>
       <Footer />
     </>
   );

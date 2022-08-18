@@ -12,17 +12,19 @@ export const Feed: FC = () => {
     <>
       <h1 className="mb-4 text-center">Feed</h1>
       <ProductForm />
-      {productList?.map((product) => (
-        <ProductItem
-          key={product.id}
-          id={product.id}
-          identification_number={product.identification_number}
-          product_name={product.product_name}
-          description={product.description}
-          genre={product.genre}
-          image_url={product.image_url}
-        />
-      ))}
+      <ul data-testid="ul-post" className="my-5">
+        {productList?.map((product) => (
+          <ProductItem
+            key={product.id}
+            id={product.id}
+            identification_number={product.identification_number}
+            product_name={product.product_name}
+            description={product.description}
+            genre={product.genre}
+            image_url={product.image_url}
+          />
+        ))}
+      </ul>
     </>
   );
 };

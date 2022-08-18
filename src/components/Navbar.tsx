@@ -1,56 +1,89 @@
-import { Header, Group, ActionIcon, Container, Burger } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import {
-  IconBrandTwitter,
-  IconBrandInstagram,
-} from '@tabler/icons';
-import Image from 'next/image';
+import { ActionIcon } from '@mantine/core';
 import Link from 'next/link';
-import { HeaderLink } from 'src/items/HEADERLINK';
+import React, { useState } from 'react';
+import { HeaderLink } from 'src/items/HeaderLink';
+import { IconMailForward } from '@tabler/icons';
+import { NavBarModal } from './NavBarModal';
 
 export const Navbar = () => {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [isModal, setIsModal] = useState<boolean>(false);
 
-  const headerLink = HeaderLink;
-
-  const items = headerLink.map((link) => (
-    <Link href={link.link} key={link.label}>
-      <a className="text-gray-100 no-underline" key={link.label}>
-        {link.label}
-      </a>
-    </Link>
-  ));
+  if (isModal) {
+    return (
+      <div className="z-100 fixed top-0 h-screen w-screen bg-gray-900">
+        <NavBarModal setIsModal={setIsModal} />
+      </div>
+    );
+  }
 
   return (
-    <Header height={56}>
-      <Container className="flex h-14 items-center justify-between">
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          size="sm"
-          className="block md:hidden"
-        />
-        <Group className="hidden md:flex" spacing={30}>
-          {items}
-        </Group>
-
-        <Group spacing={10}>
-          <Image src={'/aslite_logo.webp'} width={40} height={40} />
-          <p className="ml-1 text-2xl font-semibold">AsLite</p>
-        </Group>
-
-        <Group spacing={0} position="right" noWrap>
-          <ActionIcon size="lg">
-            <Image src={'/yahoo_icon.webp'} width={20} height={20} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <IconBrandTwitter size={18} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <IconBrandInstagram size={18} stroke={1.5} />
-          </ActionIcon>
-        </Group>
-      </Container>
-    </Header>
+    <nav className="w-full border-b border-gray-600 bg-gray-800 px-2 py-2.5 sm:px-4">
+      <div className="container mx-auto flex flex-wrap items-center justify-between">
+        <Link href="/">
+          <a className="flex items-center">
+            <img
+              className="mr-3 h-9"
+              src="/aslite_logo.webp"
+              alt="aslite_logo"
+              width={40}
+              height={40}
+            />
+            <span className="self-center whitespace-nowrap text-xl font-semibold">
+              AsLite
+            </span>
+          </a>
+        </Link>
+        <div className="flex md:order-2">
+          <button
+            type="button"
+            className="mr-3 flex items-center rounded-lg bg-blue-700 px-3 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 md:mr-0 md:px-5"
+          >
+            <IconMailForward size={20} />
+            <span className="ml-1">Contact</span>
+          </button>
+          <button
+            className="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
+            onClick={() => setIsModal(true)}
+          >
+            <svg
+              className="h-6 w-6"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div
+          className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
+          id="navbar-sticky"
+        >
+          <ul className="flex flex-col items-center rounded-lg md:mt-0 md:flex-row md:space-x-8 md:border-0 md:text-sm md:font-medium">
+            {HeaderLink.map((link) => (
+              <li key={link.link}>
+                <Link href={link.link}>
+                  <a target="_blank">
+                    <ActionIcon>
+                      <img
+                        src={link.src}
+                        alt={link.alt}
+                        width={link.width}
+                        height={link.height}
+                      />
+                    </ActionIcon>
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };

@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import * as Yup from 'yup';
-import { useForm, yupResolver } from '@mantine/form';
+import { useForm } from '@mantine/form';
 import { AdminRegisterForm } from 'src/types';
 import { supabase } from 'src/utils/supabase';
 import { Layout } from 'src/components/Layout';
@@ -12,26 +11,13 @@ import {
   TextInput,
   Anchor,
 } from '@mantine/core';
-import { ShieldCheckIcon } from '@heroicons/react/solid';
 import { ExclamationCircleIcon } from '@heroicons/react/outline';
-
-const schema = Yup.object().shape({
-  email: Yup.string()
-    .email('メールアドレスの形式が正しくありません')
-    .required('必須項目です'),
-  password: Yup.string()
-    .required('必須項目です')
-    .min(8, 'パスワードは8文字以上です')
-    .matches(/[a-z]+/, 'アルファベットの小文字が必要です')
-    .matches(/[A-Z]+/, 'アルファベットの大文字が必要です'),
-});
 
 const AdminRegister = () => {
   const [error, setError] = useState('');
   const [isRegister, setIsRegister] = useState(false);
 
   const form = useForm<AdminRegisterForm>({
-    schema: yupResolver(schema),
     initialValues: {
       email: '',
       password: '',
@@ -65,8 +51,8 @@ const AdminRegister = () => {
     <Layout
       title={isRegister ? '管理者 | ログイン画面' : '管理者 | 新規作成画面'}
     >
-      <Group direction="column" position="center">
-        <h1>{isRegister? '管理者登録画面' : '管理者ログイン画面'}</h1>
+      <Group position="center">
+        <h1>{isRegister ? '管理者登録画面' : '管理者ログイン画面'}</h1>
         {error && (
           <Alert
             mt="md"

@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
 export const AboutTable = () => {
   return (
     <div className="mx-5 md:mx-0">
-      <p className="text-md text-center md:text-xl">会社概要</p>
+      <h1 className="text-center text-xl md:text-lg">会社概要</h1>
 
       <div className="p-vw-8" />
 
-      <table className="w-full">
+      <table className="mx-auto">
         <thead></thead>
         <tbody className="">
           <tr>
@@ -37,5 +37,5 @@ export const AboutTable = () => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};

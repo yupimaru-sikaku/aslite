@@ -4,11 +4,11 @@ import { AboutTable } from 'src/components/AboutTable';
 import { Layout } from 'src/components/Layout';
 import useStore from 'src/store';
 import { supabase } from 'src/utils/supabase';
+import { ProductList } from 'src/components/ProductList';
 
 const Home: NextPage = () => {
   // Zustandでセッション情報を格納している場合
   const session = useStore((state) => state.session);
-  console.log(session?.user?.id);
   const setSession = useStore((state) => state.setSession);
   useEffect(() => {
     setSession(supabase.auth.session());
@@ -20,8 +20,9 @@ const Home: NextPage = () => {
   return (
     <Layout title={'トップページ'}>
       <div>
-        <AboutTable />
+        {/* <AboutTable /> */}
         <div className="p-vw-8" />
+        <ProductList />
       </div>
     </Layout>
   );

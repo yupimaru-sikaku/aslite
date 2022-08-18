@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           fontFamily: 'Verdana, sans-serif',
         }}
       >
-        <NotificationsProvider limit={2}>
+        <NotificationsProvider limit={3}>
           <Component {...pageProps} />
         </NotificationsProvider>
       </MantineProvider>
