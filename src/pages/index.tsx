@@ -21,7 +21,6 @@ const Home: NextPage = () => {
     <Layout title={'トップページ'}>
       <div>
         {/* <AboutTable /> */}
-        <div className="p-vw-8" />
         <ProductList />
       </div>
     </Layout>

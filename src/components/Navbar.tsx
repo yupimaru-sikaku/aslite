@@ -10,7 +10,7 @@ export const Navbar = () => {
 
   if (isModal) {
     return (
-      <div className="z-100 fixed top-0 h-screen w-screen bg-gray-900">
+      <div className="z-50 fixed top-0 h-screen w-screen bg-gray-900">
         <NavBarModal setIsModal={setIsModal} />
       </div>
     );
