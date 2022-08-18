@@ -3,42 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { IconMailForward } from '@tabler/icons';
 import { NavBarModal } from './NavBarModal';
-
-type linkType = {
-  title: string;
-  link: string;
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
-
-export const HeaderLink: linkType[] = [
-  {
-    title: 'Instagram',
-    link: 'https://www.instagram.com/accounts/login/?next=/asuright.llc/',
-    src: '/instagram_logo.webp',
-    alt: 'instagram_icon',
-    width: 20,
-    height: 20,
-  },
-  {
-    title: 'Yahooオークション',
-    link: 'https://auctions.yahoo.co.jp/seller/aujlv92378?',
-    src: '/yahoo_logo.webp',
-    alt: 'yahoo_logo',
-    width: 24,
-    height: 24,
-  },
-  {
-    title: 'メルカリ',
-    link: 'https://mercari-shops.com/shops/7NxZsW4KQtjVK9u7cyZVgH?source=shared_link&utm_source=shared_link',
-    src: '/mercari_logo.webp',
-    alt: 'mercari_logo',
-    width: 32,
-    height: 32,
-  },
-];
+import { headerLink } from 'src/utils/headerLink';
 
 export const Navbar = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -100,7 +65,7 @@ export const Navbar = () => {
           id="navbar-sticky"
         >
           <ul className="flex flex-col items-center rounded-lg md:mt-0 md:flex-row md:space-x-8 md:border-0 md:text-sm md:font-medium">
-            {HeaderLink.map((link) => (
+            {headerLink.map((link) => (
               <li key={link.link}>
                 <Link href={link.link}>
                   <a target="_blank">
