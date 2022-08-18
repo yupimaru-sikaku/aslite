@@ -197,7 +197,7 @@ export const ProductFormMemo: FC = () => {
 
         <div>
           <FileInput
-            label="Multiple"
+            label="画像（複数可）"
             placeholder="クリックして登録"
             multiple
             required
