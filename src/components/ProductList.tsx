@@ -7,6 +7,7 @@ import { Text } from '@mantine/core';
 export const ProductList = () => {
   const { data: productList } = useQueryProductList();
   useSubscribeProductList();
+
   return (
     <>
       <h1 className="text-center">

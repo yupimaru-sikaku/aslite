@@ -32,4 +32,12 @@ export const headerLink: linkType[] = [
     width: 32,
     height: 32,
   },
+  {
+    title: 'YouTube',
+    link: 'https://www.youtube.com/',
+    src: '/youtube_logo.webp',
+    alt: 'youtube_logo',
+    width: 32,
+    height: 32,
+  },
 ];

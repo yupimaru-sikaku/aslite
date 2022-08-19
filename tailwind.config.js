@@ -191,6 +191,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
     require('tailwindcss-fluid-spacing'),
+    require('@tailwindcss/line-clamp'),
   ],
   corePlugins: {
     preflight: false,

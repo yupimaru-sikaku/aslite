@@ -52,12 +52,18 @@ export const ProductFormMemo: FC = () => {
 
     const fileList = form.values.image_url;
 
-    const imageUrlList = fileList.map((file: any) => {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `${fileName}`;
-      return filePath;
-    });
+    const imageUrlList = await Promise.all(
+      fileList.map(async (file: any) => {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Math.random()}.${fileExt}`;
+        const filePath = `${fileName}`;
+        const { error } = await supabase.storage
+          .from('product')
+          .upload(filePath, file);
+        if (error) throw new Error(error.message);
+        return filePath;
+      })
+    );
 
     const { error } = await supabase.from('product').insert({
       identification_number: form.values.identification_number,
@@ -67,26 +73,6 @@ export const ProductFormMemo: FC = () => {
       image_url: imageUrlList,
     });
 
-    if (!error) {
-      fileList.map(
-        async (file: any) => {
-          const fileExt = file.name.split('.').pop();
-          const fileName = `${Math.random()}.${fileExt}`;
-          const filePath = `${fileName}`;
-          const { error } = await supabase.storage
-            .from('product')
-            .upload(filePath, file);
-          if (error) throw new Error(error.message);
-        },
-        {
-          onError: (err: any) => {
-            alert(err.message);
-          },
-        }
-      );
-    } else {
-      throw new Error(error.message);
-    }
     router.push('/');
     setIsLoading(false);
     showNotification({

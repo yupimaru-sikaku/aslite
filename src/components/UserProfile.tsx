@@ -16,10 +16,10 @@ export const UserProfile: FC = () => {
   const { data: profile } = useQueryProfile();
   const { updateProfileMutation } = useMutateProfile();
   const { useMutateUploadAvatarImg } = useUploadAvatarImg();
-  const { fullUrl: avatarUrl, isLoading } = useDownloadUrl(
-    editedProfile.avatar_url,
-    'avatar'
-  );
+  // const { fullUrl: avatarUrl, isLoading } = useDownloadUrl(
+  //   editedProfile.avatar_url,
+  //   'avatar'
+  // );
   const updateProfile = () => {
     updateProfileMutation.mutate({
       id: session?.user?.id,
@@ -54,7 +54,7 @@ export const UserProfile: FC = () => {
       >
         {updateProfileMutation.isLoading ? 'Loading ...' : 'Update'}
       </button>
-      {avatarUrl && (
+      {/* {avatarUrl && (
         <Image
           src={avatarUrl}
           alt="Avatar"
@@ -63,7 +63,7 @@ export const UserProfile: FC = () => {
           height={150}
         />
       )}
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner />} */}
       <div className="flex justify-center">
         <label htmlFor="avatar">
           <CameraIcon className="my-3 h-7 w-7 cursor-pointer text-gray-500" />
