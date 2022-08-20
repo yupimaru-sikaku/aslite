@@ -12,7 +12,7 @@ export const ProductCarousel = ({ image_url }: Props) => {
       mx="auto"
       height={200}
       dragFree
-      slideGap="md"
+      slideGap="xs"
       align="start"
       styles={{
         control: {

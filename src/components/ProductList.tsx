@@ -16,7 +16,7 @@ export const ProductList = () => {
         <GradientText title="LINE UP" />
       </h1>
       <div className="container mx-auto">
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center">
           {productList?.map((product) => (
             <ProductCard
               key={product.id}

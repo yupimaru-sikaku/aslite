@@ -23,13 +23,12 @@ export const Navbar = () => {
         <Link href="/">
           <a className="flex items-center">
             <Image
-              className="mr-3 h-9"
               src="/aslite_logo.webp"
               alt="aslite_logo"
               width={40}
               height={40}
             />
-            <span className="self-center whitespace-nowrap text-xl font-semibold">
+            <span className="ml-3 self-center whitespace-nowrap text-xl font-semibold">
               AsLite
             </span>
           </a>
