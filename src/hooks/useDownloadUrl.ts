@@ -36,5 +36,5 @@ export const useDownloadUrl = (
     }
   }, []);
 
-  return { isLoading, fullUrlList, setFullUrlList };
+  return { isLoading, setIsLoading, fullUrlList, setFullUrlList };
 };

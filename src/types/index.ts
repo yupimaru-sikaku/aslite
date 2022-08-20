@@ -33,3 +33,11 @@ export type EditedProfile = {
   username: string | undefined;
   avatar_url: string | undefined;
 };
+
+export type CreateContact = {
+  personal_name: string;
+  furigana: string;
+  email: string;
+  phone_number: string;
+  content: string;
+};

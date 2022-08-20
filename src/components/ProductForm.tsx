@@ -19,6 +19,8 @@ import { supabase } from 'src/utils/supabase';
 import { IconPhoto } from '@tabler/icons';
 import { useRouter } from 'next/router';
 import { showNotification } from '@mantine/notifications';
+import { FormTextInput } from './FormTextInput';
+import { FormTextArea } from './FormTextArea';
 
 export const ProductFormMemo: FC = () => {
   const router = useRouter();
@@ -73,6 +75,8 @@ export const ProductFormMemo: FC = () => {
       image_url: imageUrlList,
     });
 
+    if (error) throw new Error(error.message)
+
     router.push('/');
     setIsLoading(false);
     showNotification({
@@ -105,48 +109,40 @@ export const ProductFormMemo: FC = () => {
 
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <div>
-          <TextInput
-            id="identification_number"
+          <FormTextInput
+            idText="identification_number"
             label="識別番号"
             description="他と重複しない番号"
-            radius="lg"
-            required
-            classNames={{
-              input: 'bg-gray-800 border-gray-900 rounded',
-            }}
-            {...form.getInputProps('identification_number')}
+            required={true}
+            form={form}
+            formValue="identification_number"
           />
         </div>
 
         <div className="p-vw-8" />
 
         <div>
-          <TextInput
-            id="product_name"
+          <FormTextInput
+            idText="product_name"
             label="名前"
             description="例）「パーフェクト鳳凰」の有精卵20個+α"
-            radius="lg"
-            required
-            classNames={{
-              input: 'bg-gray-800 border-gray-900 rounded',
-            }}
-            {...form.getInputProps('product_name')}
+            required={true}
+            form={form}
+            formValue="product_name"
           />
         </div>
 
         <div className="p-vw-8" />
 
         <div>
-          <Textarea
-            id="description"
+          <FormTextArea
+            idText="description"
             label="説明"
-            autosize
-            required
+            autosize={true}
             minRows={2}
-            classNames={{
-              input: 'bg-gray-800 border-gray-900 rounded',
-            }}
-            {...form.getInputProps('description')}
+            required={true}
+            form={form}
+            formValue="description"
           />
         </div>
 

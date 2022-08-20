@@ -22,7 +22,7 @@ export const ProductDialog = ({
   return (
     <>
       <Modal
-        size="255%"
+        size="xl"
         classNames={{
           modal: 'shadow-xl shadow-blue-500/50',
         }}

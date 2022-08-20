@@ -4,6 +4,7 @@ import { useSubscribeProductList } from 'src/hooks/useSubscribeProductList';
 import { ProductCard } from 'src/components/ProductCard';
 import { Button, Text } from '@mantine/core';
 import { ProductDialog } from './ProductDialog';
+import { GradientText } from './GradientText';
 
 export const ProductList = () => {
   const { data: productList } = useQueryProductList();
@@ -12,16 +13,7 @@ export const ProductList = () => {
   return (
     <>
       <h1 className="text-center">
-        <Text
-          component="span"
-          align="center"
-          variant="gradient"
-          gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-          size="xl"
-          weight={900}
-        >
-          LINE UP
-        </Text>
+        <GradientText title="LINE UP" />
       </h1>
       <div className="container mx-auto">
         <div className="flex flex-wrap">

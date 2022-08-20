@@ -13,13 +13,13 @@ export const AboutUs = () => {
       <div className="p-vw-8" />
 
       {aboutUsContent.map((content) => (
-        <>
-          <div className="md:text-md my-6 flex text-sm">
+        <div key={content.label}>
+          <div className="md:text-xl my-6 flex text-sm">
             <p className="w-1/5">{content.label}</p>
             <p className="ml-3 w-4/5">{content.text}</p>
           </div>
           <Divider labelPosition="center" color="lightGray" my="xs" />
-        </>
+        </div>
       ))}
     </div>
   );

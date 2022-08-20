@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Group, Text } from '@mantine/core';
+import { Badge, Button, Card, Group, Loader, Text } from '@mantine/core';
 import Image from 'next/image';
 import React, { FC, useState } from 'react';
 import { useDownloadUrl } from 'src/hooks/useDownloadUrl';
@@ -12,11 +12,8 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
   genre,
   image_url,
 }) => {
-  const {
-    fullUrlList: imageUrlList,
-    isLoading,
-    setFullUrlList,
-  } = useDownloadUrl(image_url, 'product');
+  const { fullUrlList: imageUrlList, isLoading: isImageLoading } =
+    useDownloadUrl(image_url, 'product');
 
   const [opened, setOpened] = useState<boolean>(false);
 
@@ -36,7 +33,18 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
       >
         <div className="rounded-lg bg-gray-100 p-6">
           {imageUrlList ? (
-            <img src={imageUrlList[0]} alt="product" width={720} height={400} />
+            isImageLoading ? (
+              <div className="flex justify-center py-10">
+                <Loader variant="dots" />
+              </div>
+            ) : (
+              <img
+                src={imageUrlList[0]}
+                alt="product"
+                width={720}
+                height={400}
+              />
+            )
           ) : (
             ''
           )}

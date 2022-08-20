@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.6.2",
     "@emotion/react": "^11.10.0",
     "@emotion/server": "^11.10.0",
     "@heroicons/react": "^1.0.6",
@@ -25,11 +26,13 @@
     "@mantine/prism": "^5.1.6",
     "@mantine/rte": "^5.1.6",
     "@mantine/spotlight": "^5.1.6",
+    "@sendgrid/mail": "^7.7.0",
     "@supabase/supabase-js": "^1.35.6",
     "@tailwindcss/line-clamp": "^0.4.0",
     "axios": "^0.27.2",
     "date-fns": "^2.29.1",
     "dayjs": "^1.11.5",
+    "emailjs": "^4.0.1",
     "embla-carousel-react": "^7.0.1",
     "next": "12.2.4",
     "react": "18.2.0",

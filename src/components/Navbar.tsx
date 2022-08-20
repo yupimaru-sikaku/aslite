@@ -10,7 +10,7 @@ export const Navbar = () => {
 
   if (isModal) {
     return (
-      <div className="z-50 fixed top-0 h-screen w-screen bg-gray-900">
+      <div className="fixed top-0 z-50 h-screen w-screen bg-gray-900">
         <NavBarModal setIsModal={setIsModal} />
       </div>
     );
@@ -34,13 +34,17 @@ export const Navbar = () => {
           </a>
         </Link>
         <div className="flex md:order-2">
-          <button
-            type="button"
-            className="mr-3 flex items-center rounded-lg bg-blue-700 px-3 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 md:mr-0 md:px-5"
-          >
-            <IconMailForward size={20} />
-            <span className="ml-1">Contact</span>
-          </button>
+          <Link href="/contact/create">
+            <a>
+              <button
+                type="button"
+                className="mr-3 flex items-center rounded-lg bg-blue-700 px-3 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 md:mr-0 md:px-5"
+              >
+                <IconMailForward size={20} />
+                <span className="ml-1">Contact</span>
+              </button>
+            </a>
+          </Link>
           <button
             className="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
             onClick={() => setIsModal(true)}
