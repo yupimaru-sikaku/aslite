@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { useEffect } from 'react';
-import { AboutTable } from 'src/components/AboutTable';
+import { AboutUs } from 'src/components/AboutUs';
 import { Layout } from 'src/components/Layout';
 import useStore from 'src/store';
 import { supabase } from 'src/utils/supabase';
@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   return (
     <Layout title={'トップページ'}>
       <div>
-        {/* <AboutTable /> */}
+        <AboutUs />
         <ProductList />
       </div>
     </Layout>
