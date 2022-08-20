@@ -22,7 +22,7 @@ export const ProductCarousel = ({ image_url }: Props) => {
     >
       {image_url.map((image) => (
         <Carousel.Slide key={image}>
-          <Image src={image} alt="product" width={250} height={200} />
+          <Image src={image} alt="product" layout="fill" />
         </Carousel.Slide>
       ))}
     </Carousel>
