@@ -57,7 +57,6 @@ export const ContactForm = () => {
       // emailJS送信
       try {
         await send(serviceID, templateID, params);
-        alert('送信成功');
       } catch (error) {
         // 送信失敗したらalertで表示
         alert(error);
@@ -69,6 +68,7 @@ export const ContactForm = () => {
     showNotification({
       title: '送信されました',
       message: '担当からご連絡があるまでお待ち下さい',
+      autoClose: false,
       icon: (
         <ActionIcon size="xs">
           <CheckIcon />
