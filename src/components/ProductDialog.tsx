@@ -1,0 +1,44 @@
+import { useState } from 'react';
+import { Drawer, Button, Group, Modal } from '@mantine/core';
+import { Product } from 'src/types';
+import { ProductCarousel } from './ProductCarousel';
+import { ProductBadge } from './ProductBadge';
+
+type Props = {
+  opened: boolean;
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+  product_name: string;
+  description: string;
+  genre: string;
+  image_url: string[];
+};
+
+export const ProductDialog = ({
+  opened,
+  setOpened,
+  product_name,
+  description,
+  genre,
+  image_url,
+}: Props) => {
+  return (
+    <>
+      <Modal
+        size="255%"
+        title={product_name}
+        opened={opened}
+        onClose={() => setOpened(false)}
+      >
+        <div>
+          <ProductCarousel image_url={image_url} />
+          <div className="mt-3">
+            <ProductBadge genre={genre} />
+          </div>
+          <p className="md:text-md mt-3 whitespace-pre-wrap break-words text-base leading-relaxed text-gray-400">
+            {description}
+          </p>
+        </div>
+      </Modal>
+    </>
+  );
+};

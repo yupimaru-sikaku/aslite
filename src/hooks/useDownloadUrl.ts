@@ -34,7 +34,7 @@ export const useDownloadUrl = (
       };
       download();
     }
-  }, [filePathListStringArr, bucketName]);
+  }, []);
 
   return { isLoading, fullUrlList, setFullUrlList };
 };

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQueryProductList } from 'src/hooks/useQueryProductList';
 import { useSubscribeProductList } from 'src/hooks/useSubscribeProductList';
 import { ProductCard } from 'src/components/ProductCard';
-import { Text } from '@mantine/core';
+import { Button, Text } from '@mantine/core';
+import { ProductDialog } from './ProductDialog';
 
 export const ProductList = () => {
   const { data: productList } = useQueryProductList();
