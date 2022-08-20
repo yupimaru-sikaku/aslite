@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { IconMailForward } from '@tabler/icons';
 import { NavBarModal } from './NavBarModal';
 import { headerLink } from 'src/utils/headerLink';
+import Image from 'next/image';
 
 export const Navbar = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
@@ -21,7 +22,7 @@ export const Navbar = () => {
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <Link href="/">
           <a className="flex items-center">
-            <img
+            <Image
               className="mr-3 h-9"
               src="/aslite_logo.webp"
               alt="aslite_logo"
@@ -74,7 +75,7 @@ export const Navbar = () => {
                 <Link href={link.link}>
                   <a target="_blank">
                     <ActionIcon>
-                      <img
+                      <Image
                         src={link.src}
                         alt={link.alt}
                         width={link.width}

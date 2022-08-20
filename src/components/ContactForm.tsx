@@ -43,7 +43,6 @@ export const ContactForm = () => {
     const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     if (userID && serviceID && templateID) {
       // emailJS初期化
-      console.log(123);
       init(userID);
 
       // emailJS送信データを定義
@@ -78,7 +77,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <div className="mx-3 max-w-sm md:mx-auto">
+    <div className="px-3 max-w-sm mx-auto">
       <h1 className="text-center">
         <GradientText title="CONTACT FORM" />
       </h1>

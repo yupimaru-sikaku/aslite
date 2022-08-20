@@ -11,6 +11,9 @@ export const ProductCarousel = ({ image_url }: Props) => {
       sx={{ maxWidth: 320 }}
       mx="auto"
       height={200}
+      dragFree
+      slideGap="md"
+      align="start"
       styles={{
         control: {
           '&[data-inactive]': {

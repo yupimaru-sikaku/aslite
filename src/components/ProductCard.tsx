@@ -32,21 +32,17 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
         onClick={() => setOpened(true)}
       >
         <div className="rounded-lg bg-gray-100 p-6">
-          {imageUrlList ? (
-            isImageLoading ? (
-              <div className="flex justify-center py-10">
-                <Loader variant="dots" />
-              </div>
-            ) : (
-              <img
-                src={imageUrlList[0]}
-                alt="product"
-                width={720}
-                height={400}
-              />
-            )
+          {imageUrlList.length ? (
+            <Image
+              src={imageUrlList[0]}
+              alt="product"
+              width={720}
+              height={400}
+            />
           ) : (
-            ''
+            <div className="flex justify-center py-10">
+              <Loader variant="dots" />
+            </div>
           )}
           <div className="mt-3">
             <ProductBadge genre={genre} />

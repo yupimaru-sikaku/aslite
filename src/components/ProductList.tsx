@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQueryProductList } from 'src/hooks/useQueryProductList';
 import { useSubscribeProductList } from 'src/hooks/useSubscribeProductList';
 import { ProductCard } from 'src/components/ProductCard';
-import { Button, Text } from '@mantine/core';
+import { Button, SimpleGrid, Text } from '@mantine/core';
 import { ProductDialog } from './ProductDialog';
 import { GradientText } from './GradientText';
 

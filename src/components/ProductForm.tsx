@@ -75,7 +75,7 @@ export const ProductFormMemo: FC = () => {
       image_url: imageUrlList,
     });
 
-    if (error) throw new Error(error.message)
+    if (error) throw new Error(error.message);
 
     router.push('/');
     setIsLoading(false);
@@ -91,7 +91,7 @@ export const ProductFormMemo: FC = () => {
   };
 
   return (
-    <div className="mx-3 max-w-sm md:mx-auto">
+    <div className="mx-auto max-w-sm px-3">
       <h1 className="text-center">
         <Text
           component="span"
