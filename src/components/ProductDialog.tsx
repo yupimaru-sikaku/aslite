@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import { Drawer, Button, Group, Modal } from '@mantine/core';
-import { Product } from 'src/types';
+import { Modal } from '@mantine/core';
 import { ProductCarousel } from './ProductCarousel';
 import { ProductBadge } from './ProductBadge';
 
@@ -25,6 +23,9 @@ export const ProductDialog = ({
     <>
       <Modal
         size="255%"
+        classNames={{
+          modal: 'shadow-xl shadow-blue-500/50',
+        }}
         title={product_name}
         opened={opened}
         onClose={() => setOpened(false)}
