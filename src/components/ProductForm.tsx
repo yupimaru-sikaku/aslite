@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import { showNotification } from '@mantine/notifications';
 import { FormTextInput } from './FormTextInput';
 import { FormTextArea } from './FormTextArea';
+import { GradientText } from './GradientText';
 
 export const ProductFormMemo: FC = () => {
   const router = useRouter();
@@ -93,16 +94,7 @@ export const ProductFormMemo: FC = () => {
   return (
     <div className="mx-auto max-w-sm px-3">
       <h1 className="text-center">
-        <Text
-          component="span"
-          align="center"
-          variant="gradient"
-          gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
-          size="xl"
-          weight={900}
-        >
-          Submission Page
-        </Text>
+        <GradientText title="SUBMISSION PAGE" />
       </h1>
 
       <div className="p-vw-8" />
