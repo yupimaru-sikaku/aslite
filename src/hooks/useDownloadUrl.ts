@@ -8,9 +8,9 @@ export const useDownloadUrl = (
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [fullUrlList, setFullUrlList] = useState<string[]>([]);
   const bucketName = key;
-  let filePathListString = filePathList.replace('[', '');
-  filePathListString = filePathListString.replace(']', '');
-  const filePathListStringArr = filePathListString.split(',');
+  let filePathListString = filePathList?.replace('[', '');
+  filePathListString = filePathListString?.replace(']', '');
+  const filePathListStringArr = filePathListString?.split(',');
 
   useEffect(() => {
     if (filePathListStringArr) {

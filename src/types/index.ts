@@ -17,7 +17,13 @@ export type EditedProduct = {
   image_url: string;
 };
 
-export type AdminRegisterForm = {
+export type AdminRegisterFormType = {
+  email: string;
+  password: string;
+  password_confirm: string;
+};
+
+export type AdminLoginFormType = {
   email: string;
   password: string;
 };

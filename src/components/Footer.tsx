@@ -2,23 +2,18 @@ import React from 'react';
 import Link from 'next/link';
 import { ActionIcon, Group } from '@mantine/core';
 import { IconBrandTwitter, IconBrandInstagram } from '@tabler/icons';
-import useStore from 'src/store';
 import { useQueryClient } from 'react-query';
 import { supabase } from 'src/utils/supabase';
 import { headerLink } from 'src/utils/headerLink';
 
 export const Footer = () => {
-  const session = useStore((state) => state.session);
-  const queryClient = useQueryClient();
-  const resetProduct = useStore((state) => state.resetEditedProduct);
-  const resetProfile = useStore((state) => state.resetEditedProfile);
 
-  const signOut = () => {
-    resetProduct();
-    resetProfile();
-    supabase.auth.signOut();
-    queryClient.removeQueries(['product']);
-  };
+  // const signOut = () => {
+  //   resetProduct();
+  //   resetProfile();
+  //   supabase.auth.signOut();
+  //   queryClient.removeQueries(['product']);
+  // };
 
   return (
     <>

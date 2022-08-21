@@ -47,9 +47,9 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
           <div className="mt-3">
             <ProductBadge genre={genre} />
           </div>
-          <h2 className="title-font mb-4 text-lg font-medium text-gray-900">
+          <p className="title-font mb-4 text-lg font-medium text-gray-900">
             {product_name}
-          </h2>
+          </p>
           <p className="md:text-md mt-3 whitespace-pre-wrap break-words text-base leading-relaxed text-gray-400 line-clamp-2">
             {description}
           </p>
