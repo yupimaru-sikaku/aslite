@@ -1,7 +1,7 @@
 import { useForm } from '@mantine/form';
 import React, { useState } from 'react';
 import { GradientText } from './GradientText';
-import { AdminRegisterFormType } from 'src/types/index';
+import { AdminRegisterFormType } from 'src/types';
 import { FormTextInput } from './FormTextInput';
 import {
   ActionIcon,

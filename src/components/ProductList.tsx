@@ -9,7 +9,7 @@ export const ProductList = () => {
   const [productList, setIsProductList] = useState([{}]);
 
   useEffect(() => {
-    const useGetProductList = async () => {
+    const getProductList = async () => {
       const { data, error } = await supabase
         .from('product')
         .select('*')
@@ -20,7 +20,7 @@ export const ProductList = () => {
       }
       setIsProductList(data);
     };
-    useGetProductList();
+    getProductList();
   }, []);
 
   return (
