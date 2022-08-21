@@ -26,8 +26,10 @@
     "@mantine/prism": "^5.1.6",
     "@mantine/rte": "^5.1.6",
     "@mantine/spotlight": "^5.1.6",
+    "@reduxjs/toolkit": "^1.8.5",
     "@sendgrid/mail": "^7.7.0",
     "@supabase/supabase-js": "^1.35.6",
+    "@supabase/ui": "^0.36.5",
     "@tailwindcss/line-clamp": "^0.4.0",
     "axios": "^0.27.2",
     "date-fns": "^2.29.1",
@@ -38,10 +40,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-error-boundary": "^3.1.4",
-    "react-query": "4.0.0-beta.10",
+    "react-redux": "^8.0.2",
     "tabler-icons-react": "^1.54.0",
-    "yup": "^0.32.11",
-    "zustand": "^4.0.0"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@mantine/ds": "^5.0.3",
