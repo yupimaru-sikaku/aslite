@@ -44,7 +44,6 @@ export const ProductList = () => {
                 image_url={product.image_url}
               />
             ))}{' '}
-            :
           </div>
         </div>
       ) : (
