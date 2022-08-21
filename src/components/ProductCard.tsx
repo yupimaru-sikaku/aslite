@@ -28,7 +28,7 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
         image_url={imageUrlList}
       />
       <div
-        className="w-full p-4 xs:w-1/2 sm:w-1/2 md:w-1/3 xl:w-1/4"
+        className="w-full cursor-pointer p-4 xs:w-1/2 sm:w-1/2 md:w-1/3 xl:w-1/4"
         onClick={() => setOpened(true)}
       >
         <div className="rounded-lg bg-gray-100 p-6">
