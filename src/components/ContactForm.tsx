@@ -36,7 +36,11 @@ export const ContactForm = () => {
       content: form.values.content,
     });
 
-    if (error) throw new Error(error.message);
+    if (error) {
+      alert(error.message);
+      setIsLoading(false);
+      return;
+    }
 
     const userID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
     const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
@@ -59,6 +63,8 @@ export const ContactForm = () => {
       } catch (error) {
         // 送信失敗したらalertで表示
         alert(error);
+        setIsLoading(false);
+        return;
       }
     }
 
@@ -77,7 +83,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <div className="px-3 max-w-sm mx-auto">
+    <div className="mx-auto max-w-sm px-3">
       <h1 className="text-center">
         <GradientText title="CONTACT FORM" />
       </h1>
@@ -159,7 +165,8 @@ export const ContactForm = () => {
               form.values.personal_name == '' ||
               form.values.furigana == '' ||
               form.values.email == '' ||
-              form.values.content == ''
+              form.values.content == '' ||
+              isLoading
             }
           >
             {isLoading ? <Loader color="teal" size="xs" /> : '登録する'}

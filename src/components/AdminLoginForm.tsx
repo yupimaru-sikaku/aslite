@@ -33,7 +33,13 @@ export const AdminLoginForm = () => {
       email: form.values.email,
       password: form.values.password,
     });
-    if (error) throw new Error(error.message);
+
+    if (error) {
+      alert('Eメールアドレスかパスワードが間違っています');
+      setIsLoading(false);
+      return;
+    }
+
     router.push('/');
     showNotification({
       title: 'ログインしました',
@@ -89,7 +95,9 @@ export const AdminLoginForm = () => {
           <Button
             className="w-32"
             type="submit"
-            disabled={form.values.email == '' || form.values.password == ''}
+            disabled={
+              form.values.email == '' || form.values.password == '' || isLoading
+            }
           >
             {isLoading ? <Loader color="teal" size="xs" /> : 'ログイン'}
           </Button>

@@ -38,7 +38,11 @@ export const AdminRegisterForm = () => {
       email: form.values.email,
       password: form.values.password,
     });
-    if (error) throw new Error(error.message);
+    if (error) {
+      alert('既に存在するEメールアドレスです');
+      setIsLoading(false);
+      return;
+    }
     router.push('/admin/login');
     showNotification({
       title: '登録しました',
@@ -113,7 +117,8 @@ export const AdminRegisterForm = () => {
             disabled={
               form.values.email == '' ||
               form.values.password == '' ||
-              form.values.password_confirm == ''
+              form.values.password_confirm == '' ||
+              isLoading
             }
           >
             {isLoading ? <Loader color="teal" size="xs" /> : '登録する'}

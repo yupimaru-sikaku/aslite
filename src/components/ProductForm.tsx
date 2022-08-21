@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import { useForm } from '@mantine/form';
 import { Product } from 'src/types';
 import {
@@ -8,8 +8,6 @@ import {
   FileInputProps,
   Group,
   Text,
-  Textarea,
-  TextInput,
   SegmentedControl,
   Loader,
   CheckIcon,
@@ -63,7 +61,11 @@ export const ProductFormMemo: FC = () => {
         const { error } = await supabase.storage
           .from('product')
           .upload(filePath, file);
-        if (error) throw new Error(error.message);
+        if (error) {
+          alert(error.message);
+          setIsLoading(false);
+          return;
+        }
         return filePath;
       })
     );
@@ -76,7 +78,11 @@ export const ProductFormMemo: FC = () => {
       image_url: imageUrlList,
     });
 
-    if (error) throw new Error(error.message);
+    if (error) {
+      alert(error.message);
+      setIsLoading(false);
+      return;
+    }
 
     router.push('/');
     setIsLoading(false);
@@ -194,7 +200,8 @@ export const ProductFormMemo: FC = () => {
               form.values.product_name == '' ||
               form.values.description == '' ||
               form.values.genre == '' ||
-              form.values.image_url == ''
+              form.values.image_url == '' ||
+              isLoading
             }
           >
             {isLoading ? <Loader color="teal" size="xs" /> : '登録する'}
