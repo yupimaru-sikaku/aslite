@@ -1,9 +1,19 @@
-import { useState, FC } from 'react';
+import { useRouter } from 'next/router';
+import { useState, FC, useEffect } from 'react';
 import { AdminLoginForm } from 'src/components/AdminLoginForm';
 import { Layout } from 'src/components/Layout';
+import { supabase } from 'src/utils/supabase';
 
 const AdminLogin: FC = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const user = supabase.auth.user();
+    if (user) {
+      router.push('/');
+    }
+  }, []);
+
   return (
     <Layout title="あすらいと|ログインページ">
       <AdminLoginForm />
