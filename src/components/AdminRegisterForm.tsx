@@ -1,5 +1,5 @@
 import { useForm } from '@mantine/form';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GradientText } from './GradientText';
 import { AdminRegisterFormType } from 'src/types';
 import { FormTextInput } from './FormTextInput';
@@ -15,10 +15,13 @@ import { supabase } from 'src/utils/supabase';
 import { useRouter } from 'next/router';
 import { showNotification } from '@mantine/notifications';
 import Link from 'next/link';
+import { useFocusTrap } from '@mantine/hooks';
+import { GetServerSideProps } from 'next';
 
 export const AdminRegisterForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const focusTrapRef = useFocusTrap();
 
   const form = useForm<AdminRegisterFormType>({
     initialValues: {
@@ -65,7 +68,7 @@ export const AdminRegisterForm = () => {
       <div className="p-vw-8" />
 
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <div>
+        <div ref={focusTrapRef}>
           <FormTextInput
             idText="email"
             label="アドレス"

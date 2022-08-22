@@ -15,10 +15,12 @@ import { supabase } from 'src/utils/supabase';
 import { useRouter } from 'next/router';
 import { showNotification } from '@mantine/notifications';
 import Link from 'next/link';
+import { useFocusTrap } from '@mantine/hooks';
 
 export const AdminLoginForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const focusTrapRef = useFocusTrap();
 
   const form = useForm<AdminLoginFormType>({
     initialValues: {
@@ -62,7 +64,7 @@ export const AdminLoginForm = () => {
       <div className="p-vw-8" />
 
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <div>
+        <div ref={focusTrapRef}>
           <FormTextInput
             idText="email"
             label="メールアドレス"

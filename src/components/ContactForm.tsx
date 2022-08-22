@@ -9,9 +9,11 @@ import { FormTextArea } from './FormTextArea';
 import { FormTextInput } from './FormTextInput';
 import { GradientText } from './GradientText';
 import { init, send } from '@emailjs/browser';
+import { useFocusTrap } from '@mantine/hooks';
 
 export const ContactForm = () => {
   const router = useRouter();
+  const focusTrapRef = useFocusTrap();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -91,7 +93,7 @@ export const ContactForm = () => {
       <div className="p-vw-8" />
 
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <div>
+        <div ref={focusTrapRef}>
           <FormTextInput
             idText="personal_name"
             label="お名前"

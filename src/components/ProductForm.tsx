@@ -20,10 +20,13 @@ import { showNotification } from '@mantine/notifications';
 import { FormTextInput } from './FormTextInput';
 import { FormTextArea } from './FormTextArea';
 import { GradientText } from './GradientText';
+import { useFocusTrap } from '@mantine/hooks';
 
 export const ProductFormMemo: FC = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const focusTrapRef = useFocusTrap();
 
   const form = useForm<Omit<Product, 'id' | 'created_at'>>({
     initialValues: {
@@ -106,7 +109,7 @@ export const ProductFormMemo: FC = () => {
       <div className="p-vw-8" />
 
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <div>
+        <div ref={focusTrapRef}>
           <FormTextInput
             idText="identification_number"
             label="識別番号"
