@@ -28,6 +28,8 @@
     "@mantine/spotlight": "^5.1.6",
     "@reduxjs/toolkit": "^1.8.5",
     "@sendgrid/mail": "^7.7.0",
+    "@supabase/auth-helpers-nextjs": "^0.2.7",
+    "@supabase/auth-helpers-react": "^0.2.3",
     "@supabase/supabase-js": "^1.35.6",
     "@supabase/ui": "^0.36.5",
     "@tailwindcss/line-clamp": "^0.4.0",

@@ -8,8 +8,8 @@ type Props = {
 };
 
 export const ActivityCarousel = ({ imageList }: Props) => {
-  const [slideSize, setSlideSize] = useState<string>('');
-  const [height, setHeight] = useState<number>(0);
+  const [slideSize, setSlideSize] = useState<string>('75%');
+  const [height, setHeight] = useState<number>(300);
 
   const lagerThanXs = useMediaQuery('xs');
   const lagerThanSm = useMediaQuery('sm');
