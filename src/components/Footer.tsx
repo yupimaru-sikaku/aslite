@@ -2,12 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import { ActionIcon, Group } from '@mantine/core';
 import { IconBrandTwitter, IconBrandInstagram } from '@tabler/icons';
-import { useQueryClient } from 'react-query';
 import { supabase } from 'src/utils/supabase';
 import { headerLink } from 'src/utils/headerLink';
 
 export const Footer = () => {
-
   // const signOut = () => {
   //   resetProduct();
   //   resetProfile();

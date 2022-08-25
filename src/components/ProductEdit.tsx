@@ -1,28 +1,29 @@
-import { FC, memo, useState } from 'react';
-import { useForm } from '@mantine/form';
-import { Product } from 'src/types';
 import {
+  ActionIcon,
   Button,
   Center,
+  CheckIcon,
   FileInput,
   FileInputProps,
   Group,
-  Text,
-  SegmentedControl,
   Loader,
-  CheckIcon,
-  ActionIcon,
+  SegmentedControl,
+  Text,
 } from '@mantine/core';
-import { supabase } from 'src/utils/supabase';
+import { useForm } from '@mantine/form';
+import { useFocusTrap } from '@mantine/hooks';
+import { showNotification } from '@mantine/notifications';
 import { IconPhoto } from '@tabler/icons';
 import { useRouter } from 'next/router';
-import { showNotification } from '@mantine/notifications';
-import { FormTextInput } from './FormTextInput';
+import React, { useState } from 'react';
+import { useDownloadUrl } from 'src/hooks/useDownloadUrl';
+import { Product } from 'src/types';
+import { supabase } from 'src/utils/supabase';
 import { FormTextArea } from './FormTextArea';
+import { FormTextInput } from './FormTextInput';
 import { GradientText } from './GradientText';
-import { useFocusTrap } from '@mantine/hooks';
 
-export const ProductFormMemo: FC = () => {
+export const ProductEdit = ({ product }: any) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -30,11 +31,11 @@ export const ProductFormMemo: FC = () => {
 
   const form = useForm<Omit<Product, 'id' | 'created_at'>>({
     initialValues: {
-      identification_number: '',
-      product_name: '',
-      description: '',
-      genre: '',
-      image_url: [],
+      identification_number: product.identification_number,
+      product_name: product.product_name,
+      description: product.description,
+      genre: product.genre,
+      image_url: product.image_url,
     },
   });
 
@@ -54,10 +55,13 @@ export const ProductFormMemo: FC = () => {
   const handleSubmit = async () => {
     setIsLoading(true);
 
-    const fileList = form.values.image_url;
+    const filePathListStringArr =
+      typeof form.values.image_url === 'string'
+        ? form.values.image_url.replace('[', '').replace(']', '').split(',')
+        : form.values.image_url;
 
     const imageUrlList = await Promise.all(
-      fileList.map(async (file: any) => {
+      filePathListStringArr.map(async (file: any) => {
         const fileExt = file.name.split('.').pop();
         const fileName = `${Math.random()}.${fileExt}`;
         const filePath = `${fileName}`;
@@ -73,13 +77,16 @@ export const ProductFormMemo: FC = () => {
       })
     );
 
-    const { error } = await supabase.from('product').insert({
-      identification_number: form.values.identification_number,
-      product_name: form.values.product_name,
-      description: form.values.description,
-      genre: form.values.genre,
-      image_url: imageUrlList,
-    });
+    const { error } = await supabase
+      .from('product')
+      .update({
+        identification_number: form.values.identification_number,
+        product_name: form.values.product_name,
+        description: form.values.description,
+        genre: form.values.genre,
+        image_url: imageUrlList,
+      })
+      .eq('id', product.id);
 
     if (error) {
       alert(error.message);
@@ -90,7 +97,7 @@ export const ProductFormMemo: FC = () => {
     router.push('/');
     setIsLoading(false);
     showNotification({
-      title: '登録完了',
+      title: '編集完了',
       message: '',
       icon: (
         <ActionIcon size="xs">
@@ -103,13 +110,13 @@ export const ProductFormMemo: FC = () => {
   return (
     <div className="mx-auto max-w-sm px-3">
       <h1 className="text-center">
-        <GradientText title="SUBMISSION PAGE" />
+        <GradientText title="EDIT PAGE" />
       </h1>
 
       <div className="p-vw-8" />
 
-      <form onSubmit={form.onSubmit(handleSubmit)} ref={focusTrapRef}>
-        <div>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
+        <div ref={focusTrapRef}>
           <FormTextInput
             idText="identification_number"
             label="識別番号"
@@ -207,7 +214,7 @@ export const ProductFormMemo: FC = () => {
               isLoading
             }
           >
-            {isLoading ? <Loader color="teal" size="xs" /> : '登録する'}
+            {isLoading ? <Loader color="teal" size="xs" /> : '編集する'}
           </Button>
         </div>
       </form>
@@ -244,5 +251,3 @@ const Value = ({ file }: { file: File }) => {
     </Center>
   );
 };
-
-export const ProductForm = memo(ProductFormMemo);

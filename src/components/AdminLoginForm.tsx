@@ -63,8 +63,8 @@ export const AdminLoginForm = () => {
 
       <div className="p-vw-8" />
 
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <div ref={focusTrapRef}>
+      <form onSubmit={form.onSubmit(handleSubmit)} ref={focusTrapRef}>
+        <div>
           <FormTextInput
             idText="email"
             label="メールアドレス"

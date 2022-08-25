@@ -5,9 +5,14 @@ import { IconMailForward } from '@tabler/icons';
 import { NavBarModal } from './NavBarModal';
 import { headerLink } from 'src/utils/headerLink';
 import Image from 'next/image';
+import { supabase } from 'src/utils/supabase';
 
 export const Navbar = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
+
+  const logout = async () => {
+    await supabase.auth.signOut();
+  };
 
   if (isModal) {
     return (
@@ -85,6 +90,9 @@ export const Navbar = () => {
                 </Link>
               </li>
             ))}
+            <li onClick={logout} className="cursor-pointer">
+              out
+            </li>
           </ul>
         </div>
       </div>

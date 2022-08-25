@@ -9,13 +9,7 @@ type Props = {
 export const GradientText = ({ title }: Props) => {
   const lagerThanXs = useMediaQuery('xs');
 
-  let fontSize: number;
-
-  if (lagerThanXs) {
-    fontSize = 32;
-  } else {
-    fontSize = 24;
-  }
+  const fontSize = lagerThanXs ? 32 : 24;
 
   return (
     <Text
