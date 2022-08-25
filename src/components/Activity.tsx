@@ -104,7 +104,7 @@ export const Activity = () => {
         </div>
       </div>
 
-      <div className="p-vw-12" />
+      <div className="p-vw-24" />
 
       <div className="mx-4">
         <ActivityCarousel imageList={coceriumImageList} />
