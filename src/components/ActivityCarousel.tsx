@@ -1,16 +1,35 @@
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from 'src/lib/mantine/useMediaQuery';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 type Props = {
   imageList: string[];
 };
 
 export const ActivityCarousel = ({ imageList }: Props) => {
+  const [slideSize, setSlideSize] = useState<string>('');
+  const [height, setHeight] = useState<number>(0);
+
+  const lagerThanXs = useMediaQuery('xs');
+  const lagerThanSm = useMediaQuery('sm');
   const lagerThanMd = useMediaQuery('md');
 
-  const slideSize = lagerThanMd ? '50%' : '75%';
-  const height = lagerThanMd ? 400 : 300;
+  useEffect(() => {
+    if (lagerThanMd) {
+      setSlideSize('50%');
+      setHeight(400);
+    } else if (lagerThanSm) {
+      setSlideSize('60%');
+      setHeight(300);
+    } else if (lagerThanXs) {
+      setSlideSize('75%');
+      setHeight(300);
+    } else {
+      setSlideSize('100%');
+      setHeight(250);
+    }
+  }, [lagerThanXs, lagerThanMd]);
 
   return (
     <Carousel

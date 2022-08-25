@@ -6,15 +6,15 @@ import { Activity } from 'src/components/Activity';
 
 const Home: NextPage = () => {
   return (
-    <Layout title={'トップページ'}>
+    <Layout title={'トップページ | あすらいと'}>
       <div>
         <AboutUs />
 
-        <div className="p-vw-8" />
+        <div className="p-vw-48" />
 
         <Activity />
 
-        <div className="p-vw-8" />
+        <div className="p-vw-48" />
 
         <ProductList />
       </div>

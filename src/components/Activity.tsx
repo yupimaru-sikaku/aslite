@@ -20,12 +20,22 @@ export const Activity = () => {
           <ArticleCardImage
             image="/activity_aquarium.webp"
             title="Aquarium"
-            titleColor="white"
             category="Aquarium"
             isBudge={true}
           />
         </div>
         <div className="text-md mt-10 w-full md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
+          <Text
+            align="center"
+            variant="gradient"
+            gradient={{ from: 'indigo', to: 'lightBlue', deg: 45 }}
+            size="xl"
+            weight={700}
+            style={{ fontFamily: 'Greycliff CF, sans-serif' }}
+          >
+            『日常を切り取る』
+          </Text>
+          <br />
           <Text>
             アクアホープではお店、ご自宅、オフィスなど様々な状況に合わせて水槽の設置を行っております。
           </Text>
@@ -45,26 +55,34 @@ export const Activity = () => {
         </div>
       </div>
 
-      <div className="p-vw-12" />
+      <div className="p-vw-24" />
 
       <div className="mx-4">
         <ActivityCarousel imageList={aquariumImageList} />
       </div>
 
-      <div className="p-vw-24" />
+      <div className="p-vw-48" />
 
       <div className="mx-4 flex flex-col items-start md:flex-row-reverse">
         <div className="w-full md:mr-10 md:w-1/2">
           <ArticleCardImage
             image="/activity_cocerium.webp"
             title="Cocerium"
-            titleColor="rgba(217, 119, 6)"
             category="Cocerium"
             isBudge={false}
           />
         </div>
         <div className="text-md mt-10 w-full md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
-          <Text>『日常に自然の癒やしを』</Text>
+          <Text
+            align="center"
+            variant="gradient"
+            gradient={{ from: 'green', to: 'yellow', deg: 45 }}
+            size="xl"
+            weight={700}
+            style={{ fontFamily: 'Greycliff CF, sans-serif' }}
+          >
+            『日常に自然の癒やしを』
+          </Text>
           <br />
           <Text>
             コケをメインに数種類の観葉植物、流木、石等を使ってガラス容器に自然の世界を創った癒しのインテリアです。

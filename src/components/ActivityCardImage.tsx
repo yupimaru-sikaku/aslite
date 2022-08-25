@@ -4,7 +4,6 @@ import { ProductBadge } from './ProductBadge';
 interface ArticleCardImageProps {
   image: string;
   title: string;
-  titleColor: string;
   category: string;
   isBudge: boolean;
 }
@@ -12,7 +11,6 @@ interface ArticleCardImageProps {
 export const ArticleCardImage = ({
   image,
   title,
-  titleColor,
   category,
   isBudge,
 }: ArticleCardImageProps) => {
@@ -30,14 +28,15 @@ export const ArticleCardImage = ({
     title: {
       fontFamily: `Greycliff CF ${theme.fontFamily}`,
       fontWeight: 900,
-      color: titleColor,
+      color: 'white',
+      textShadow: '1px 1px 2px white, 0 0 1em white, 0 0 0.2em gray',
       lineHeight: 1.2,
       fontSize: 32,
-      marginTop: theme.spacing.xs,
+      mPrginTop: theme.spacing.xs,
     },
 
     category: {
-      color: titleColor,
+      color: 'white',
       opacity: 0.7,
       fontWeight: 700,
       textTransform: 'uppercase',
@@ -62,7 +61,7 @@ export const ArticleCardImage = ({
           {title}
         </Title>
         {isBudge && (
-          <div className="grid-col-3 mt-3 gap-2">
+          <div className="mt-3 flex flex-wrap gap-3">
             <Badge variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>
               熱帯魚
             </Badge>
