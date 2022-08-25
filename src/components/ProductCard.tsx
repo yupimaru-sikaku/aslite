@@ -7,7 +7,6 @@ import { ProductBadge } from 'src/components/ProductBadge';
 import { ProductDialog } from './ProductDialog';
 import { IconAdjustments } from '@tabler/icons';
 import { supabase } from 'src/utils/supabase';
-import Link from 'next/link';
 import { deleteProduct } from 'src/hooks/useMutateProduct';
 
 export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
@@ -58,13 +57,13 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
                   </ActionIcon>
                 </Popover.Target>
                 <Popover.Dropdown>
-                  <Link href={`/product/${id}/edit`}>
-                    <a>
-                      <p className="cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow">
-                        編集
-                      </p>
-                    </a>
-                  </Link>
+                  {/* <Link href={`/product/${id}/edit`}> */}
+                  <a>
+                    <p className="cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow">
+                      編集
+                    </p>
+                  </a>
+                  {/* </Link> */}
                   <p
                     className="mt-3 cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow"
                     onClick={() => deleteProduct(id)}
