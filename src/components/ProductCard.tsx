@@ -8,8 +8,7 @@ import { ProductDialog } from './ProductDialog';
 import { IconAdjustments } from '@tabler/icons';
 import { supabase } from 'src/utils/supabase';
 import Link from 'next/link';
-import { useDeleteProduct } from 'src/hooks/useMutateProduct';
-
+import { deleteProduct } from 'src/hooks/useMutateProduct';
 
 export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
   id,
@@ -68,7 +67,7 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
                   </Link>
                   <p
                     className="mt-3 cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow"
-                    onClick={() => useDeleteProduct(id)}
+                    onClick={() => deleteProduct(id)}
                   >
                     削除
                   </p>

@@ -2,7 +2,7 @@ import { showNotification } from '@mantine/notifications';
 import { supabase } from 'src/utils/supabase';
 import { ActionIcon, CheckIcon } from '@mantine/core';
 
-export const useDeleteProduct = async (id: string) => {
+export const deleteProduct = async (id: string) => {
   const is_ok = confirm('本当に削除しますか？');
   if (is_ok) {
     try {
