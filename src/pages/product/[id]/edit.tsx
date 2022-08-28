@@ -1,12 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Layout } from 'src/components/Layout';
 import { ProductEdit } from 'src/components/ProductEdit';
-import { Product } from 'src/types';
 import { supabase } from 'src/utils/supabase';
 
 const ProductIdEdit = ({ data }: any) => {
-  const product = data[0];
+  const product = data && data[0];
   return (
     <Layout title="編集ページ">
       <ProductEdit product={product} />
@@ -47,7 +46,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const id = params?.id;
     const { data } = await supabase.from('product').select('*').eq('id', id);
-
     return {
       props: { data },
     };
