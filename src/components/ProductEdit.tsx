@@ -31,11 +31,11 @@ export const ProductEdit = ({ product }: any) => {
 
   const form = useForm<Omit<Product, 'id' | 'created_at'>>({
     initialValues: {
-      identification_number: product.identification_number,
-      product_name: product.product_name,
-      description: product.description,
-      genre: product.genre,
-      image_url: product.image_url,
+      identification_number: product && product.identification_number,
+      product_name: product && product.product_name,
+      description: product && product.description,
+      genre: product && product.genre,
+      image_url: product && product.image_url,
     },
   });
 
@@ -128,7 +128,7 @@ export const ProductEdit = ({ product }: any) => {
         setIsLoading(false);
         return;
       }
-    // 画像に変更が無い場合はimage_url以外を更新
+      // 画像に変更が無い場合はimage_url以外を更新
     } else {
       const { error } = await supabase
         .from('product')
