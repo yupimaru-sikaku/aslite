@@ -1,17 +1,35 @@
-import { ActionIcon } from '@mantine/core';
+import { ActionIcon, CheckIcon } from '@mantine/core';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IconMailForward } from '@tabler/icons';
 import { NavBarModal } from './NavBarModal';
 import { headerLink } from 'src/utils/headerLink';
 import Image from 'next/image';
 import { supabase } from 'src/utils/supabase';
+import { GetServerSideProps } from 'next';
+import { LogoutIcon } from '@heroicons/react/outline';
+import { showNotification } from '@mantine/notifications';
 
 export const Navbar = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
+  const [user, setUser] = useState<any>({});
+  useEffect(() => {
+    const user = supabase.auth.user();
+    setUser(user);
+  }, [user]);
 
   const logout = async () => {
     await supabase.auth.signOut();
+    setUser({});
+    showNotification({
+      title: 'ログアウトしました',
+      message: '',
+      icon: (
+        <ActionIcon size="xs">
+          <CheckIcon />
+        </ActionIcon>
+      ),
+    });
   };
 
   if (isModal) {
@@ -90,9 +108,13 @@ export const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li onClick={logout} className="cursor-pointer">
-              out
-            </li>
+            {user && (
+              <li>
+                <ActionIcon size="md" color="dark" onClick={logout}>
+                  <LogoutIcon />
+                </ActionIcon>
+              </li>
+            )}
           </ul>
         </div>
       </div>

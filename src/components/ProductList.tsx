@@ -13,7 +13,7 @@ export const ProductList = () => {
       const { data, error } = await supabase
         .from('product')
         .select('*')
-        .order('created_at', { ascending: true });
+        .order('created_at', { ascending: false });
 
       if (error) {
         throw new Error(error.message);

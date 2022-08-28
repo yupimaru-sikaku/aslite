@@ -1,6 +1,6 @@
 import { ActionIcon, Loader, Popover } from '@mantine/core';
 import Image from 'next/image';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useDownloadUrl } from 'src/hooks/useDownloadUrl';
 import { Product } from 'src/types';
 import { ProductBadge } from 'src/components/ProductBadge';
@@ -8,6 +8,7 @@ import { ProductDialog } from './ProductDialog';
 import { IconAdjustments } from '@tabler/icons';
 import { supabase } from 'src/utils/supabase';
 import { deleteProduct } from 'src/hooks/useMutateProduct';
+import Link from 'next/link';
 
 export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
   id,
@@ -17,9 +18,15 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
   image_url,
 }) => {
   const [opened, setOpened] = useState<boolean>(false);
+  const [popoverLoading, setPopoverLoading] = useState<boolean>(false);
+
   const user = supabase.auth.user();
 
   const { fullUrlList: imageUrlList } = useDownloadUrl(image_url, 'product');
+
+  useEffect(() => {
+    return () => setPopoverLoading(false);
+  }, []);
 
   return (
     <>
@@ -41,6 +48,9 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
               alt="product"
               width={720}
               height={400}
+              loading={'lazy'}
+              layout={'responsive'}
+              objectFit="cover"
             />
           ) : (
             <div className="flex justify-center py-10">
@@ -57,19 +67,30 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
                   </ActionIcon>
                 </Popover.Target>
                 <Popover.Dropdown>
-                  {/* <Link href={`/product/${id}/edit`}> */}
-                  <a>
-                    <p className="cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow">
-                      編集
-                    </p>
-                  </a>
-                  {/* </Link> */}
-                  <p
-                    className="mt-3 cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow"
-                    onClick={() => deleteProduct(id)}
-                  >
-                    削除
-                  </p>
+                  {popoverLoading ? (
+                    <div className="flex justify-center items-center h-16">
+                      <Loader size="sm" />
+                    </div>
+                  ) : (
+                    <div className="h-16">
+                      <Link href={`/product/${id}/edit`}>
+                        <a>
+                          <p
+                            className="cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow"
+                            onClick={() => setPopoverLoading(true)}
+                          >
+                            編集
+                          </p>
+                        </a>
+                      </Link>
+                      <p
+                        className="mt-3 cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow"
+                        onClick={() => deleteProduct(id)}
+                      >
+                        削除
+                      </p>
+                    </div>
+                  )}
                 </Popover.Dropdown>
               </Popover>
             ) : null}

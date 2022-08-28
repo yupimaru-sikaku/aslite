@@ -15,7 +15,7 @@ import { useFocusTrap } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
 import { IconPhoto } from '@tabler/icons';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDownloadUrl } from 'src/hooks/useDownloadUrl';
 import { Product } from 'src/types';
 import { supabase } from 'src/utils/supabase';
@@ -55,45 +55,97 @@ export const ProductEdit = ({ product }: any) => {
   const handleSubmit = async () => {
     setIsLoading(true);
 
-    const filePathListStringArr =
-      typeof form.values.image_url === 'string'
-        ? form.values.image_url.replace('[', '').replace(']', '').split(',')
-        : form.values.image_url;
+    // 画像に変更がある場合は既存の画像をSupabaseから削除してから更新
+    if (form.isDirty('image_url')) {
+      // 整形
+      // 既存の画像パスを"[]"で取得しているので[]を削除
+      let prevImagePathList = product.image_url
+        .replace('[', '')
+        .replace(']', '')
+        .replace(/"/g, '');
+      // 画像が一種類ならそのまま
+      // 複数ならカンマを起点に、配列化
+      prevImagePathList = prevImagePathList.match(/,/)
+        ? prevImagePathList.split(',')
+        : prevImagePathList;
 
-    const imageUrlList = await Promise.all(
-      filePathListStringArr.map(async (file: any) => {
-        const fileExt = file.name.split('.').pop();
-        const fileName = `${Math.random()}.${fileExt}`;
-        const filePath = `${fileName}`;
+      // 既存の画像が一種類の場合
+      if (typeof prevImagePathList === 'string') {
         const { error } = await supabase.storage
           .from('product')
-          .upload(filePath, file);
+          .remove([prevImagePathList]);
         if (error) {
           alert(error.message);
           setIsLoading(false);
           return;
         }
-        return filePath;
-      })
-    );
+        // 既存画像が複数の場合;
+      } else {
+        prevImagePathList.map(async (prevImagePath: any) => {
+          const { error } = await supabase.storage
+            .from('product')
+            .remove([prevImagePath]);
+          if (error) {
+            alert(error.message);
+            setIsLoading(false);
+            return;
+          }
+        });
+      }
 
-    const { error } = await supabase
-      .from('product')
-      .update({
-        identification_number: form.values.identification_number,
-        product_name: form.values.product_name,
-        description: form.values.description,
-        genre: form.values.genre,
-        image_url: imageUrlList,
-      })
-      .eq('id', product.id);
+      const fileList = form.values.image_url;
 
-    if (error) {
-      alert(error.message);
-      setIsLoading(false);
-      return;
+      const nextImagePathList = await Promise.all(
+        fileList.map(async (file: any) => {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `${Math.random()}.${fileExt}`;
+          const filePath = `${fileName}`;
+          const { error } = await supabase.storage
+            .from('product')
+            .upload(filePath, file);
+          if (error) {
+            alert(error.message);
+            setIsLoading(false);
+            return;
+          }
+          return filePath;
+        })
+      );
+
+      const { error } = await supabase
+        .from('product')
+        .update({
+          identification_number: form.values.identification_number,
+          product_name: form.values.product_name,
+          description: form.values.description,
+          genre: form.values.genre,
+          image_url: nextImagePathList,
+        })
+        .eq('id', product.id);
+
+      if (error) {
+        alert(error.message);
+        setIsLoading(false);
+        return;
+      }
+    // 画像に変更が無い場合はimage_url以外を更新
+    } else {
+      const { error } = await supabase
+        .from('product')
+        .update({
+          identification_number: form.values.identification_number,
+          product_name: form.values.product_name,
+          description: form.values.description,
+          genre: form.values.genre,
+        })
+        .eq('id', product.id);
+
+      if (error) {
+        alert(error.message);
+        setIsLoading(false);
+        return;
+      }
     }
-
     router.push('/');
     setIsLoading(false);
     showNotification({
@@ -115,8 +167,8 @@ export const ProductEdit = ({ product }: any) => {
 
       <div className="p-vw-8" />
 
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <div ref={focusTrapRef}>
+      <form onSubmit={form.onSubmit(handleSubmit)} ref={focusTrapRef}>
+        <div>
           <FormTextInput
             idText="identification_number"
             label="識別番号"
@@ -188,6 +240,7 @@ export const ProductEdit = ({ product }: any) => {
         <div>
           <FileInput
             label="画像（複数可）"
+            description="変更がある場合のみ投稿下さい"
             placeholder="クリックして登録"
             multiple
             required

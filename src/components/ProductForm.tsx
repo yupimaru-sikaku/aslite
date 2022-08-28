@@ -61,9 +61,10 @@ export const ProductFormMemo: FC = () => {
         const fileExt = file.name.split('.').pop();
         const fileName = `${Math.random()}.${fileExt}`;
         const filePath = `${fileName}`;
-        const { error } = await supabase.storage
+        const { data, error } = await supabase.storage
           .from('product')
           .upload(filePath, file);
+        console.log(data);
         if (error) {
           alert(error.message);
           setIsLoading(false);
