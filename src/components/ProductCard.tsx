@@ -46,11 +46,9 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
               onClick={() => setOpened(true)}
               className="cursor-pointer"
               alt="product"
-              width={720}
-              height={400}
+              width={350}
+              height={350}
               loading={'lazy'}
-              layout={'responsive'}
-              objectFit="cover"
             />
           ) : (
             <div className="flex justify-center py-10">
@@ -68,7 +66,7 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
                 </Popover.Target>
                 <Popover.Dropdown>
                   {popoverLoading ? (
-                    <div className="flex justify-center items-center h-16">
+                    <div className="flex h-16 items-center justify-center">
                       <Loader size="sm" />
                     </div>
                   ) : (

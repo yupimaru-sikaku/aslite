@@ -64,7 +64,6 @@ export const ProductFormMemo: FC = () => {
         const { data, error } = await supabase.storage
           .from('product')
           .upload(filePath, file);
-        console.log(data);
         if (error) {
           alert(error.message);
           setIsLoading(false);

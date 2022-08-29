@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQueryProductList } from 'src/hooks/useQueryProductList';
 import { ProductCard } from 'src/components/ProductCard';
 import { GradientText } from './GradientText';
 import { supabase } from 'src/utils/supabase';

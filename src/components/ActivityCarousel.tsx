@@ -37,8 +37,12 @@ export const ActivityCarousel = ({ imageList }: Props) => {
       height={height}
       slideGap="xl"
       withControls
-      dragFree
-      align="start"
+      classNames={{ root: 'bg-gray-800' }}
+      sx={{
+        img: {
+          borderRadius: '0.25rem',
+        },
+      }}
     >
       {imageList.map((image) => (
         <Carousel.Slide key={image}>

@@ -8,9 +8,9 @@ type Props = {
 export const ProductCarousel = ({ image_url }: Props) => {
   return (
     <Carousel
-      sx={{ maxWidth: 320 }}
+      sx={{ maxWidth: 350 }}
       mx="auto"
-      height={200}
+      height={300}
       dragFree
       slideGap="xs"
       align="start"
