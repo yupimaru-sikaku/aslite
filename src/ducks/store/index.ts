@@ -5,6 +5,7 @@ import {
 } from 'react-redux';
 import { adminReducer } from '../user/slice';
 import { useDispatch } from 'react-redux';
+import { load, save } from 'redux-localstorage-simple';
 
 const RootReducer = combineReducers({
   admin: adminReducer,
@@ -12,6 +13,8 @@ const RootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: RootReducer,
+  preloadedState: load(),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(save()),
 });
 
 export type AppDispatch = typeof store.dispatch;

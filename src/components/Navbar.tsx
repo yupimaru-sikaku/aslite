@@ -6,13 +6,16 @@ import { NavBarModal } from './NavBarModal';
 import { headerLink } from 'src/utils/headerLink';
 import Image from 'next/image';
 import { supabase } from 'src/utils/supabase';
-import { GetServerSideProps } from 'next';
 import { LogoutIcon } from '@heroicons/react/outline';
 import { showNotification } from '@mantine/notifications';
+import { useAppDispatch } from 'src/ducks/store';
+import { resetSession } from 'src/ducks/user/slice';
 
 export const Navbar = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
   const [user, setUser] = useState<any>({});
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const user = supabase.auth.user();
     setUser(user);
@@ -21,6 +24,7 @@ export const Navbar = () => {
   const logout = async () => {
     await supabase.auth.signOut();
     setUser({});
+    dispatch(resetSession());
     showNotification({
       title: 'ログアウトしました',
       message: '',

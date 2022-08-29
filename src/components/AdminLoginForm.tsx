@@ -16,9 +16,12 @@ import { useRouter } from 'next/router';
 import { showNotification } from '@mantine/notifications';
 import Link from 'next/link';
 import { useFocusTrap } from '@mantine/hooks';
+import { useAppDispatch } from 'src/ducks/store';
+import { setSession } from 'src/ducks/user/slice';
 
 export const AdminLoginForm = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const focusTrapRef = useFocusTrap();
 
@@ -31,7 +34,7 @@ export const AdminLoginForm = () => {
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    const { error } = await supabase.auth.signIn({
+    const { session, error } = await supabase.auth.signIn({
       email: form.values.email,
       password: form.values.password,
     });
@@ -41,6 +44,8 @@ export const AdminLoginForm = () => {
       setIsLoading(false);
       return;
     }
+
+    session && dispatch(setSession(session));
 
     router.push('/');
     showNotification({

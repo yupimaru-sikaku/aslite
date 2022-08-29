@@ -1,28 +1,30 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Session } from '@supabase/supabase-js';
 
 // ログイン状態を管理
 export type AdminState = {
-  session: Session | null;
+  access_token: string;
 };
 
 export const initialState: AdminState = {
-  session: null,
+  access_token: '',
 };
 
 const adminSlice = createSlice({
   name: 'admin',
   initialState,
   reducers: {
-    getInfo(state) {
-      state.session;
+    isSession(state) {
+      state.access_token;
     },
-    login: (state, action: PayloadAction<AdminState>) => ({
+    setSession: (state, action: PayloadAction<AdminState>) => ({
       ...state,
-      session: action.payload.session,
+      access_token: action.payload.access_token,
     }),
+    resetSession: (state) => {
+      state.access_token = '';
+    },
   },
 });
 
-export const { getInfo, login } = adminSlice.actions;
+export const { isSession, setSession, resetSession } = adminSlice.actions;
 export const adminReducer = adminSlice.reducer;
