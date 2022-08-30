@@ -35,12 +35,11 @@ export const ActivityCarousel = ({ imageList }: Props) => {
     <Carousel
       slideSize={slideSize}
       height={height}
-      slideGap="xl"
+      slideGap={75}
       withControls
-      classNames={{ root: 'bg-gray-800' }}
       sx={{
         img: {
-          borderRadius: '0.25rem',
+          borderRadius: '1rem',
         },
       }}
     >
