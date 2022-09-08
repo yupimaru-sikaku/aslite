@@ -14,7 +14,7 @@ export const AboutUs = () => {
 
       {aboutUsContent.map((content) => (
         <div key={content.label}>
-          <div className="md:text-xl my-6 flex text-sm">
+          <div className="my-6 flex text-sm md:text-xl">
             <p className="w-1/5">{content.label}</p>
             <p className="ml-3 w-4/5">{content.text}</p>
           </div>

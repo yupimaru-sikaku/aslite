@@ -9,7 +9,7 @@ import { supabase } from 'src/utils/supabase';
 import { LogoutIcon } from '@heroicons/react/outline';
 import { showNotification } from '@mantine/notifications';
 import { useAppDispatch } from 'src/ducks/store';
-import { resetSession } from 'src/ducks/user/slice';
+import { resetSession } from 'src/ducks/admin/slice';
 
 export const Navbar = () => {
   const [isModal, setIsModal] = useState<boolean>(false);

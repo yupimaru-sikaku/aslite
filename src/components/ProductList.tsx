@@ -1,53 +1,73 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ProductCard } from 'src/components/ProductCard';
 import { GradientText } from './GradientText';
-import { supabase } from 'src/utils/supabase';
 import { Loader } from '@mantine/core';
+import { useGetProductListQuery } from 'src/ducks/product/query';
 
 export const ProductList = () => {
-  const [productList, setIsProductList] = useState([{}]);
+  const { data: productList, isLoading, isError } = useGetProductListQuery();
 
-  useEffect(() => {
-    const getProductList = async () => {
-      const { data, error } = await supabase
-        .from('product')
-        .select('*')
-        .order('created_at', { ascending: false });
+  if (isLoading) {
+    return (
+      <>
+        <h1 className="text-center">
+          <GradientText title="LINE UP" />
+        </h1>
+        <div className="p-vw-8" />
+        <Loader sx={{ margin: 'auto' }} />
+      </>
+    );
+  }
 
-      if (error) {
-        throw new Error(error.message);
-      }
-      setIsProductList(data);
-    };
-    getProductList();
-  }, []);
+  if (isError) {
+    return (
+      <>
+        <h1 className="text-center">
+          <GradientText title="LINE UP" />
+        </h1>
+        <div className="p-vw-8" />
+        <p className="text-center">エラーによりデータが取得できませんでした</p>
+      </>
+    );
+  }
+
+  if (!productList?.length) {
+    return (
+      <>
+        <h1 className="text-center">
+          <GradientText title="LINE UP" />
+        </h1>
+        <div className="p-vw-8" />
+        <p className="text-center">データがありません</p>
+      </>
+    );
+  }
 
   return (
-    <>
+    <div>
       <h1 className="text-center">
         <GradientText title="LINE UP" />
       </h1>
 
       <div className="p-vw-8" />
-      {productList.length > 1 ? (
-        <div className="container mx-auto">
-          <div className="flex flex-wrap justify-center">
-            {productList.map((product: any) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                identification_number={product.identification_number}
-                product_name={product.product_name}
-                description={product.description}
-                genre={product.genre}
-                image_url={product.image_url}
-              />
-            ))}{' '}
-          </div>
+
+      <div className="container mx-auto">
+        <div className="flex flex-wrap justify-center">
+          {productList.map((product: any) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              identification_number={product.identification_number}
+              product_name={product.product_name}
+              description={product.description}
+              genre={product.genre}
+              image_url={product.image_url}
+              is_display={product.is_display}
+              updated_at={product.updated_at}
+            />
+          ))}
         </div>
-      ) : (
-        <Loader />
-      )}
-    </>
+      </div>
+    </div>
   );
 };

@@ -5,16 +5,9 @@ export type Product = {
   description: string;
   genre: string;
   image_url: any;
+  is_display: boolean;
   created_at: string;
-};
-
-export type EditedProduct = {
-  id: string;
-  identification_number: string;
-  product_name: string;
-  description: string;
-  genre: string;
-  image_url: string;
+  updated_at: string;
 };
 
 export type AdminRegisterFormType = {
@@ -26,6 +19,19 @@ export type AdminRegisterFormType = {
 export type AdminLoginFormType = {
   email: string;
   password: string;
+};
+
+export type AdminResetPasswordByEmailFormType = {
+  email: string;
+};
+
+export type AdminResetPasswordFormType = {
+  password: string;
+  password_confirm: string;
+};
+
+export type AdminResetEmailFormType = {
+  email: string;
 };
 
 export type Profile = {
@@ -40,7 +46,7 @@ export type EditedProfile = {
   avatar_url: string | undefined;
 };
 
-export type CreateContact = {
+export type Contact = {
   personal_name: string;
   furigana: string;
   email: string;

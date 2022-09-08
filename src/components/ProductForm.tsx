@@ -13,7 +13,6 @@ import {
   CheckIcon,
   ActionIcon,
 } from '@mantine/core';
-import { supabase } from 'src/utils/supabase';
 import { IconPhoto } from '@tabler/icons';
 import { useRouter } from 'next/router';
 import { showNotification } from '@mantine/notifications';
@@ -21,14 +20,23 @@ import { FormTextInput } from './FormTextInput';
 import { FormTextArea } from './FormTextArea';
 import { GradientText } from './GradientText';
 import { useFocusTrap } from '@mantine/hooks';
+import {
+  useAddProductImageMutation,
+  useCreateProductMutation,
+} from 'src/ducks/product/query';
 
-export const ProductFormMemo: FC = () => {
+export const ProductForm: FC = () => {
   const router = useRouter();
+  const focusTrapRef = useFocusTrap();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const focusTrapRef = useFocusTrap();
+  const [createProduct] = useCreateProductMutation();
+  const [addProductImage] = useAddProductImageMutation();
 
-  const form = useForm<Omit<Product, 'id' | 'created_at'>>({
+  // Omitされているものは全てSupabaseで入力してくれる
+  const form = useForm<
+    Omit<Product, 'id' | 'created_at' | 'updated_at' | 'is_display'>
+  >({
     initialValues: {
       identification_number: '',
       product_name: '',
@@ -51,53 +59,80 @@ export const ProductFormMemo: FC = () => {
     return value ? <Value file={value} /> : null;
   };
 
+  const Value = ({ file }: { file: File }) => {
+    return (
+      <Center
+        inline
+        sx={(theme) => ({
+          backgroundColor:
+            theme.colorScheme === 'dark'
+              ? theme.colors.dark[7]
+              : theme.colors.gray[1],
+          fontSize: theme.fontSizes.xs,
+          padding: '3px 7px',
+          borderRadius: theme.radius.sm,
+        })}
+      >
+        <IconPhoto size={14} style={{ marginRight: 5 }} />
+        <span
+          style={{
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            maxWidth: 200,
+            display: 'inline-block',
+          }}
+        >
+          {file.name}
+        </span>
+      </Center>
+    );
+  };
+
   const handleSubmit = async () => {
     setIsLoading(true);
 
-    const fileList = form.values.image_url;
+    try {
+      const fileList = form.values.image_url;
+      const imagePathList = await Promise.all(
+        fileList.map(async (file: any) => {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `${Math.random()}.${fileExt}`;
+          const imagePath = `${fileName}`;
+          // シリアライズエラーが発生するが、serializableCheck: falseにして応急処置。要改善。
+          await addProductImage({ imagePath, file })
+            .unwrap()
+            .catch(() => {
+              throw new Error('画像の投稿に失敗しました');
+            });
+          return imagePath;
+        })
+      );
 
-    const imageUrlList = await Promise.all(
-      fileList.map(async (file: any) => {
-        const fileExt = file.name.split('.').pop();
-        const fileName = `${Math.random()}.${fileExt}`;
-        const filePath = `${fileName}`;
-        const { data, error } = await supabase.storage
-          .from('product')
-          .upload(filePath, file);
-        if (error) {
-          alert(error.message);
-          setIsLoading(false);
-          return;
-        }
-        return filePath;
-      })
-    );
+      form.values.image_url = imagePathList;
 
-    const { error } = await supabase.from('product').insert({
-      identification_number: form.values.identification_number,
-      product_name: form.values.product_name,
-      description: form.values.description,
-      genre: form.values.genre,
-      image_url: imageUrlList,
-    });
+      await createProduct(form.values)
+        .unwrap()
+        .catch(() => {
+          throw new Error('テーブルの作成に失敗しました');
+        });
 
-    if (error) {
-      alert(error.message);
+      router.push('/');
+      setIsLoading(false);
+      showNotification({
+        title: '登録完了',
+        message: '',
+        icon: (
+          <ActionIcon size="xs">
+            <CheckIcon />
+          </ActionIcon>
+        ),
+      });
+    } catch (error) {
+      alert(error);
       setIsLoading(false);
       return;
     }
-
-    router.push('/');
-    setIsLoading(false);
-    showNotification({
-      title: '登録完了',
-      message: '',
-      icon: (
-        <ActionIcon size="xs">
-          <CheckIcon />
-        </ActionIcon>
-      ),
-    });
   };
 
   return (
@@ -214,35 +249,3 @@ export const ProductFormMemo: FC = () => {
     </div>
   );
 };
-
-const Value = ({ file }: { file: File }) => {
-  return (
-    <Center
-      inline
-      sx={(theme) => ({
-        backgroundColor:
-          theme.colorScheme === 'dark'
-            ? theme.colors.dark[7]
-            : theme.colors.gray[1],
-        fontSize: theme.fontSizes.xs,
-        padding: '3px 7px',
-        borderRadius: theme.radius.sm,
-      })}
-    >
-      <IconPhoto size={14} style={{ marginRight: 5 }} />
-      <span
-        style={{
-          whiteSpace: 'nowrap',
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-          maxWidth: 200,
-          display: 'inline-block',
-        }}
-      >
-        {file.name}
-      </span>
-    </Center>
-  );
-};
-
-export const ProductForm = memo(ProductFormMemo);

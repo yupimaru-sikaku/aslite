@@ -1,8 +1,3 @@
-import { useForm } from '@mantine/form';
-import React, { useEffect, useState } from 'react';
-import { GradientText } from './GradientText';
-import { AdminRegisterFormType } from 'src/types';
-import { FormTextInput } from './FormTextInput';
 import {
   ActionIcon,
   Button,
@@ -10,22 +5,24 @@ import {
   Loader,
   PasswordInput,
 } from '@mantine/core';
-import { IconLock } from '@tabler/icons';
-import { supabase } from 'src/utils/supabase';
-import { useRouter } from 'next/router';
-import { showNotification } from '@mantine/notifications';
-import Link from 'next/link';
+import { useForm } from '@mantine/form';
 import { useFocusTrap } from '@mantine/hooks';
-import { GetServerSideProps } from 'next';
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { AdminResetPasswordFormType } from 'src/types';
+import { supabase } from 'src/utils/supabase';
+import { GradientText } from 'src/components/GradientText';
+import { IconLock } from '@tabler/icons';
+import { showNotification } from '@mantine/notifications';
 
-export const AdminRegisterForm = () => {
+export const ResetPassword: NextPage = () => {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const focusTrapRef = useFocusTrap();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const form = useForm<AdminRegisterFormType>({
+  const form = useForm<AdminResetPasswordFormType>({
     initialValues: {
-      email: '',
       password: '',
       password_confirm: '',
     },
@@ -37,18 +34,13 @@ export const AdminRegisterForm = () => {
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    const { error } = await supabase.auth.signUp({
-      email: form.values.email,
+    // 新パスワードを引数に入力
+    const { error } = await supabase.auth.update({
       password: form.values.password,
     });
-    if (error) {
-      alert('既に存在するEメールアドレスです');
-      setIsLoading(false);
-      return;
-    }
-    router.push('/admin/login');
+    router.push('/');
     showNotification({
-      title: '登録しました',
+      title: 'パスワードが変更されました',
       message: '',
       icon: (
         <ActionIcon size="xs">
@@ -62,25 +54,12 @@ export const AdminRegisterForm = () => {
   return (
     <div className="mx-auto max-w-sm px-3">
       <h1 className="text-center">
-        <GradientText title="ADMIN REGISTER" />
+        <GradientText title="PASSWORD RESET" />
       </h1>
 
       <div className="p-vw-8" />
 
       <form onSubmit={form.onSubmit(handleSubmit)} ref={focusTrapRef}>
-        <div>
-          <FormTextInput
-            idText="email"
-            label="アドレス"
-            description="例）aslite@test.com"
-            required={true}
-            form={form}
-            formValue="email"
-          />
-        </div>
-
-        <div className="p-vw-8" />
-
         <div>
           <PasswordInput
             id="password"
@@ -118,22 +97,11 @@ export const AdminRegisterForm = () => {
             className="w-32"
             type="submit"
             disabled={
-              form.values.email == '' ||
-              form.values.password == '' ||
-              form.values.password_confirm == '' ||
-              isLoading
+              form.values.password == '' || form.values.password_confirm == ''
             }
           >
-            {isLoading ? <Loader color="teal" size="xs" /> : '登録する'}
+            {isLoading ? <Loader color="teal" size="xs" /> : '送信'}
           </Button>
-
-          <div className="p-vw-4" />
-
-          <div className="text-center">
-            <Link href="/admin/login">
-              <a>ログインはこちら</a>
-            </Link>
-          </div>
         </div>
       </form>
     </div>

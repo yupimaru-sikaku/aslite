@@ -3,7 +3,7 @@ import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { CreateContact } from 'src/types';
+import { Contact } from 'src/types';
 import { supabase } from 'src/utils/supabase';
 import { FormTextArea } from './FormTextArea';
 import { FormTextInput } from './FormTextInput';
@@ -17,7 +17,7 @@ export const ContactForm = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const form = useForm<CreateContact>({
+  const form = useForm<Contact>({
     initialValues: {
       personal_name: '',
       furigana: '',

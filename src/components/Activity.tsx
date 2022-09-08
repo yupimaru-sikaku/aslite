@@ -31,7 +31,6 @@ export const Activity = () => {
             gradient={{ from: 'indigo', to: 'lightBlue', deg: 45 }}
             size="xl"
             weight={700}
-            style={{ fontFamily: 'Greycliff CF, sans-serif' }}
           >
             『日常を切り取る』
           </Text>
@@ -79,7 +78,6 @@ export const Activity = () => {
             gradient={{ from: 'green', to: 'yellow', deg: 45 }}
             size="xl"
             weight={700}
-            style={{ fontFamily: 'Greycliff CF, sans-serif' }}
           >
             『日常に自然の癒やしを』
           </Text>

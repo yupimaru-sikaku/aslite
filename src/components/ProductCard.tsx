@@ -1,14 +1,18 @@
-import { ActionIcon, Loader, Popover } from '@mantine/core';
+import { ActionIcon, CheckIcon, Loader, Popover } from '@mantine/core';
 import Image from 'next/image';
 import React, { FC, useEffect, useState } from 'react';
-import { useDownloadUrl } from 'src/hooks/useDownloadUrl';
 import { Product } from 'src/types';
 import { ProductBadge } from 'src/components/ProductBadge';
 import { ProductDialog } from './ProductDialog';
 import { IconAdjustments } from '@tabler/icons';
 import { supabase } from 'src/utils/supabase';
-import { deleteProduct } from 'src/hooks/useMutateProduct';
 import Link from 'next/link';
+import {
+  useDeleteProductMutation,
+  useDeleteProudctImageMutation,
+  useDownloadProductURLQuery,
+} from 'src/ducks/product/query';
+import { showNotification } from '@mantine/notifications';
 
 export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
   id,
@@ -17,22 +21,65 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
   genre,
   image_url,
 }) => {
-  const [opened, setOpened] = useState<boolean>(false);
+  const [dialogOpened, dialogSetOpened] = useState<boolean>(false);
   const [popoverLoading, setPopoverLoading] = useState<boolean>(false);
+
+  const { data: imageUrlList, isLoading } =
+    useDownloadProductURLQuery(image_url);
+
+  const [deleteProductMutation] = useDeleteProductMutation();
+  const [deleteProductImageMutation] = useDeleteProudctImageMutation();
 
   const user = supabase.auth.user();
 
-  const { fullUrlList: imageUrlList } = useDownloadUrl(image_url, 'product');
+  const deleteProduct = async (id: string, image_url: any) => {
+    try {
+      setPopoverLoading(true);
+      const is_ok = confirm('本当に削除しますか？');
+      if (is_ok) {
+        // Supabaseのストレージ削除
+        await deleteProductImageMutation(image_url)
+          .unwrap()
+          .catch(() => {
+            throw new Error('画像の削除に失敗しました');
+          });
+        await deleteProductMutation(id)
+          .unwrap()
+          .catch(() => {
+            throw new Error('テーブルの削除に失敗しました');
+          });
+
+        window.location.reload();
+        showNotification({
+          title: '削除しました',
+          message: '',
+          icon: (
+            <ActionIcon size="xs">
+              <CheckIcon />
+            </ActionIcon>
+          ),
+        });
+      }
+    } catch (error) {
+      alert(error);
+      setPopoverLoading(false);
+      return;
+    }
+  };
 
   useEffect(() => {
     return () => setPopoverLoading(false);
   }, []);
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
       <ProductDialog
-        opened={opened}
-        setOpened={setOpened}
+        opened={dialogOpened}
+        setOpened={dialogSetOpened}
         product_name={product_name}
         description={description}
         genre={genre}
@@ -40,10 +87,10 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
       />
       <div className="w-full p-4 xs:w-1/2 sm:w-1/2 md:w-1/3 xl:w-1/4">
         <div className="rounded-lg bg-gray-100 p-6">
-          {imageUrlList.length ? (
+          {imageUrlList ? (
             <Image
               src={imageUrlList[0]}
-              onClick={() => setOpened(true)}
+              onClick={() => dialogSetOpened(true)}
               className="cursor-pointer"
               alt="product"
               width={350}
@@ -83,7 +130,7 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
                       </Link>
                       <p
                         className="mt-3 cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow"
-                        onClick={() => deleteProduct(id)}
+                        onClick={() => deleteProduct(id, image_url)}
                       >
                         削除
                       </p>

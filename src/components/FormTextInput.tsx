@@ -1,7 +1,6 @@
 import { TextInput } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import React from 'react';
-import { CreateContact, Product } from 'src/types';
 
 type Props = {
   idText: string;

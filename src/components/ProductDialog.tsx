@@ -8,7 +8,7 @@ type Props = {
   product_name: string;
   description: string;
   genre: string;
-  image_url: string[];
+  image_url: any;
 };
 
 export const ProductDialog = ({

@@ -15,8 +15,7 @@ import { useFocusTrap } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
 import { IconPhoto } from '@tabler/icons';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { useDownloadUrl } from 'src/hooks/useDownloadUrl';
+import React, { useState } from 'react';
 import { Product } from 'src/types';
 import { supabase } from 'src/utils/supabase';
 import { FormTextArea } from './FormTextArea';
@@ -29,7 +28,9 @@ export const ProductEdit = ({ product }: any) => {
 
   const focusTrapRef = useFocusTrap();
 
-  const form = useForm<Omit<Product, 'id' | 'created_at'>>({
+  const form = useForm<
+    Omit<Product, 'id' | 'is_display' | 'created_at' | 'updated_at'>
+  >({
     initialValues: {
       identification_number: product && product.identification_number,
       product_name: product && product.product_name,

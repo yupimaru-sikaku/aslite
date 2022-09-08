@@ -5,14 +5,14 @@ export const aboutUsContent = [
   },
   {
     label: '所在地',
-    text: '大阪府寝屋川市点野三丁目30番4号',
+    text: '大阪府寝屋川市川勝町二丁目17番',
   },
   {
     label: '電話番号',
-    text: '090-4360-9483',
+    text: '090-9118-1128',
   },
   {
     label: 'Email',
-    text: 'musubi.0316@gmail.com',
+    text: 'aslite.hp@gmail.com',
   },
 ];

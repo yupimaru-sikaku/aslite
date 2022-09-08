@@ -17,7 +17,7 @@ import { showNotification } from '@mantine/notifications';
 import Link from 'next/link';
 import { useFocusTrap } from '@mantine/hooks';
 import { useAppDispatch } from 'src/ducks/store';
-import { setSession } from 'src/ducks/user/slice';
+import { setSession } from 'src/ducks/admin/slice';
 
 export const AdminLoginForm = () => {
   const router = useRouter();
@@ -114,7 +114,15 @@ export const AdminLoginForm = () => {
 
         <div className="text-center">
           <Link href="/admin/register">
-            <a>登録はこちら</a>
+            <a className="hover:text-gray-500">登録はこちら</a>
+          </Link>
+        </div>
+
+        <div className="p-vw-4" />
+
+        <div className="text-center">
+          <Link href="/admin/send-email">
+            <a className="hover:text-gray-500">パスワードを忘れた方はこちら</a>
           </Link>
         </div>
       </form>
