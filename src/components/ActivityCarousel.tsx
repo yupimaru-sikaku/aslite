@@ -36,6 +36,7 @@ export const ActivityCarousel = ({ imageList }: Props) => {
       slideSize={slideSize}
       height={height}
       slideGap={75}
+      loop
       withControls
       dragFree
       sx={{
