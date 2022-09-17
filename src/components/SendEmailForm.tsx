@@ -29,7 +29,7 @@ export const SendEmailForm: NextPage = () => {
       {
         // 送信メールに埋め込まれるリンクのリダイレクト先のURL
         // reset-passwordへ遷移する
-        redirectTo: `${process.env.NEXT_PUBLIC_BASEURL}/admin/reset-password`,
+        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/admin/reset-password`,
       }
     );
     if (error) {

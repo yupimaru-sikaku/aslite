@@ -1,3 +1,5 @@
+import Stripe from 'stripe';
+
 export type Product = {
   id: string;
   identification_number: string;
@@ -52,4 +54,19 @@ export type Contact = {
   email: string;
   phone_number: string;
   content: string;
+};
+
+export type StripeProduct = {
+  id: string;
+  description: string | null;
+  name: string;
+  images: string[];
+  unit_label: string | null | undefined;
+  metadata: Stripe.Metadata;
+  prices: {
+    id: string;
+    currency: string;
+    transform_quantity: Stripe.Price.TransformQuantity | null;
+    unit_amount: number;
+  }[];
 };

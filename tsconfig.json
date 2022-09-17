@@ -16,6 +16,6 @@
     "jsx": "preserve",
     "incremental": true,
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/FormTextInput.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/FormTextInput.jsx", "src/components/Cart.jsx", "src/pages/api/webhooks.js", "src/pages/api/checkout_session.js", "src/components/Navbar.tsx", "src/components/Cart/CartList.tsx"],
   "exclude": ["node_modules"]
 }

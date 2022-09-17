@@ -10,20 +10,27 @@ import { LogoutIcon } from '@heroicons/react/outline';
 import { showNotification } from '@mantine/notifications';
 import { useAppDispatch } from 'src/ducks/store';
 import { resetSession } from 'src/ducks/admin/slice';
+import { useShoppingCart } from 'use-shopping-cart';
+import { IconShoppingCart } from '@tabler/icons';
+import { useMediaQuery } from 'src/lib/mantine/useMediaQuery';
+import { User } from '@supabase/supabase-js';
+import { CartEntry } from 'use-shopping-cart/core';
 
 export const Navbar = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
-  const [user, setUser] = useState<any>({});
+  const [user, setUser] = useState<User>();
   const dispatch = useAppDispatch();
+  const largerThanMd = useMediaQuery('md');
+  const { cartCount } = useShoppingCart<CartEntry>();
 
   useEffect(() => {
     const user = supabase.auth.user();
-    setUser(user);
+    user && setUser(user);
   }, [user]);
 
   const logout = async () => {
     await supabase.auth.signOut();
-    setUser({});
+    setUser(undefined);
     dispatch(resetSession());
     showNotification({
       title: 'ログアウトしました',
@@ -45,7 +52,7 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="w-full border-b border-gray-600 bg-gray-800 px-2 py-2.5 sm:px-4">
+    <nav className="w-full border-b  px-2 py-2.5 sm:px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <Link href="/">
           <a className="flex items-center">
@@ -60,18 +67,29 @@ export const Navbar = () => {
             </span>
           </a>
         </Link>
-        <div className="flex md:order-2">
-          <Link href="/contact/create">
-            <a>
-              <button
-                type="button"
-                className="mr-3 flex items-center rounded-lg bg-blue-700 px-3 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 md:mr-0 md:px-5"
-              >
-                <IconMailForward size={20} />
-                <span className="ml-1">Contact</span>
-              </button>
-            </a>
-          </Link>
+        <div className="flex items-center md:order-2">
+          {largerThanMd ? (
+            <Link href="/contact/create">
+              <a>
+                <button
+                  type="button"
+                  className="mr-3 flex items-center rounded-lg bg-green-700 px-3 py-2.5 text-center text-sm font-medium text-white hover:opacity-80 md:mr-0 md:px-5"
+                >
+                  <IconMailForward size={20} />
+                  <span className="ml-1">Contact</span>
+                </button>
+              </a>
+            </Link>
+          ) : (
+            <Link href="/cart">
+              <a className="relative mr-7 mt-1 cursor-pointer">
+                <IconShoppingCart />
+                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 rounded-full bg-green-600 px-2 py-1 text-xs font-bold leading-none text-white">
+                  {cartCount}
+                </span>
+              </a>
+            </Link>
+          )}
           <button
             className="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
             onClick={() => setIsModal(true)}
@@ -119,6 +137,16 @@ export const Navbar = () => {
                 </ActionIcon>
               </li>
             )}
+            <Link href="/cart">
+              <a>
+                <li className="relative">
+                  <IconShoppingCart />
+                  <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 rounded-full bg-green-600 px-2 py-1 text-xs font-bold leading-none text-white">
+                    {cartCount}
+                  </span>
+                </li>
+              </a>
+            </Link>
           </ul>
         </div>
       </div>

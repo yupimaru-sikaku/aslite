@@ -16,7 +16,7 @@ export const GradientText = ({ title }: Props) => {
       component="span"
       align="center"
       variant="gradient"
-      gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+      gradient={{ from: 'green', to: 'cyan', deg: 45 }}
       size={fontSize}
       classNames={{
         root: 'text-xl',
