@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { BaseText } from 'src/components/Common/BaseText';
 import { GradientText } from 'src/components/GradientText';
 import { Layout } from 'src/components/Layout';
+import { loadStripeProduct } from 'src/hooks/loadStripeProduct';
 import { StripeProduct } from 'src/types';
 
 type Props = {
@@ -38,7 +39,8 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
                       return (
                         <div key={i}>
                           <span>
-                            {`¥${price.unit_amount.toLocaleString()}`}
+                            {price.unit_amount &&
+                              `¥${price.unit_amount.toLocaleString()}`}
                           </span>
                         </div>
                       );
@@ -55,9 +57,7 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const productList: StripeProduct[] = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`
-  ).then((response) => response.json());
+  const productList = await loadStripeProduct();
   const productPlantList: StripeProduct[] = productList.filter((product) => {
     if (product.unit_label === '植物') {
       return product;

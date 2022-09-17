@@ -8,6 +8,7 @@ import { StripeProduct } from 'src/types';
 import { IconShoppingCart } from '@tabler/icons';
 import { useShoppingCart } from 'use-shopping-cart';
 import { CartDetails, CartEntry, Product } from 'use-shopping-cart/core';
+import { loadStripeProduct } from 'src/hooks/loadStripeProduct';
 
 type Props = {
   product: StripeProduct;
@@ -43,8 +44,8 @@ const ProductPlantIndex: NextPage<Props> = ({ product }) => {
           </h1>
           <div className="p-vw-2" />
           <BaseText color="green">
-            {`¥${product.prices.map((price) =>
-              price.unit_amount.toLocaleString()
+            {`¥${product.prices.map(
+              (price) => price.unit_amount && price.unit_amount.toLocaleString()
             )} -`}
           </BaseText>
           <Badge variant="gradient" gradient={{ from: 'blue', to: 'green' }}>
@@ -68,7 +69,7 @@ const ProductPlantIndex: NextPage<Props> = ({ product }) => {
                       id: price.id,
                       product_data: { id: product.id },
                       name: product.name,
-                      price: price.unit_amount,
+                      price: price.unit_amount!,
                       currency: price.currency,
                       image: product.images[0],
                     });
@@ -86,9 +87,7 @@ const ProductPlantIndex: NextPage<Props> = ({ product }) => {
 };
 
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
-  const productList: StripeProduct[] = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`
-  ).then((response) => response.json());
+  const productList = await loadStripeProduct();
 
   const ids: string[] = productList.map(
     (product) => `/product/plant/${product.id}`
@@ -102,9 +101,7 @@ export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
 export const getStaticProps: GetStaticProps<Props, { id: string }> = async (
   ctx
 ) => {
-  const productList: StripeProduct[] = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`
-  ).then((response) => response.json());
+  const productList = await loadStripeProduct();
   const productArr: StripeProduct[] = productList.filter((item) => {
     if (ctx.params && item.id === ctx.params.id) {
       return item;

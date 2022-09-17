@@ -4,7 +4,6 @@ import {
   TypedUseSelectorHook,
 } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { load, save } from 'redux-localstorage-simple';
 import { adminReducer } from 'src/ducks/admin/slice';
 import { productReducer } from 'src/ducks/product/slice';
 import { setupListeners } from '@rtk-incubator/rtk-query/dist';
@@ -25,7 +24,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(productApi.middleware, save()),
+    }).concat(productApi.middleware),
 });
 
 // 追記は任意ですが、refetchOnFocus/refetchOnReconnectという機能を利用するためには下記が必要です

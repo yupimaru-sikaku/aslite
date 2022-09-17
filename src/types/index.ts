@@ -67,6 +67,6 @@ export type StripeProduct = {
     id: string;
     currency: string;
     transform_quantity: Stripe.Price.TransformQuantity | null;
-    unit_amount: number;
+    unit_amount: number | null;
   }[];
 };

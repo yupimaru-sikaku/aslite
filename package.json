@@ -50,7 +50,6 @@
     "react-dom": "18.2.0",
     "react-error-boundary": "^3.1.4",
     "react-redux": "^8.0.2",
-    "redux-localstorage-simple": "^2.5.1",
     "stripe": "^10.8.0",
     "tabler-icons-react": "^1.54.0",
     "use-shopping-cart": "^3.1.2",
