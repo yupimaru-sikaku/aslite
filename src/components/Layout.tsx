@@ -1,9 +1,7 @@
 import Head from 'next/head';
 import React, { FC, ReactNode } from 'react';
-import { Navbar } from 'src/components/Navbar';
-import { Footer } from 'src/components/Footer';
-import { ErrorBoundary } from 'react-error-boundary';
-import { ExclamationCircleIcon } from '@heroicons/react/outline';
+import { Navbar } from 'src/components/Layout/Navbar';
+import { Footer } from 'src/components/Layout/Footer';
 
 type Props = {
   title: string;

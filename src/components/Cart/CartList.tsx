@@ -66,26 +66,28 @@ export const CartList = () => {
           return (
             <div key={priceId}>
               <li className="flex">
-                {detail.image ? (
-                  <Image
-                    src={detail.image}
-                    alt={detail.name}
-                    width={100}
-                    height={100}
-                  />
-                ) : (
-                  <Image
-                    src="/noImage.webp"
-                    alt="defaultImage"
-                    width={100}
-                    height={100}
-                  />
-                )}
+                <div className="w-1/3">
+                  {detail.image ? (
+                    <Image
+                      src={detail.image}
+                      alt={detail.name}
+                      width={250}
+                      height={250}
+                    />
+                  ) : (
+                    <Image
+                      src="/noImage.webp"
+                      alt="defaultImage"
+                      width={500}
+                      height={500}
+                    />
+                  )}
+                </div>
 
                 <div className="p-vw-8" />
 
-                <div>
-                  <BaseText>{detail.name}</BaseText>
+                <div className="w-2/3">
+                  <BaseText size="md">{detail.name}</BaseText>
                   <BaseText size="xs">
                     {detail.formattedPrice} * {detail.quantity} =
                     {detail.formattedValue}
