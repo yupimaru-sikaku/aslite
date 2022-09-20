@@ -51,7 +51,7 @@ export const CartList = () => {
 
         <div className="p-vw-24" />
 
-        <Link href="/">
+        <Link scroll={false} href="/">
           <a className="block text-center">
             <Button color="gray">商品一覧</Button>
           </a>
@@ -110,7 +110,7 @@ export const CartList = () => {
       <div className="p-vw-16" />
       <div className="flex justify-center gap-6">
         <Button onClick={checkSession}>購入手続き</Button>
-        <Link href="/">
+        <Link scroll={false} href="/">
           <a>
             <Button color="gray">商品一覧</Button>
           </a>

@@ -5,10 +5,30 @@ import { Text } from '@mantine/core';
 import { ActivityCarousel } from 'src/components/ActivityCarousel';
 import { coceriumImageList } from 'src/utils/coceriumImageList';
 import { aquariumImageList } from 'src/utils/aquariumImageList';
+import { motion } from 'framer-motion';
 
 export const Activity = () => {
   return (
-    <div>
+    <motion.div
+      variants={{
+        offscreen: {
+          // 画面外の場合のスタイル
+          y: 100,
+          opacity: 0,
+        },
+        onscreen: {
+          // 画面内の場合のスタイル
+          y: 0,
+          opacity: 1,
+          transition: {
+            duration: 1,
+          },
+        },
+      }}
+      initial="offscreen" // 初期表示はoffscreen
+      whileInView="onscreen" // 画面内に入ったらonscreen
+      viewport={{ once: false, amount: 0 }}
+    >
       <h1 className="text-center">
         <GradientText title="Activity" />
       </h1>
@@ -107,6 +127,6 @@ export const Activity = () => {
       <div className="mx-4">
         <ActivityCarousel imageList={coceriumImageList} />
       </div>
-    </div>
+    </motion.div>
   );
 };

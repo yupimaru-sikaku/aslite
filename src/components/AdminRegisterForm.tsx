@@ -130,7 +130,7 @@ export const AdminRegisterForm = () => {
           <div className="p-vw-4" />
 
           <div className="text-center">
-            <Link href="/admin/login">
+            <Link scroll={false} href="/admin/login">
               <a>ログインはこちら</a>
             </Link>
           </div>

@@ -65,7 +65,7 @@ const NotFoundTitle = () => {
         残念ながら、これは404ページのみです。アドレスの入力間違いか、ページが別のURLに移動している可能性があります。
       </Text>
       <Group position="center">
-        <Link href="/">
+        <Link scroll={false} href="/">
           <a>
             <Button variant="subtle" size="md">
               トップに戻る

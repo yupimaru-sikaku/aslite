@@ -18,7 +18,7 @@ const Success = () => {
             <BaseText size="sm">
               決済の詳細をメールにてお送りします。ご確認ください。
             </BaseText>
-            <Link href="/">
+            <Link scroll={false} href="/">
               <a>
                 <Button>トップに戻る</Button>
               </a>

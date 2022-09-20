@@ -83,7 +83,7 @@ export const SendEmailForm: NextPage = () => {
         <div className="p-vw-4" />
 
         <div className="text-center">
-          <Link href="/admin/register">
+          <Link scroll={false} href="/admin/register">
             <a className="hover:text-gray-500">登録はこちら</a>
           </Link>
         </div>
@@ -91,7 +91,7 @@ export const SendEmailForm: NextPage = () => {
         <div className="p-vw-4" />
 
         <div className="text-center">
-          <Link href="/admin/login">
+          <Link scroll={false} href="/admin/login">
             <a className="hover:text-gray-500">ログインはこちら</a>
           </Link>
         </div>

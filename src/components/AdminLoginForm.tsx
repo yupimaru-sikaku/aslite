@@ -113,7 +113,7 @@ export const AdminLoginForm = () => {
         <div className="p-vw-4" />
 
         <div className="text-center">
-          <Link href="/admin/register">
+          <Link scroll={false} href="/admin/register">
             <a className="hover:text-gray-500">登録はこちら</a>
           </Link>
         </div>
@@ -121,7 +121,7 @@ export const AdminLoginForm = () => {
         <div className="p-vw-4" />
 
         <div className="text-center">
-          <Link href="/admin/send-email">
+          <Link scroll={false} href="/admin/send-email">
             <a className="hover:text-gray-500">パスワードを忘れた方はこちら</a>
           </Link>
         </div>
