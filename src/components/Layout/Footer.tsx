@@ -1,46 +1,14 @@
-import { createStyles, Anchor, Group, ActionIcon } from '@mantine/core';
+import { ActionIcon } from '@mantine/core';
 import {
   IconBrandTwitter,
   IconBrandYoutube,
   IconBrandInstagram,
 } from '@tabler/icons';
-import { MantineLogo } from '@mantine/ds';
 import { headerLink } from 'src/utils/headerLink';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const useStyles = createStyles((theme) => ({
-  footer: {
-    marginTop: 120,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`,
-  },
-
-  inner: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: `${theme.spacing.md}px ${theme.spacing.md}px`,
-
-    [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
-    },
-  },
-
-  links: {
-    [theme.fn.smallerThan('sm')]: {
-      marginTop: theme.spacing.lg,
-      marginBottom: theme.spacing.sm,
-    },
-  },
-}));
-
-interface FooterCenteredProps {
-  links: { link: string; label: string }[];
-}
-
-export const Footer = ({ links }: FooterCenteredProps) => {
+export const Footer = () => {
   return (
     <div className="w-full border-t bg-gray-100 px-2 py-10 sm:px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
