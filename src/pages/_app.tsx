@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         withGlobalStyles
         withNormalizeCSS
         theme={{
-          fontFamily: '游ゴシック体, YuGothic, 游ゴシック Yu Gothic sans-serif',
+          fontFamily: 'arial, YuGothic, 游ゴシック Yu Gothic sans-serif',
         }}
       >
         <NotificationsProvider limit={3}>

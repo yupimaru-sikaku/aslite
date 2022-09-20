@@ -4,17 +4,20 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { BaseText } from 'src/components/Common/BaseText';
 import { Layout } from 'src/components/Layout';
-import { StripeProduct } from 'src/types';
+import { StripePriceType, StripeProduct } from 'src/types';
 import { IconShoppingCart } from '@tabler/icons';
 import { useShoppingCart } from 'use-shopping-cart';
 import { CartDetails } from 'use-shopping-cart/core';
 import { loadStripeProduct } from 'src/hooks/loadStripeProduct';
+import { useRouter } from 'next/router';
 
 type Props = {
   product: StripeProduct;
 };
 
 const ProductFishIndex: NextPage<Props> = ({ product }) => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { addItem, cartDetails } = useShoppingCart<CartDetails>();
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
@@ -25,6 +28,21 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
       }
     });
   }, []);
+
+  const moveCart = async (price: StripePriceType) => {
+    setIsLoading(true);
+    addItem({
+      id: price.id,
+      product_data: { id: product.id },
+      name: product.name,
+      price: price.unit_amount!,
+      currency: price.currency,
+      image: product.images[0],
+    });
+    setTimeout(() => {
+      router.push('/cart');
+    }, 1000);
+  };
 
   return (
     <Layout title={product.name}>
@@ -64,16 +82,7 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
                   disabled={isSelected}
                   color="green"
                   leftIcon={<IconShoppingCart />}
-                  onClick={() => {
-                    addItem({
-                      id: price.id,
-                      name: product.name,
-                      product_data: { id: product.id },
-                      price: price.unit_amount!,
-                      currency: price.currency,
-                      image: product.images[0],
-                    });
-                  }}
+                  onClick={() => moveCart(price)}
                 >
                   カートに入れる
                 </Button>

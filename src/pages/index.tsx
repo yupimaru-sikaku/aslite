@@ -10,6 +10,9 @@ const Home: NextPage = () => {
     <Layout title={'トップページ | あすらいと'}>
       <div>
         <MainContent />
+
+        <div className="p-vw-48" />
+
         <AboutUs />
 
         <div className="p-vw-48" />

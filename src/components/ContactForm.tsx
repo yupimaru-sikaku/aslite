@@ -154,6 +154,7 @@ export const ContactForm = () => {
             required={true}
             form={form}
             formValue="content"
+            variant="filled"
           />
         </div>
 

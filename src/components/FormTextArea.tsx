@@ -1,4 +1,4 @@
-import { Textarea } from '@mantine/core';
+import { InputVariant, Textarea } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import React from 'react';
 
@@ -11,6 +11,7 @@ type Props = {
   minRows: number;
   form: UseFormReturnType<any>;
   formValue: string;
+  variant?: InputVariant;
 };
 export const FormTextArea = ({
   idText,
@@ -21,6 +22,7 @@ export const FormTextArea = ({
   minRows,
   form,
   formValue,
+  variant,
 }: Props) => {
   return (
     <Textarea
@@ -30,8 +32,9 @@ export const FormTextArea = ({
       minRows={minRows}
       description={description}
       required={required}
+      variant={variant}
       classNames={{
-        input: 'bg-gray-800 border-gray-900 rounded',
+        input: 'rounded',
       }}
       {...form.getInputProps(formValue)}
     />

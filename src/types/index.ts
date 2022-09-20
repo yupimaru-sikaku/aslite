@@ -70,3 +70,10 @@ export type StripeProduct = {
     unit_amount: number | null;
   }[];
 };
+
+export type StripePriceType = {
+  id: string;
+  currency: string;
+  transform_quantity: Stripe.Price.TransformQuantity | null;
+  unit_amount: number | null;
+};

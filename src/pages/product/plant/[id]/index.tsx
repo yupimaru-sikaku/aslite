@@ -1,30 +1,48 @@
-import { Badge, Button } from '@mantine/core';
+import { Badge, Button, Loader } from '@mantine/core';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { BaseText } from 'src/components/Common/BaseText';
 import { Layout } from 'src/components/Layout';
-import { StripeProduct } from 'src/types';
+import { StripePriceType, StripeProduct } from 'src/types';
 import { IconShoppingCart } from '@tabler/icons';
 import { useShoppingCart } from 'use-shopping-cart';
 import { CartDetails, CartEntry, Product } from 'use-shopping-cart/core';
 import { loadStripeProduct } from 'src/hooks/loadStripeProduct';
+import { useRouter } from 'next/router';
 
 type Props = {
   product: StripeProduct;
 };
 
 const ProductPlantIndex: NextPage<Props> = ({ product }) => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { addItem, cartDetails } = useShoppingCart<CartDetails>();
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
   useEffect(() => {
     Object.entries(cartDetails).map(([_, detail]) => {
-      if (detail && detail.product_data.id === product.id) {
+      if (detail.product_data.id === product.id) {
         setIsSelected(true);
       }
     });
-  }, []);
+  }, [cartDetails]);
+
+  const moveCart = async (price: StripePriceType) => {
+    setIsLoading(true);
+    addItem({
+      id: price.id,
+      product_data: { id: product.id },
+      name: product.name,
+      price: price.unit_amount!,
+      currency: price.currency,
+      image: product.images[0],
+    });
+    setTimeout(() => {
+      router.push('/cart');
+    }, 1000);
+  };
 
   return (
     <Layout title={product.name}>
@@ -62,20 +80,12 @@ const ProductPlantIndex: NextPage<Props> = ({ product }) => {
                 <Button
                   key={index}
                   color="green"
-                  disabled={isSelected}
+                  disabled={isSelected || isLoading}
+                  sx={{ width: '170px' }}
                   leftIcon={<IconShoppingCart />}
-                  onClick={async () => {
-                    addItem({
-                      id: price.id,
-                      product_data: { id: product.id },
-                      name: product.name,
-                      price: price.unit_amount!,
-                      currency: price.currency,
-                      image: product.images[0],
-                    });
-                  }}
+                  onClick={() => moveCart(price)}
                 >
-                  カートに入れる
+                  {isLoading ? <Loader size="sm" /> : 'カートに入れる'}
                 </Button>
               );
             })}

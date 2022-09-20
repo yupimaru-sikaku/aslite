@@ -38,8 +38,8 @@ export const CartList = () => {
           }),
         }
       ).then((response) => response.json());
-      clearCart();
       window.open(session.url);
+      clearCart();
     } catch (e: unknown) {
       if (e instanceof Error) window.alert(e.message);
     }
