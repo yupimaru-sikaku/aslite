@@ -39,15 +39,14 @@ export const AboutUs = () => {
         {aboutUsContent.map((content) => (
           <div key={content.label} className="mx-auto max-w-3xl text-center">
             <div className="my-6 flex text-sm md:text-xl">
-              <p className="w-1/5">
-                <Badge
-                  variant="light"
-                  color="green"
-                  size={`${largerThanSm ? 'xl' : 'md'}`}
-                >
-                  {content.label}
-                </Badge>
-              </p>
+              <Badge
+                sx={{ width: '20%' }}
+                variant="light"
+                color="green"
+                size={`${largerThanSm ? 'xl' : 'md'}`}
+              >
+                {content.label}
+              </Badge>
               <p className="ml-3 w-4/5">{content.text}</p>
             </div>
             <div className="p-vw-4" />

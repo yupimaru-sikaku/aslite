@@ -68,7 +68,6 @@ export const HeroSection = () => {
                   <Scroll
                     to="mainContent"
                     smooth={true}
-                    duration={600}
                     offset={-50}
                     className="font-medium text-[#008c8d] hover:cursor-pointer hover:opacity-50"
                   >
