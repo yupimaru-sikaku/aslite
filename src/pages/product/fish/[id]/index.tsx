@@ -1,4 +1,4 @@
-import { Badge, Button } from '@mantine/core';
+import { Badge, Button, Loader } from '@mantine/core';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -89,12 +89,13 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
                 return (
                   <Button
                     key={index}
-                    disabled={isSelected}
                     color="green"
+                    disabled={isSelected || isLoading}
+                    sx={{ width: '170px' }}
                     leftIcon={<IconShoppingCart />}
                     onClick={() => moveCart(price)}
                   >
-                    カートに入れる
+                    {isLoading ? <Loader size="sm" /> : 'カートに入れる'}
                   </Button>
                 );
               })}
