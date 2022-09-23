@@ -1,4 +1,4 @@
-import { ActionIcon, Button } from '@mantine/core';
+import { ActionIcon, Button, Loader } from '@mantine/core';
 import { useShoppingCart } from 'use-shopping-cart';
 import { BaseText } from 'src/components/Common/BaseText';
 import Image from 'next/image';
@@ -6,9 +6,12 @@ import { IconTrash } from '@tabler/icons';
 import Link from 'next/link';
 import { CartDetails, CartEntry } from 'use-shopping-cart/core';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { IconBrandShopee } from '@tabler/icons';
 
 export const CartList = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     cartDetails,
     removeItem,
@@ -25,6 +28,7 @@ export const CartList = () => {
 
   const checkoutSession = async () => {
     try {
+      setIsLoading(true);
       const session = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkout_session`,
         {
@@ -42,8 +46,10 @@ export const CartList = () => {
       ).then((response) => response.json());
       router.push(session.url);
       clearCart();
+      setIsLoading(false);
     } catch (e: unknown) {
       if (e instanceof Error) window.alert(e.message);
+      setIsLoading(false);
     }
   };
   if (cartCount !== void 0 && cartCount === 0) {
@@ -111,7 +117,14 @@ export const CartList = () => {
       </div>
       <div className="p-vw-16" />
       <div className="flex justify-center gap-6">
-        <Button onClick={checkoutSession}>購入手続き</Button>
+        <Button
+          onClick={checkoutSession}
+          sx={{ width: '170px' }}
+          leftIcon={<IconBrandShopee />}
+          disabled={isLoading}
+        >
+          {isLoading ? <Loader color="white" size="sm" /> : '購入手続き'}
+        </Button>
         <Link scroll={false} href="/">
           <a>
             <Button color="gray">商品一覧</Button>
