@@ -5,8 +5,10 @@ import Image from 'next/image';
 import { IconTrash } from '@tabler/icons';
 import Link from 'next/link';
 import { CartDetails, CartEntry } from 'use-shopping-cart/core';
+import { useRouter } from 'next/router';
 
 export const CartList = () => {
+  const router = useRouter();
   const {
     cartDetails,
     removeItem,
@@ -21,7 +23,7 @@ export const CartList = () => {
     clearCart: () => undefined;
   } = useShoppingCart();
 
-  const checkSession = async () => {
+  const checkoutSession = async () => {
     try {
       const session = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkout_session`,
@@ -38,7 +40,7 @@ export const CartList = () => {
           }),
         }
       ).then((response) => response.json());
-      window.open(session.url);
+      router.push(session.url);
       clearCart();
     } catch (e: unknown) {
       if (e instanceof Error) window.alert(e.message);
@@ -109,7 +111,7 @@ export const CartList = () => {
       </div>
       <div className="p-vw-16" />
       <div className="flex justify-center gap-6">
-        <Button onClick={checkSession}>購入手続き</Button>
+        <Button onClick={checkoutSession}>購入手続き</Button>
         <Link scroll={false} href="/">
           <a>
             <Button color="gray">商品一覧</Button>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { CartList } from 'src/components/Cart/CartList';
-import { BaseText } from 'src/components/Common/BaseText';
 import { GradientText } from 'src/components/GradientText';
 import { Layout } from 'src/components/Layout';
 import { motion } from 'framer-motion';

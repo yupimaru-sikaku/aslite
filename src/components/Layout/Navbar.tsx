@@ -54,7 +54,7 @@ export const Navbar = () => {
   return (
     <nav className="w-full border-b px-2 py-2.5 sm:px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
-        <Link scroll={false} href="/">
+        <Link href="/">
           <a className="flex items-center">
             <Image
               src="/aslite_logo.webp"
@@ -69,7 +69,7 @@ export const Navbar = () => {
         </Link>
         <div className="flex items-center md:order-2">
           {largerThanMd ? (
-            <Link scroll={false} href="/contact/create">
+            <Link href="/contact/create">
               <a>
                 <button
                   type="button"
@@ -81,7 +81,7 @@ export const Navbar = () => {
               </a>
             </Link>
           ) : (
-            <Link scroll={false} href="/cart">
+            <Link href="/cart">
               <a className="relative mr-7 mt-1 cursor-pointer">
                 <IconShoppingCart />
                 <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 rounded-full bg-green-600 px-2 py-1 text-xs font-bold leading-none text-white">
@@ -116,7 +116,7 @@ export const Navbar = () => {
           <ul className="flex flex-col items-center rounded-lg md:mt-0 md:flex-row md:space-x-8 md:border-0 md:text-sm md:font-medium">
             {headerLink.map((link) => (
               <li key={link.link}>
-                <Link scroll={false} href={link.link}>
+                <Link href={link.link}>
                   <a target="_blank">
                     <ActionIcon>
                       <Image
@@ -137,7 +137,7 @@ export const Navbar = () => {
                 </ActionIcon>
               </li>
             )}
-            <Link scroll={false} href="/cart">
+            <Link href="/cart">
               <a>
                 <li className="relative">
                   <IconShoppingCart />

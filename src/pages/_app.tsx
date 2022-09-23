@@ -7,6 +7,13 @@ import { Provider } from 'react-redux';
 import { store } from 'src/ducks/store';
 import { CartProvider } from 'use-shopping-cart';
 import { AnimatePresence } from 'framer-motion';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import 'src/styles/nprogress.css';
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   return (
