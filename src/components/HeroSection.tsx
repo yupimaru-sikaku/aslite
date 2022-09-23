@@ -2,6 +2,7 @@ import { Button } from '@mantine/core';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IconSeeding } from '@tabler/icons';
+import { Link as Scroll } from 'react-scroll';
 
 export const HeroSection = () => {
   return (
@@ -37,10 +38,21 @@ export const HeroSection = () => {
                 </p>
 
                 <div className="p-vw-16" />
-
-                <Button color="lime" variant="light" leftIcon={<IconSeeding />}>
-                  Learn more ...
-                </Button>
+                <Scroll
+                  to="mainContent"
+                  smooth={true}
+                  duration={600}
+                  offset={-50}
+                  className="font-medium text-[#008c8d] hover:cursor-pointer hover:opacity-50"
+                >
+                  <Button
+                    color="lime"
+                    variant="light"
+                    leftIcon={<IconSeeding />}
+                  >
+                    Learn more ...
+                  </Button>
+                </Scroll>
               </div>
               <div className="w-full max-w-xl xl:w-5/12 xl:px-8"></div>
             </div>
