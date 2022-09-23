@@ -43,7 +43,7 @@ export const AboutUs = () => {
                 <Badge
                   variant="light"
                   color="green"
-                  size={`${largerThanSm ? 'xl' : 'xs'}`}
+                  size={`${largerThanSm ? 'xl' : 'md'}`}
                 >
                   {content.label}
                 </Badge>
