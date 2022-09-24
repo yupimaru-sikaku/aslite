@@ -34,7 +34,7 @@ export const headerLink: linkType[] = [
   },
   {
     title: 'YouTube',
-    link: 'https://www.youtube.com/',
+    link: 'https://www.youtube.com/channel/UCTrajh5vfUOfHNhRG2SUwQw',
     src: '/youtube_logo.webp',
     alt: 'youtube_logo',
     width: 32,
