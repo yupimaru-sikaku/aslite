@@ -11,7 +11,7 @@ export const HeroSection = () => {
       animate={{ opacity: 1, y: 0 }} // マウント時
       exit={{ opacity: 0, y: 10 }} // アンマウント時
       transition={{
-        duration: 0.5,
+        duration: 0.2,
       }}
     >
       <div className="relative">
@@ -30,7 +30,7 @@ export const HeroSection = () => {
                   animate={{ opacity: 1, y: 0 }} // マウント時
                   exit={{ opacity: 0, y: 10 }} // アンマウント時
                   transition={{
-                    duration: 1,
+                    duration: 0.4,
                   }}
                 >
                   <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
@@ -44,7 +44,7 @@ export const HeroSection = () => {
                   animate={{ opacity: 1, y: 0 }} // マウント時
                   exit={{ opacity: 0, y: 10 }} // アンマウント時
                   transition={{
-                    duration: 1.5,
+                    duration: 0.6,
                   }}
                 >
                   <p className="mb-4 max-w-xl text-base font-bold text-gray-700 md:text-lg">
@@ -62,7 +62,7 @@ export const HeroSection = () => {
                   animate={{ opacity: 1, y: 0 }} // マウント時
                   exit={{ opacity: 0, y: 10 }} // アンマウント時
                   transition={{
-                    duration: 2,
+                    duration: 0.8,
                   }}
                 >
                   <Scroll
