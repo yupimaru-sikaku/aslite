@@ -17,13 +17,11 @@ export const CartList = () => {
     removeItem,
     formattedTotalPrice,
     cartCount,
-    clearCart,
   }: {
     cartDetails: CartDetails;
     removeItem: (id: string) => undefined;
     formattedTotalPrice: string;
     cartCount: number;
-    clearCart: () => undefined;
   } = useShoppingCart();
 
   const checkoutSession = async () => {
@@ -45,7 +43,6 @@ export const CartList = () => {
         }
       ).then((response) => response.json());
       router.push(session.url);
-      clearCart();
       setIsLoading(false);
     } catch (e: unknown) {
       if (e instanceof Error) window.alert(e.message);
