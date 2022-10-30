@@ -9,12 +9,24 @@ import { BaseText } from './Common/BaseText';
 export const HeroSection = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }} // 初期状態
-      animate={{ opacity: 1, y: 0 }} // マウント時
-      exit={{ opacity: 0, y: 10 }} // アンマウント時
-      transition={{
-        duration: 0.2,
+      variants={{
+        offscreen: {
+          // 画面外の場合のスタイル
+          y: 100,
+          opacity: 0,
+        },
+        onscreen: {
+          // 画面内の場合のスタイル
+          y: 0,
+          opacity: 1,
+          transition: {
+            duration: 1,
+          },
+        },
       }}
+      initial="offscreen" // 初期表示はoffscreen
+      whileInView="onscreen" // 画面内に入ったらonscreen
+      viewport={{ once: false, amount: 0 }}
     >
       <BackgroundImage src="/aslite_logo.webp">
         <main className="p-3">
