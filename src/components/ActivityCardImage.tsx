@@ -48,8 +48,8 @@ export const ArticleCardImage = ({
   return (
     <Paper
       shadow="md"
+      radius={0}
       p="xl"
-      radius="md"
       sx={{ backgroundImage: `url(${image})` }}
       className={classes.card}
     >

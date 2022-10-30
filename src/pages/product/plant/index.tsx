@@ -23,13 +23,15 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
       }}
     >
       <Layout title="植物一覧">
+        <div className="p-vw-24" />
+
         <h1 className="text-center">
           <GradientText title="植物一覧" />
         </h1>
 
         <div className="p-vw-8" />
 
-        <section className="text-center">
+        <section className="px-3 text-center">
           <ul className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
             {productPlantList.map((product) => {
               return (
@@ -61,6 +63,7 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
             })}
           </ul>
         </section>
+        <div className="p-vw-24" />
       </Layout>
     </motion.div>
   );

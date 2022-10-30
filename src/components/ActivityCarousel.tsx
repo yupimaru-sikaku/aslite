@@ -32,22 +32,16 @@ export const ActivityCarousel = ({ imageList }: Props) => {
   }, [lagerThanXs, lagerThanMd]);
 
   return (
-    <Carousel
-      slideSize={slideSize}
-      height={height}
-      slideGap={75}
-      loop
-      withControls
-      dragFree
-      sx={{
-        img: {
-          borderRadius: '1rem',
-        },
-      }}
-    >
+    <Carousel align="start" slideSize="70%" slideGap="md" dragFree>
       {imageList.map((image) => (
         <Carousel.Slide key={image}>
-          <Image src={image} alt="aquarimu" layout="fill" />
+          <Image
+            src={image}
+            alt="aquarimu"
+            width={100}
+            height={100}
+            layout="responsive"
+          />
         </Carousel.Slide>
       ))}
     </Carousel>

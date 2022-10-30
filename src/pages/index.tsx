@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       <div>
         <HeroSection />
 
-        <div className="p-vw-48" />
+        <div className="p-vw-24" />
 
         <MainContent />
 
@@ -23,6 +23,8 @@ const Home: NextPage = () => {
         <div className="p-vw-48" />
 
         <Activity />
+        
+        <div className="p-vw-48" />
       </div>
     </Layout>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArticleCardImage } from 'src/components/ActivityCardImage';
 import { GradientText } from 'src/components/GradientText';
-import { Text } from '@mantine/core';
+import { BackgroundImage, Text } from '@mantine/core';
 import { ActivityCarousel } from 'src/components/ActivityCarousel';
 import { coceriumImageList } from 'src/utils/coceriumImageList';
 import { aquariumImageList } from 'src/utils/aquariumImageList';
@@ -36,7 +36,7 @@ export const Activity = () => {
         whileInView="onscreen" // 画面内に入ったらonscreen
         viewport={{ once: false, amount: 0 }}
       >
-        <div className="mx-4 flex flex-col items-start md:flex-row">
+        <div className="flex flex-col items-start md:flex-row">
           <div className="w-full md:mr-10 md:w-1/2">
             <ArticleCardImage
               image="/activity_aquarium.webp"
@@ -45,7 +45,7 @@ export const Activity = () => {
               isBudge={true}
             />
           </div>
-          <div className="text-md mt-10 w-full md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
+          <div className="text-md mt-10 w-full md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg px-3">
             <Text
               align="center"
               variant="gradient"
@@ -125,7 +125,7 @@ export const Activity = () => {
         whileInView="onscreen" // 画面内に入ったらonscreen
         viewport={{ once: false, amount: 0 }}
       >
-        <div className="mx-4 flex flex-col items-start md:flex-row-reverse">
+        <div className="flex flex-col items-start md:flex-row-reverse">
           <div className="w-full md:mr-10 md:w-1/2">
             <ArticleCardImage
               image="/activity_cocerium.webp"
@@ -134,7 +134,7 @@ export const Activity = () => {
               isBudge={false}
             />
           </div>
-          <div className="text-md mt-10 w-full md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
+          <div className="text-md mt-10 w-full md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg px-3">
             <Text
               align="center"
               variant="gradient"

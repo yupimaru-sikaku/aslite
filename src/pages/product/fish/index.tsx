@@ -23,6 +23,8 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
       }}
     >
       <Layout title="魚類一覧">
+        <div className="p-vw-24" />
+
         <h1 className="text-center">
           <GradientText title="魚類一覧" />
         </h1>
@@ -61,6 +63,7 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
             })}
           </ul>
         </section>
+        <div className="p-vw-24" />
       </Layout>
     </motion.div>
   );

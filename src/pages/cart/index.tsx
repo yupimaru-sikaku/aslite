@@ -15,7 +15,8 @@ const Cart = () => {
       }}
     >
       <Layout title="カート内商品">
-        <main>
+        <main className="p-3">
+          <div className="p-vw-24" />
           <h1 className="text-center">
             <GradientText title="カート内商品" />
           </h1>
@@ -24,6 +25,7 @@ const Cart = () => {
 
           <CartList />
         </main>
+        <div className="p-vw-24" />
       </Layout>
     </motion.div>
   );

@@ -55,7 +55,7 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
       }}
     >
       <Layout title={product.name}>
-        <main className="flex flex-col justify-center xs:flex-row">
+        <main className="flex flex-col justify-center p-3 xs:flex-row">
           <Image
             src={product.images[0]}
             alt={product.name}
@@ -91,17 +91,19 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
                     key={index}
                     color="green"
                     disabled={isSelected || isLoading}
+                    loading={isLoading}
                     sx={{ width: '170px' }}
                     leftIcon={<IconShoppingCart />}
                     onClick={() => moveCart(price)}
                   >
-                    {isLoading ? <Loader size="sm" /> : 'カートに入れる'}
+                    カートに入れる
                   </Button>
                 );
               })}
             </div>
           </div>
         </main>
+        <div className="p-vw-24" />
       </Layout>
     </motion.div>
   );

@@ -13,6 +13,7 @@ export default async function handler(req, res) {
           quantity: item.quantity,
           adjustable_quantity: {
             enabled: true,
+            maximum: 1,
           },
         }))
       : [
@@ -21,8 +22,8 @@ export default async function handler(req, res) {
             quantity,
             adjustable_quantity: {
               enabled: true,
-              minimum: 1,
-              maximum: 10,
+              // minimum: 1,
+              maximum: 1,
             },
           },
         ];

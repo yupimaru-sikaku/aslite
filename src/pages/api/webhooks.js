@@ -21,7 +21,6 @@ export default async function handler(request, response) {
     event = stripe.webhooks.constructEvent(buf, sig, endpointSecret);
   } catch (e) {
     const err = e instanceof Error ? e : new Error('Bad Request');
-    console.log(err);
     response.status(400).send(`Webhook Error: ${err.message}`);
     return;
   }

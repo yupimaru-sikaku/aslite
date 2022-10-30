@@ -8,6 +8,7 @@ import { CartDetails, CartEntry } from 'use-shopping-cart/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { IconBrandShopee } from '@tabler/icons';
+import Stripe from 'stripe';
 
 export const CartList = () => {
   const router = useRouter();
@@ -23,7 +24,6 @@ export const CartList = () => {
     formattedTotalPrice: string;
     cartCount: number;
   } = useShoppingCart();
-
   const checkoutSession = async () => {
     try {
       setIsLoading(true);
@@ -117,10 +117,12 @@ export const CartList = () => {
         <Button
           onClick={checkoutSession}
           sx={{ width: '170px' }}
-          leftIcon={<IconBrandShopee />}
+          leftIcon={
+            isLoading ? <Loader color="white" size="sm" /> : <IconBrandShopee />
+          }
           disabled={isLoading}
         >
-          {isLoading ? <Loader color="white" size="sm" /> : '購入手続き'}
+          購入手続き
         </Button>
         <Link scroll={false} href="/">
           <a>

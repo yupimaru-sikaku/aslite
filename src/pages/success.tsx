@@ -11,7 +11,7 @@ const Success = () => {
 
   useEffect(() => {
     clearCart();
-  });
+  }, []);
 
   return (
     <Layout title="決済完了画面">
