@@ -16,7 +16,7 @@ const Success = () => {
   return (
     <Layout title="決済完了画面">
       <main className="mx-5 flex items-center justify-center">
-        <div className="rounded p-4 shadow-lg ring ring-indigo-600/50">
+        <div className="rounded p-4 shadow-lg ring ring-green-600/50">
           <div className="flex flex-col items-center space-y-2">
             <IconCircleCheck width={128} height={128} color="green" />
             <h1>
