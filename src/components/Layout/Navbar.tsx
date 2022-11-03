@@ -1,4 +1,4 @@
-import { ActionIcon, CheckIcon } from '@mantine/core';
+import { ActionIcon, CheckIcon, Modal } from '@mantine/core';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { IconMailForward } from '@tabler/icons';
@@ -17,7 +17,7 @@ import { User } from '@supabase/supabase-js';
 import { CartEntry } from 'use-shopping-cart/core';
 
 export const Navbar = () => {
-  const [isModal, setIsModal] = useState<boolean>(false);
+  const [opened, setOpened] = useState<boolean>(false);
   const [user, setUser] = useState<User>();
   const dispatch = useAppDispatch();
   const largerThanMd = useMediaQuery('md');
@@ -43,22 +43,14 @@ export const Navbar = () => {
     });
   };
 
-  if (isModal) {
-    return (
-      <div className="fixed top-0 z-50 h-screen w-screen bg-gray-900">
-        <NavBarModal setIsModal={setIsModal} />
-      </div>
-    );
-  }
-
   return (
     <nav className="w-full border-b px-2 py-2.5 sm:px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <Link href="/">
           <a className="flex items-center">
             <Image
-              src="/aslite_logo.webp"
-              alt="aslite_logo"
+              src="/aslite_logo_2.webp"
+              alt="aslite_logo_2"
               width={40}
               height={40}
             />
@@ -92,7 +84,7 @@ export const Navbar = () => {
           )}
           <button
             className="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
-            onClick={() => setIsModal(true)}
+            onClick={() => setOpened(true)}
           >
             <svg
               className="h-6 w-6"
@@ -150,6 +142,18 @@ export const Navbar = () => {
           </ul>
         </div>
       </div>
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        transition="fade"
+        transitionDuration={600}
+        transitionTimingFunction="ease"
+        fullScreen
+        title="メニュー"
+        classNames={{ modal: 'bg-navy-900' }}
+      >
+        <NavBarModal />
+      </Modal>
     </nav>
   );
 };

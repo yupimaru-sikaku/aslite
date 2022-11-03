@@ -8,8 +8,6 @@ import { DataTable } from 'mantine-datatable';
 import aboutUsList from 'src/utils/aboutUsList.json';
 
 export const AboutUs = () => {
-  const largerThanSm = useMediaQuery('sm');
-
   return (
     <div className="px-3">
       <h1 className="text-center text-xl md:text-lg">
@@ -39,6 +37,7 @@ export const AboutUs = () => {
         viewport={{ once: false, amount: 0 }}
       >
         <DataTable
+          idAccessor="name"
           striped
           withBorder
           withColumnBorders

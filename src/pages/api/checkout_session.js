@@ -38,6 +38,9 @@ export default async function handler(req, res) {
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
       billing_address_collection: 'required',
     });
+    items.map(async (item) => {
+      await stripe.products.update(item.id, { active: false });
+    });
     if (!items) return res.redirect(301, session.url);
     res.status(200).json({
       url: session.url,
