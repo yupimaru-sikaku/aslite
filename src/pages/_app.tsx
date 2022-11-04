@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
             cancelUrl={`${process.env.NEXT_PUBLIC_BASE_URL}`}
           >
             <AnimatePresence
-              exitBeforeEnter
+              mode="wait"
               onExitComplete={() => window.scrollTo(0, 0)}
             >
               <Component key={router.asPath} {...pageProps} />
