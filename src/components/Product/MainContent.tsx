@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 export const MainContent = () => {
   const contentList = mainContentList;
   return (
-    <main id="mainContent" className='px-3'>
+    <main id="mainContent" className="px-3">
       <h1 className="text-center">
         <GradientText title="LINE UP" />
       </h1>

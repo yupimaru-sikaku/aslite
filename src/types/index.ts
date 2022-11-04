@@ -69,6 +69,7 @@ export type StripeProduct = {
     transform_quantity: Stripe.Price.TransformQuantity | null;
     unit_amount: number | null;
   }[];
+  active: boolean;
 };
 
 export type StripePriceType = {

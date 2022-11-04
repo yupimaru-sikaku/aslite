@@ -8,7 +8,6 @@ import { CartDetails, CartEntry } from 'use-shopping-cart/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { IconBrandShopee } from '@tabler/icons';
-import Stripe from 'stripe';
 
 export const CartList = () => {
   const router = useRouter();
@@ -38,6 +37,7 @@ export const CartList = () => {
             items: Object.entries(cartDetails).map(([_id, detail]) => ({
               id: detail.id,
               quantity: detail.quantity,
+              productId: detail.product_data.id,
             })),
           }),
         }

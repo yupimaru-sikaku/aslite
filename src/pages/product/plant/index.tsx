@@ -7,6 +7,7 @@ import { Layout } from 'src/components/Layout';
 import { loadStripeProduct } from 'src/hooks/loadStripeProduct';
 import { StripeProduct } from 'src/types';
 import { motion } from 'framer-motion';
+import { BackgroundImage, Badge } from '@mantine/core';
 
 type Props = {
   productPlantList: StripeProduct[];
@@ -31,20 +32,35 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
 
         <div className="p-vw-8" />
 
-        <section className="px-3 text-center">
+        <section className="px-10 text-center">
           <ul className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
             {productPlantList.map((product) => {
               return (
-                <li key={product.id} className="hover:opacity-80">
+                <li
+                  key={product.id}
+                  className={`hover:opacity-80 ${
+                    !product.active && `pointer-events-none`
+                  }`}
+                >
                   <Link scroll={false} href={`/product/plant/${product.id}`}>
-                    <a>
+                    <a className="relative">
                       <Image
                         src={product.images[0]}
                         alt={product.name}
-                        width={200}
-                        height={200}
+                        width={100}
+                        height={100}
+                        layout="responsive"
                         className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
                       />
+                      {!product.active && (
+                        <Badge
+                          color="red"
+                          variant="filled"
+                          classNames={{ root: 'absolute top-4 right-5' }}
+                        >
+                          SOLD OUT
+                        </Badge>
+                      )}
                       <BaseText size="md">{product.name}</BaseText>
                       {product.prices.map((price, i) => {
                         return (
@@ -72,7 +88,7 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const productList = await loadStripeProduct();
   const productPlantList: StripeProduct[] = productList.filter((product) => {
-    if (product.unit_label === '植物') {
+    if (product.unit_label === '植物' && product.active) {
       return product;
     }
   });

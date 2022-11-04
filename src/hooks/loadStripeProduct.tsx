@@ -21,6 +21,7 @@ export const loadStripeProduct = async () => {
         images: product.images,
         unit_label: product.unit_label,
         metadata: product.metadata,
+        active: product.active,
 
         prices: prices.data.map((price) => {
           return {
