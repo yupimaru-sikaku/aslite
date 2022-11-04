@@ -118,7 +118,7 @@ export const ProductCard: FC<Omit<Product, 'created_at'>> = ({
                     </div>
                   ) : (
                     <div className="h-16">
-                      <Link scroll={false} href={`/product/${id}/edit`}>
+                      <Link href={`/product/${id}/edit`}>
                         <a>
                           <p
                             className="cursor-pointer rounded text-center font-bold hover:text-gray-500 hover:shadow"

@@ -27,7 +27,7 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
           {productFishList.map((product) => {
             return (
               <li key={product.id} className="hover:opacity-80">
-                <Link scroll={false} href={`/product/fish/${product.id}`}>
+                <Link href={`/product/fish/${product.id}`}>
                   <a>
                     <Image
                       src={product.images[0]}

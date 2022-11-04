@@ -12,7 +12,7 @@ export const Footer = () => {
   return (
     <div className="w-full border-t bg-gray-100 px-2 py-10 sm:px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
-        <Link scroll={false} href="/">
+        <Link href="/">
           <a className="flex items-center">
             <Image
               src="/aslite_logo.webp"
@@ -31,7 +31,7 @@ export const Footer = () => {
           <ul className="flex items-center space-x-2 md:border-0 md:text-sm md:font-medium">
             {headerLink.map((link) => (
               <li key={link.link}>
-                <Link scroll={false} href={link.link}>
+                <Link href={link.link}>
                   <a target="_blank">
                     <ActionIcon>
                       <Image

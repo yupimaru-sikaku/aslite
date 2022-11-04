@@ -18,7 +18,7 @@ export const MainContent = () => {
       <ul className="grid grid-cols-2 gap-4 xs:grid-cols-3">
         {contentList.map((content) => {
           return (
-            <Link scroll={false} href={content.path} key={content.title}>
+            <Link href={content.path} key={content.title}>
               <li className="group rounded-xl border px-10 py-5 hover:cursor-pointer">
                 <a className="flex flex-col items-center">
                   <Image

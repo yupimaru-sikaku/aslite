@@ -33,7 +33,7 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
                   !product.active && `pointer-events-none`
                 }`}
               >
-                <Link scroll={false} href={`/product/plant/${product.id}`}>
+                <Link href={`/product/plant/${product.id}`}>
                   <a className="relative">
                     <Image
                       src={product.images[0]}
