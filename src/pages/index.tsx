@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         <div className="p-vw-48" />
 
         <Activity />
-        
+
         <div className="p-vw-48" />
       </div>
     </Layout>

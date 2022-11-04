@@ -10,7 +10,7 @@ type Props = {
 
 export const Layout: FC<Props> = ({ title = 'あすらいと', children }) => {
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen animate-fade-in flex-col">
       <Head>
         <title>{title}</title>
       </Head>
