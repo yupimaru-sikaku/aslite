@@ -10,7 +10,6 @@ import { useShoppingCart } from 'use-shopping-cart';
 import { CartDetails } from 'use-shopping-cart/core';
 import { loadStripeProduct } from 'src/hooks/loadStripeProduct';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
 
 type Props = {
   product: StripeProduct;
@@ -46,14 +45,6 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }} // 初期状態
-      animate={{ opacity: 1, y: 0 }} // マウント時
-      exit={{ opacity: 0, y: 10 }} // アンマウント時
-      transition={{
-        duration: 0.5,
-      }}
-    >
       <Layout title={product.name}>
         <main className="flex flex-col justify-center p-3 xs:flex-row">
           <Image
@@ -105,7 +96,6 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
         </main>
         <div className="p-vw-24" />
       </Layout>
-    </motion.div>
   );
 };
 

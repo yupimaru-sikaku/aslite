@@ -6,7 +6,6 @@ import { NotificationsProvider } from '@mantine/notifications';
 import { Provider } from 'react-redux';
 import { store } from 'src/ducks/store';
 import { CartProvider } from 'use-shopping-cart';
-import { AnimatePresence } from 'framer-motion';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'src/styles/nprogress.css';
@@ -34,12 +33,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
             successUrl={`${process.env.NEXT_PUBLIC_BASE_URL}/success`}
             cancelUrl={`${process.env.NEXT_PUBLIC_BASE_URL}`}
           >
-            <AnimatePresence
-              mode="wait"
-              onExitComplete={() => window.scrollTo(0, 0)}
-            >
-              <Component key={router.asPath} {...pageProps} />
-            </AnimatePresence>
+            <Component key={router.asPath} {...pageProps} />
           </CartProvider>
         </NotificationsProvider>
       </MantineProvider>

@@ -3,7 +3,6 @@ import { AboutUs } from 'src/components/AboutUs';
 import { Layout } from 'src/components/Layout';
 import { Activity } from 'src/components/Activity';
 import { MainContent } from 'src/components/Product/MainContent';
-import { motion } from 'framer-motion';
 import { HeroSection } from 'src/components/HeroSection';
 
 const Home: NextPage = () => {
