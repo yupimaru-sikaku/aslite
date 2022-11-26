@@ -20,7 +20,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(),
+    }),
 });
 
 // 追記は任意ですが、refetchOnFocus/refetchOnReconnectという機能を利用するためには下記が必要です
