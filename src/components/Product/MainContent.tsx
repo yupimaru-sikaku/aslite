@@ -3,14 +3,13 @@ import Link from 'next/link';
 import React from 'react';
 import { mainContentList } from 'src/utils/mainContentList';
 import { BaseText } from 'src/components/Common/BaseText';
-import { GradientText } from '../GradientText';
 
 export const MainContent = () => {
   const contentList = mainContentList;
   return (
     <main id="mainContent" className="px-3">
       <h1 className="text-center">
-        <GradientText title="LINE UP" />
+        <BaseText>LINE UP</BaseText>
       </h1>
 
       <div className="p-vw-8" />

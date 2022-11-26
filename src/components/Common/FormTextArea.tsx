@@ -32,7 +32,6 @@ export const FormTextArea = ({
       minRows={minRows}
       description={description}
       required={required}
-      variant={variant}
       classNames={{
         input: 'rounded',
       }}

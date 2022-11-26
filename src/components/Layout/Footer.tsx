@@ -15,7 +15,7 @@ export const Footer = () => {
         <Link href="/">
           <a className="flex items-center">
             <Image
-              src="/aslite_logo.webp"
+              src="/aslite_logo_2.webp"
               alt="aslite_logo"
               width={60}
               height={60}

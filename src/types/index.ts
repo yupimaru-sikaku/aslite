@@ -18,11 +18,6 @@ export type AdminRegisterFormType = {
   password_confirm: string;
 };
 
-export type AdminLoginFormType = {
-  email: string;
-  password: string;
-};
-
 export type AdminResetPasswordByEmailFormType = {
   email: string;
 };

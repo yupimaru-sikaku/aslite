@@ -23,11 +23,11 @@ export const FormTextInput = ({
       id={idText}
       label={label}
       description={description}
-      radius="lg"
+      radius="sm"
       required={required}
       variant="filled"
       classNames={{
-        input: 'rounded bg-gray-100 border-none',
+        input: 'rounded border-gray-300',
       }}
       {...form.getInputProps(formValue)}
     />

@@ -1,30 +1,109 @@
-import { DefaultMantineColor, Text } from '@mantine/core';
+import { DefaultMantineColor, MantineGradient, Text } from '@mantine/core';
 import { NextPage } from 'next';
-import React, { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
+import { useMediaQuery } from 'src/libs/mantine/useMediaQuery';
 
 type Props = {
+  align?: 'start' | 'center' | 'end';
   children: ReactNode;
-  size?: number | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   color?: DefaultMantineColor | 'dimmed';
-  weight?: number;
+  gradient?: MantineGradient;
   lineClamp?: number;
-  align?: 'left' | 'center' | 'right';
+  size?: number | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  span?: boolean;
+  variant?: 'link' | 'text' | 'gradient';
+  weight?: number;
+  content?: 'large' | 'middle' | 'small';
+  lineHeight?: number | string;
+  letterSpacing?: number | string;
+  margin?: string;
+  marginTop?: string;
+  marginBottom?: string;
+  marginRight?: string;
+  marginLeft?: string;
+  padding?: string;
+  paddingTop?: string;
+  paddingBottom?: string;
+  paddingRight?: string;
+  paddingLeft?: string;
+  fontFamily?: string;
 };
+
 export const BaseText: NextPage<Props> = ({
-  children,
-  size = 'xl',
-  color = 'gray',
-  weight = 900,
-  lineClamp,
   align,
+  children,
+  color,
+  gradient,
+  // ex）gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+  lineClamp,
+  size,
+  span,
+  variant = 'text',
+  weight = 400,
+  content = 'middle',
+  lineHeight = 'normal',
+  letterSpacing,
+  margin,
+  marginTop,
+  marginBottom,
+  marginRight,
+  marginLeft,
+  padding,
+  paddingTop,
+  paddingBottom,
+  paddingRight,
+  paddingLeft,
+  fontFamily = 'Verdana, sans-serif',
 }) => {
+  const [fontSize, setFontSize] = useState<number>();
+  const lagerThanXs = useMediaQuery('xs');
+  const lagerThanMd = useMediaQuery('md');
+
+  useEffect(() => {
+    if (size && typeof size === 'number') {
+      setFontSize(lagerThanMd ? size : lagerThanXs ? size / 2 : size / 3);
+    } else {
+      switch (content) {
+        case 'large':
+          setFontSize(lagerThanMd ? 32 : lagerThanXs ? 28 : 20);
+          break;
+        case 'middle':
+          setFontSize(lagerThanMd ? 20 : lagerThanXs ? 18 : 16);
+          break;
+        case 'small':
+          setFontSize(lagerThanMd ? 16 : lagerThanXs ? 14 : 12);
+          break;
+        default:
+          setFontSize(18);
+      }
+    }
+  }, [lagerThanMd, lagerThanXs]);
+
   return (
     <Text
-      size={size}
-      color={color}
-      weight={weight}
-      lineClamp={lineClamp}
       align={align}
+      color={color}
+      span={span}
+      gradient={gradient}
+      lineClamp={lineClamp}
+      size={fontSize}
+      variant={variant}
+      weight={weight}
+      sx={{
+        lineHeight: lineHeight,
+        letterSpacing: letterSpacing,
+        margin: margin,
+        marginTop: marginTop,
+        marginBottom: marginBottom,
+        marginRight: marginRight,
+        marginLeft: marginLeft,
+        padding: padding,
+        paddingTop: paddingTop,
+        paddingBottom: paddingBottom,
+        paddingRight: paddingRight,
+        paddingLeft: paddingLeft,
+        fontFamily: fontFamily,
+      }}
     >
       {children}
     </Text>

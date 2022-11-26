@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
-import { AboutUs } from 'src/components/AboutUs';
-import { Layout } from 'src/components/Layout';
-import { Activity } from 'src/components/Activity';
+import { AboutUs } from 'src/components/Main/AboutUs';
+import { Layout } from 'src/components/Layout/Layout';
+import { Activity } from 'src/components/Main/Activity';
 import { MainContent } from 'src/components/Product/MainContent';
-import { HeroSection } from 'src/components/HeroSection';
+import { HeroSection } from 'src/components/Main/HeroSection';
 
 const Home: NextPage = () => {
   return (

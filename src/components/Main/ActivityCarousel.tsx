@@ -1,5 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { useMediaQuery } from 'src/lib/mantine/useMediaQuery';
+import { useMediaQuery } from 'src/libs/mantine/useMediaQuery';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 

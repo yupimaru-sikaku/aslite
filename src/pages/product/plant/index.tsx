@@ -2,8 +2,7 @@ import { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BaseText } from 'src/components/Common/BaseText';
-import { GradientText } from 'src/components/GradientText';
-import { Layout } from 'src/components/Layout';
+import { Layout } from 'src/components/Layout/Layout';
 import { loadStripeProduct } from 'src/hooks/loadStripeProduct';
 import { StripeProduct } from 'src/types';
 import { Badge } from '@mantine/core';
@@ -18,7 +17,7 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
       <div className="p-vw-24" />
 
       <h1 className="text-center">
-        <GradientText title="植物一覧" />
+        <BaseText>植物一覧</BaseText>
       </h1>
 
       <div className="p-vw-8" />

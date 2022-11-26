@@ -1,7 +1,7 @@
 import React from 'react';
 import { CartList } from 'src/components/Cart/CartList';
-import { GradientText } from 'src/components/GradientText';
-import { Layout } from 'src/components/Layout';
+import { BaseText } from 'src/components/Common/BaseText';
+import { Layout } from 'src/components/Layout/Layout';
 
 const Cart = () => {
   return (
@@ -9,7 +9,7 @@ const Cart = () => {
       <main className="p-3">
         <div className="p-vw-24" />
         <h1 className="text-center">
-          <GradientText title="カート内商品" />
+          <BaseText>カート内商品</BaseText>
         </h1>
 
         <div className="p-vw-8" />

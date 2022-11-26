@@ -2,7 +2,7 @@ import { Button } from '@mantine/core';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { BaseText } from 'src/components/Common/BaseText';
-import { Layout } from 'src/components/Layout';
+import { Layout } from 'src/components/Layout/Layout';
 import { IconCircleCheck } from '@tabler/icons';
 import { useShoppingCart } from 'use-shopping-cart';
 

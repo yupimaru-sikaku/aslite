@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { BaseText } from 'src/components/Common/BaseText';
-import { Layout } from 'src/components/Layout';
+import { Layout } from 'src/components/Layout/Layout';
 import { StripePriceType, StripeProduct } from 'src/types';
 import { IconShoppingCart } from '@tabler/icons';
 import { useShoppingCart } from 'use-shopping-cart';
@@ -45,57 +45,56 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
   };
 
   return (
-      <Layout title={product.name}>
-        <main className="flex flex-col justify-center p-3 xs:flex-row">
-          <Image
-            src={product.images[0]}
-            alt={product.name}
-            width={300}
-            height={400}
-          />
+    <Layout title={product.name}>
+      <main className="flex flex-col justify-center p-3 xs:flex-row">
+        <Image
+          src={product.images[0]}
+          alt={product.name}
+          width={300}
+          height={400}
+        />
 
+        <div className="p-vw-8" />
+
+        <div className="w-full xs:w-1/3">
+          <h1>
+            <BaseText>{product.name}</BaseText>
+          </h1>
+          <div className="p-vw-2" />
+          <BaseText color="green">
+            {`¥${product.prices.map(
+              (price) => price.unit_amount && price.unit_amount.toLocaleString()
+            )} -`}
+          </BaseText>
+          <Badge variant="gradient" gradient={{ from: 'blue', to: 'green' }}>
+            一品限り
+          </Badge>
+          <div className="p-vw-2" />
+          <hr></hr>
           <div className="p-vw-8" />
-
-          <div className="w-full xs:w-1/3">
-            <h1>
-              <BaseText>{product.name}</BaseText>
-            </h1>
-            <div className="p-vw-2" />
-            <BaseText color="green">
-              {`¥${product.prices.map(
-                (price) =>
-                  price.unit_amount && price.unit_amount.toLocaleString()
-              )} -`}
-            </BaseText>
-            <Badge variant="gradient" gradient={{ from: 'blue', to: 'green' }}>
-              一品限り
-            </Badge>
-            <div className="p-vw-2" />
-            <hr></hr>
-            <div className="p-vw-8" />
-            <BaseText size="md">{product.description}</BaseText>
-            <div className="p-vw-8" />
-            <div className="text-center xs:text-start">
-              {product.prices.map((price, index) => {
-                return (
-                  <Button
-                    key={index}
-                    color="green"
-                    disabled={isSelected || isLoading}
-                    loading={isLoading}
-                    sx={{ width: '170px' }}
-                    leftIcon={<IconShoppingCart />}
-                    onClick={() => moveCart(price)}
-                  >
-                    カートに入れる
-                  </Button>
-                );
-              })}
-            </div>
+          <BaseText size="md">{product.description}</BaseText>
+          <div className="p-vw-8" />
+          <div className="text-center xs:text-start">
+            {product.prices.map((price, index) => {
+              return (
+                <Button
+                  key={index}
+                  color="green"
+                  disabled={isSelected || isLoading}
+                  loading={isLoading}
+                  sx={{ width: '170px' }}
+                  leftIcon={<IconShoppingCart />}
+                  onClick={() => moveCart(price)}
+                >
+                  カートに入れる
+                </Button>
+              );
+            })}
           </div>
-        </main>
-        <div className="p-vw-24" />
-      </Layout>
+        </div>
+      </main>
+      <div className="p-vw-24" />
+    </Layout>
   );
 };
 

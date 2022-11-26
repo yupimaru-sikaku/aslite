@@ -1,47 +1,19 @@
-import { ActionIcon, CheckIcon, Modal } from '@mantine/core';
+import { ActionIcon, Modal } from '@mantine/core';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IconMailForward } from '@tabler/icons';
-import { NavBarModal } from '../NavBarModal';
 import { headerLink } from 'src/utils/headerLink';
 import Image from 'next/image';
-import { supabase } from 'src/utils/supabase';
-import { LogoutIcon } from '@heroicons/react/outline';
-import { showNotification } from '@mantine/notifications';
-import { useAppDispatch } from 'src/ducks/store';
-import { resetSession } from 'src/ducks/admin/slice';
 import { useShoppingCart } from 'use-shopping-cart';
 import { IconShoppingCart } from '@tabler/icons';
-import { useMediaQuery } from 'src/lib/mantine/useMediaQuery';
-import { User } from '@supabase/supabase-js';
+import { useMediaQuery } from 'src/libs/mantine/useMediaQuery';
 import { CartEntry } from 'use-shopping-cart/core';
+import { NavBarModal } from 'src/components/Layout/NavBarModal';
 
 export const Navbar = () => {
   const [opened, setOpened] = useState<boolean>(false);
-  const [user, setUser] = useState<User>();
-  const dispatch = useAppDispatch();
   const largerThanMd = useMediaQuery('md');
   const { cartCount } = useShoppingCart<CartEntry>();
-
-  useEffect(() => {
-    const user = supabase.auth.user();
-    user && setUser(user);
-  }, [user]);
-
-  const logout = async () => {
-    await supabase.auth.signOut();
-    setUser(undefined);
-    dispatch(resetSession());
-    showNotification({
-      title: 'ログアウトしました',
-      message: '',
-      icon: (
-        <ActionIcon size="xs">
-          <CheckIcon />
-        </ActionIcon>
-      ),
-    });
-  };
 
   return (
     <nav className="w-full border-b px-2 py-2.5 sm:px-4">
@@ -122,13 +94,6 @@ export const Navbar = () => {
                 </Link>
               </li>
             ))}
-            {user && (
-              <li>
-                <ActionIcon size="md" color="dark" onClick={logout}>
-                  <LogoutIcon />
-                </ActionIcon>
-              </li>
-            )}
             <Link href="/cart">
               <a>
                 <li className="relative">

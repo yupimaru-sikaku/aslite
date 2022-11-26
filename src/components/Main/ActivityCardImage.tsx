@@ -1,5 +1,4 @@
 import { createStyles, Paper, Text, Title, Button, Badge } from '@mantine/core';
-import { ProductBadge } from './ProductBadge';
 
 interface ArticleCardImageProps {
   image: string;

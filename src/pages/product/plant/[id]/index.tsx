@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { BaseText } from 'src/components/Common/BaseText';
-import { Layout } from 'src/components/Layout';
+import { Layout } from 'src/components/Layout/Layout';
 import { StripePriceType, StripeProduct } from 'src/types';
 import { IconShoppingCart } from '@tabler/icons';
 import { useShoppingCart } from 'use-shopping-cart';

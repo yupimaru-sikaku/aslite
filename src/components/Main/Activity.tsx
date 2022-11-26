@@ -1,16 +1,16 @@
 import React from 'react';
-import { ArticleCardImage } from 'src/components/ActivityCardImage';
-import { GradientText } from 'src/components/GradientText';
+import { BaseText } from 'src/components/Common/BaseText';
 import { Text } from '@mantine/core';
-import { ActivityCarousel } from 'src/components/ActivityCarousel';
 import { coceriumImageList } from 'src/utils/coceriumImageList';
 import { aquariumImageList } from 'src/utils/aquariumImageList';
+import { ArticleCardImage } from 'src/components/Main/ActivityCardImage';
+import { ActivityCarousel } from 'src/components/Main/ActivityCarousel';
 
 export const Activity = () => {
   return (
     <>
       <h1 className="text-center">
-        <GradientText title="Activity" />
+        <BaseText>Activity</BaseText>
       </h1>
 
       <div className="p-vw-8" />
@@ -25,15 +25,7 @@ export const Activity = () => {
           />
         </div>
         <div className="text-md mt-10 w-full px-3 md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
-          <Text
-            align="center"
-            variant="gradient"
-            gradient={{ from: 'indigo', to: 'lightBlue', deg: 45 }}
-            size="xl"
-            weight={700}
-          >
-            『日常を切り取る』
-          </Text>
+          <BaseText>『日常を切り取る』</BaseText>
           <br />
           <Text>
             アクアホープではお店、ご自宅、オフィスなど様々な状況に合わせて水槽の設置を行っております。
@@ -72,15 +64,7 @@ export const Activity = () => {
           />
         </div>
         <div className="text-md mt-10 w-full px-3 md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
-          <Text
-            align="center"
-            variant="gradient"
-            gradient={{ from: 'green', to: 'yellow', deg: 45 }}
-            size="xl"
-            weight={700}
-          >
-            『日常に自然の癒やしを』
-          </Text>
+          <BaseText>『日常に自然の癒やしを』</BaseText>
           <br />
           <Text>
             コケをメインに数種類の観葉植物、流木、石等を使ってガラス容器に自然の世界を創った癒しのインテリアです。
