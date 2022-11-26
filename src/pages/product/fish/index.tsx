@@ -1,3 +1,4 @@
+import { Button } from '@mantine/core';
 import { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,7 +17,7 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
       <div className="p-vw-24" />
 
       <BaseText
-        content="large"
+        size={100}
         color="blue"
         align="center"
         fontFamily="Dela Gothic One"
@@ -27,36 +28,47 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
       <div className="p-vw-8" />
 
       <section className="text-center">
-        <ul className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
-          {productFishList.map((product) => {
-            return (
-              <li key={product.id} className="hover:opacity-80">
-                <Link href={`/product/fish/${product.id}`}>
-                  <a>
-                    <Image
-                      src={product.images[0]}
-                      alt={product.name}
-                      width={200}
-                      height={200}
-                      className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
-                    />
-                    <BaseText size="md">{product.name}</BaseText>
-                    {product.prices.map((price, i) => {
-                      return (
-                        <div key={i}>
-                          <span>
-                            {price.unit_amount &&
-                              `¥${price.unit_amount.toLocaleString()}`}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </a>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        {productFishList.length ? (
+          <ul className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+            {productFishList.map((product) => {
+              return (
+                <li key={product.id} className="hover:opacity-80">
+                  <Link href={`/product/fish/${product.id}`}>
+                    <a>
+                      <Image
+                        src={product.images[0]}
+                        alt={product.name}
+                        width={100}
+                        height={100}
+                        layout="responsive"
+                        className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
+                      />
+                      <BaseText size="md">{product.name}</BaseText>
+                      {product.prices.map((price, i) => {
+                        return (
+                          <div key={i}>
+                            <span>
+                              {price.unit_amount &&
+                                `¥${price.unit_amount.toLocaleString()}`}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <BaseText>売り切れです</BaseText>
+        )}
+        <div className="p-vw-24" />
+        <Link href="/">
+          <a>
+            <Button color="gray">一覧へ戻る</Button>
+          </a>
+        </Link>
       </section>
       <div className="p-vw-24" />
     </Layout>

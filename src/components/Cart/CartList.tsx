@@ -51,6 +51,12 @@ export const CartList = () => {
     }
   };
 
+  const removeProduct = (priceId: string) => {
+    if (confirm('カートから削除しますか？')) {
+      removeItem(priceId);
+    }
+  };
+
   if (cartCount !== void 0 && cartCount === 0) {
     return (
       <main>
@@ -100,7 +106,8 @@ export const CartList = () => {
                     {detail.formattedPrice} * {detail.quantity} =
                     {detail.formattedValue}
                   </BaseText>
-                  <ActionIcon onClick={() => removeItem(priceId)}>
+                  <div className="p-vw-8" />
+                  <ActionIcon onClick={() => removeProduct(priceId)}>
                     <IconTrash />
                   </ActionIcon>
                 </div>

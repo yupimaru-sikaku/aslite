@@ -1,4 +1,5 @@
 import { createStyles, Paper, Text, Title, Button, Badge } from '@mantine/core';
+import { BaseText } from '../Common/BaseText';
 
 interface ArticleCardImageProps {
   image: string;
@@ -56,9 +57,9 @@ export const ArticleCardImage = ({
         <Text className={classes.category} size="xs">
           {category}
         </Text>
-        <Title order={3} className={classes.title}>
+        <BaseText size={100} color="white" fontFamily="Work Sans">
           {title}
-        </Title>
+        </BaseText>
         {isBudge && (
           <div className="mt-3 flex flex-wrap gap-3">
             <Badge variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>

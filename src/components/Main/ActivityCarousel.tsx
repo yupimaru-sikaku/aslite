@@ -1,7 +1,8 @@
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from 'src/libs/mantine/useMediaQuery';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
 
 type Props = {
   imageList: string[];
@@ -10,6 +11,7 @@ type Props = {
 export const ActivityCarousel = ({ imageList }: Props) => {
   const [slideSize, setSlideSize] = useState<string>('75%');
   const [height, setHeight] = useState<number>(300);
+  const autoplay = useRef(Autoplay({ delay: 2000 }));
 
   const lagerThanXs = useMediaQuery('xs');
   const lagerThanSm = useMediaQuery('sm');
@@ -32,16 +34,32 @@ export const ActivityCarousel = ({ imageList }: Props) => {
   }, [lagerThanXs, lagerThanMd]);
 
   return (
-    <Carousel align="start" slideSize="70%" slideGap="md" dragFree>
+    <Carousel
+      align="start"
+      plugins={[autoplay.current]}
+      onMouseEnter={autoplay.current.stop}
+      onMouseLeave={autoplay.current.reset}
+      slideSize="40%"
+      slideGap="md"
+      withControls={false}
+      dragFree
+      styles={{
+        control: {
+          opacity: '0.3',
+        },
+      }}
+    >
       {imageList.map((image) => (
         <Carousel.Slide key={image}>
-          <Image
-            src={image}
-            alt="aquarimu"
-            width={100}
-            height={100}
-            layout="responsive"
-          />
+          <div>
+            <Image
+              src={image}
+              width={100}
+              height={100}
+              layout="responsive"
+              priority={false}
+            />
+          </div>
         </Carousel.Slide>
       ))}
     </Carousel>

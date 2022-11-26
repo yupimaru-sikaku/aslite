@@ -8,12 +8,7 @@ export const MainContent = () => {
   const contentList = mainContentList;
   return (
     <main id="mainContent" className="px-3">
-      <BaseText
-        content="large"
-        color="green"
-        align="center"
-        fontFamily="Work Sans"
-      >
+      <BaseText size={100} color="green" align="center" fontFamily="Work Sans">
         LINE UP
       </BaseText>
 
@@ -30,10 +25,13 @@ export const MainContent = () => {
                     alt={`${content.imageAlt}`}
                     width={200}
                     height={200}
+                    priority={false}
                     className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
                   />
                   <div className="p-vw-4" />
-                  <BaseText fontFamily="Work Sans" color="gray">{content.title}</BaseText>
+                  <BaseText fontFamily="Work Sans" color="gray">
+                    {content.title}
+                  </BaseText>
                 </a>
               </li>
             </Link>

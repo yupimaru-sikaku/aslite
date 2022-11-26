@@ -6,12 +6,7 @@ import aboutUsList from 'src/utils/aboutUsList.json';
 export const AboutUs = () => {
   return (
     <div className="px-3">
-      <BaseText
-        content="large"
-        color="green"
-        align="center"
-        fontFamily="Work Sans"
-      >
+      <BaseText size={100} color="green" align="center" fontFamily="Work Sans">
         ABOUT US
       </BaseText>
 

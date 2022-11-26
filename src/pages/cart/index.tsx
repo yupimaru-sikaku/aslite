@@ -9,7 +9,7 @@ const Cart = () => {
       <main className="p-3">
         <div className="p-vw-24" />
         <BaseText
-          content="large"
+          size={100}
           color="gray"
           align="center"
           fontFamily="Dela Gothic One"

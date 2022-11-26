@@ -37,6 +37,7 @@
     "date-fns": "^2.29.1",
     "dayjs": "^1.11.5",
     "emailjs": "^4.0.1",
+    "embla-carousel-autoplay": "^7.0.5",
     "embla-carousel-react": "^7.0.1",
     "mantine-datatable": "^1.7.11",
     "micro": "^10.0.0",

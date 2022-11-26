@@ -10,7 +10,7 @@ export const Activity = () => {
   return (
     <>
       <BaseText
-        content="large"
+        size={100}
         color="green"
         align="center"
         fontFamily="Work Sans"

@@ -26,7 +26,10 @@ export const Navbar = () => {
               width={40}
               height={40}
             />
-            <span className="ml-3 self-center whitespace-nowrap text-xl font-semibold">
+            <span
+              className="ml-3 self-center whitespace-nowrap text-xl font-semibold"
+              style={{ fontFamily: 'Work Sans' }}
+            >
               ASLITE
             </span>
           </a>

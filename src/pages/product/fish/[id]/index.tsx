@@ -47,25 +47,27 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
   return (
     <Layout title={product.name}>
       <main className="flex flex-col justify-center p-3 xs:flex-row">
-        <Image
-          src={product.images[0]}
-          alt={product.name}
-          width={300}
-          height={400}
-        />
+        <div className="xs:w-1/2 md:w-1/3">
+          <Image
+            src={product.images[0]}
+            alt={product.name}
+            width={100}
+            height={100}
+            layout="responsive"
+          />
+        </div>
 
         <div className="p-vw-8" />
 
         <div className="w-full xs:w-1/3">
-          <h1>
-            <BaseText>{product.name}</BaseText>
-          </h1>
+          <BaseText>{product.name}</BaseText>
           <div className="p-vw-2" />
           <BaseText color="green">
             {`¥${product.prices.map(
               (price) => price.unit_amount && price.unit_amount.toLocaleString()
             )} -`}
           </BaseText>
+          <div className="p-vw-2" />
           <Badge variant="gradient" gradient={{ from: 'blue', to: 'green' }}>
             一品限り
           </Badge>
@@ -73,7 +75,7 @@ const ProductFishIndex: NextPage<Props> = ({ product }) => {
           <hr></hr>
           <div className="p-vw-8" />
           <BaseText size="md">{product.description}</BaseText>
-          <div className="p-vw-8" />
+          <div className="p-vw-24" />
           <div className="text-center xs:text-start">
             {product.prices.map((price, index) => {
               return (
