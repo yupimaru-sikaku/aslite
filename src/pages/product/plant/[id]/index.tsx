@@ -34,6 +34,7 @@ const ProductPlantIndex: NextPage<Props> = ({ product }) => {
     addItem({
       id: price.id,
       product_data: { id: product.id },
+      product_id: product.id,
       name: product.name,
       price: price.unit_amount!,
       currency: price.currency,

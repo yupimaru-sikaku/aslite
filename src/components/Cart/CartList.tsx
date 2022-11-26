@@ -23,6 +23,7 @@ export const CartList = () => {
     formattedTotalPrice: string;
     cartCount: number;
   } = useShoppingCart();
+
   const checkoutSession = async () => {
     try {
       setIsLoading(true);
@@ -37,7 +38,7 @@ export const CartList = () => {
             items: Object.entries(cartDetails).map(([_id, detail]) => ({
               id: detail.id,
               quantity: detail.quantity,
-              productId: detail.product_data.id,
+              productId: detail.product_id,
             })),
           }),
         }
@@ -49,6 +50,7 @@ export const CartList = () => {
       setIsLoading(false);
     }
   };
+
   if (cartCount !== void 0 && cartCount === 0) {
     return (
       <main>
@@ -64,6 +66,7 @@ export const CartList = () => {
       </main>
     );
   }
+
   return (
     <main>
       <ul>
