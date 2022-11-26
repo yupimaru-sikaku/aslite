@@ -1,4 +1,5 @@
 import { BackgroundImage } from '@mantine/core';
+import { BaseText } from '../Common/BaseText';
 
 export const HeroSection = () => {
   return (
@@ -6,17 +7,20 @@ export const HeroSection = () => {
       <main className="p-3">
         <div className="p-vw-32" />
 
-        <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+        <BaseText size={100} color="white" fontFamily="Work Sans">
           Plant Medaka
           <br />
           Better Than Best. <br />
-        </h2>
-        <p className="mb-4 max-w-xl text-base font-bold text-gray-300 md:text-lg">
+        </BaseText>
+
+        <div className="p-vw-8" />
+
+        <BaseText size={50} color="white">
           植物と生命と暮らそう
           <br />
           小さな世界から、無限の世界に思いを馳せて
-          <br />
-        </p>
+        </BaseText>
+
         <div className="p-vw-32" />
       </main>
     </BackgroundImage>

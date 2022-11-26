@@ -8,9 +8,14 @@ export const MainContent = () => {
   const contentList = mainContentList;
   return (
     <main id="mainContent" className="px-3">
-      <h1 className="text-center">
-        <BaseText>LINE UP</BaseText>
-      </h1>
+      <BaseText
+        content="large"
+        color="green"
+        align="center"
+        fontFamily="Work Sans"
+      >
+        LINE UP
+      </BaseText>
 
       <div className="p-vw-8" />
 
@@ -28,7 +33,7 @@ export const MainContent = () => {
                     className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
                   />
                   <div className="p-vw-4" />
-                  <BaseText>{content.title}</BaseText>
+                  <BaseText fontFamily="Work Sans" color="gray">{content.title}</BaseText>
                 </a>
               </li>
             </Link>

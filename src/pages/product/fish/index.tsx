@@ -15,9 +15,14 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
     <Layout title="魚類一覧">
       <div className="p-vw-24" />
 
-      <h1 className="text-center">
-        <BaseText>魚類一覧</BaseText>
-      </h1>
+      <BaseText
+        content="large"
+        color="blue"
+        align="center"
+        fontFamily="Dela Gothic One"
+      >
+        魚類一覧
+      </BaseText>
 
       <div className="p-vw-8" />
 

@@ -4,7 +4,7 @@ import { BaseText } from 'src/components/Common/BaseText';
 import Image from 'next/image';
 import { IconTrash } from '@tabler/icons';
 import Link from 'next/link';
-import { CartDetails, CartEntry } from 'use-shopping-cart/core';
+import { CartDetails } from 'use-shopping-cart/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { IconBrandShopee } from '@tabler/icons';
@@ -95,8 +95,8 @@ export const CartList = () => {
                 <div className="p-vw-8" />
 
                 <div className="w-2/3">
-                  <BaseText size="md">{detail.name}</BaseText>
-                  <BaseText size="xs">
+                  <BaseText content="small">{detail.name}</BaseText>
+                  <BaseText content="small">
                     {detail.formattedPrice} * {detail.quantity} =
                     {detail.formattedValue}
                   </BaseText>

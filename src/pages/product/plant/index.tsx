@@ -16,9 +16,14 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
     <Layout title="植物一覧">
       <div className="p-vw-24" />
 
-      <h1 className="text-center">
-        <BaseText>植物一覧</BaseText>
-      </h1>
+      <BaseText
+        content="large"
+        color="green"
+        align="center"
+        fontFamily="Dela Gothic One"
+      >
+        植物一覧
+      </BaseText>
 
       <div className="p-vw-8" />
 

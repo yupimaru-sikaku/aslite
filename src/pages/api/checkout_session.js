@@ -22,15 +22,16 @@ export default async function handler(req, res) {
             quantity,
             adjustable_quantity: {
               enabled: true,
-              // minimum: 1,
               maximum: 1,
             },
           },
         ];
+
     const stripe = new Stripe(process.env.STRIPE_API_KEY, {
       apiVersion: '2022-08-01',
       maxNetworkRetries: 3,
     });
+
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: lineItems,
@@ -38,10 +39,13 @@ export default async function handler(req, res) {
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
       billing_address_collection: 'required',
     });
-    items.map(async (item) => {
-      await stripe.products.update(item.productId, { active: false });
-    });
+
     if (!items) return res.redirect(301, session.url);
+
+    // items.map(async (item) => {
+    //   await stripe.products.update(item.productId, { active: false });
+    // });
+
     res.status(200).json({
       url: session.url,
     });

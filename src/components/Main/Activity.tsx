@@ -9,9 +9,14 @@ import { ActivityCarousel } from 'src/components/Main/ActivityCarousel';
 export const Activity = () => {
   return (
     <>
-      <h1 className="text-center">
-        <BaseText>Activity</BaseText>
-      </h1>
+      <BaseText
+        content="large"
+        color="green"
+        align="center"
+        fontFamily="Work Sans"
+      >
+        ACTIVITY
+      </BaseText>
 
       <div className="p-vw-8" />
 
@@ -25,7 +30,14 @@ export const Activity = () => {
           />
         </div>
         <div className="text-md mt-10 w-full px-3 md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
-          <BaseText>『日常を切り取る』</BaseText>
+          <BaseText
+            content="large"
+            align="center"
+            color="cyan"
+            fontFamily="Dela Gothic One"
+          >
+            『日常を切り取る』
+          </BaseText>
           <br />
           <Text>
             アクアホープではお店、ご自宅、オフィスなど様々な状況に合わせて水槽の設置を行っております。
@@ -64,7 +76,15 @@ export const Activity = () => {
           />
         </div>
         <div className="text-md mt-10 w-full px-3 md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
-          <BaseText>『日常に自然の癒やしを』</BaseText>
+          <BaseText
+            content="large"
+            align="center"
+            color="dimmed"
+            fontFamily="Dela Gothic One"
+          >
+            『日常に自然の癒やしを』
+          </BaseText>
+
           <br />
           <Text>
             コケをメインに数種類の観葉植物、流木、石等を使ってガラス容器に自然の世界を創った癒しのインテリアです。

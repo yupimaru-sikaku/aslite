@@ -8,9 +8,14 @@ const Cart = () => {
     <Layout title="カート内商品">
       <main className="p-3">
         <div className="p-vw-24" />
-        <h1 className="text-center">
-          <BaseText>カート内商品</BaseText>
-        </h1>
+        <BaseText
+          content="large"
+          color="gray"
+          align="center"
+          fontFamily="Dela Gothic One"
+        >
+          カート内商品
+        </BaseText>
 
         <div className="p-vw-8" />
 

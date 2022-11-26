@@ -4,4 +4,7 @@ module.exports = {
   images: {
     domains: ['files.stripe.com/links/', 'files.stripe.com'],
   },
+  experimental: {
+    optimizeFonts: true,
+  },
 };
