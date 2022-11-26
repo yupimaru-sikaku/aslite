@@ -8,6 +8,7 @@ import { CartDetails } from 'use-shopping-cart/core';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { IconBrandShopee } from '@tabler/icons';
+import { BaseAlert } from 'src/components/Common/BaseAlert';
 
 export const CartList = () => {
   const router = useRouter();
@@ -48,12 +49,6 @@ export const CartList = () => {
     } catch (e: unknown) {
       if (e instanceof Error) window.alert(e.message);
       setIsLoading(false);
-    }
-  };
-
-  const removeProduct = (priceId: string) => {
-    if (confirm('カートから削除しますか？')) {
-      removeItem(priceId);
     }
   };
 
@@ -107,9 +102,12 @@ export const CartList = () => {
                     {detail.formattedValue}
                   </BaseText>
                   <div className="p-vw-8" />
-                  <ActionIcon onClick={() => removeProduct(priceId)}>
-                    <IconTrash />
-                  </ActionIcon>
+                  <BaseAlert
+                    title="確認画面"
+                    message="削除しますか？"
+                    buttonTitle={<IconTrash />}
+                    onConfirm={() => removeItem(priceId)}
+                  />
                 </div>
               </li>
               <div className="p-vw-16" />
