@@ -95,7 +95,7 @@ export const CartList = () => {
                 <div className="p-vw-8" />
 
                 <div className="w-2/3">
-                  <BaseText content="small">{detail.name}</BaseText>
+                  <BaseText>{detail.name}</BaseText>
                   <BaseText content="small">
                     {detail.formattedPrice} * {detail.quantity} =
                     {detail.formattedValue}
