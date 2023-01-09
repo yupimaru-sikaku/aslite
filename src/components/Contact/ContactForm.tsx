@@ -50,6 +50,7 @@ export const ContactForm = () => {
           title: '送信されました',
           message: '担当からご連絡があるまでお待ち下さい',
           autoClose: false,
+          color: "green",
           icon: (
             <ActionIcon size="xs" color="cyan">
               <CheckIcon color="white" />
