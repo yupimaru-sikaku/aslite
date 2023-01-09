@@ -40,7 +40,7 @@
     "embla-carousel-autoplay": "^7.0.5",
     "embla-carousel-react": "^7.0.1",
     "mantine-datatable": "^1.7.11",
-    "micro": "^10.0.0",
+    "micro": "^10.0.1",
     "microcms-js-sdk": "^2.3.2",
     "next": "12.1.6",
     "nprogress": "^0.2.0",

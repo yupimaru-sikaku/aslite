@@ -28,27 +28,29 @@ export const CartList = () => {
   const checkoutSession = async () => {
     try {
       setIsLoading(true);
+      const items = Object.entries(cartDetails).map(([_id, detail]) => ({
+        id: detail.id,
+        quantity: detail.quantity,
+        productId: detail.product_id,
+      }));
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkout_session`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkout_session/`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            items: Object.entries(cartDetails).map(([_id, detail]) => ({
-              id: detail.id,
-              quantity: detail.quantity,
-              productId: detail.product_id,
-            })),
-          }),
+          body: JSON.stringify({ items }),
         }
       );
       const result = await res.json();
       router.push(result.url);
       setIsLoading(false);
     } catch (e: unknown) {
-      if (e instanceof Error) window.alert(e.message);
+      if (e instanceof Error)
+        window.alert(
+          '商品が既に購入されました。恐れ入りますが、カートにある商品を削除ボタンで削除して下さい。'
+        );
       setIsLoading(false);
     }
   };

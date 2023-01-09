@@ -1,4 +1,4 @@
-import { Button } from '@mantine/core';
+import { Badge, Button } from '@mantine/core';
 import { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -32,7 +32,12 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
           <ul className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
             {productFishList.map((product) => {
               return (
-                <li key={product.id} className="hover:opacity-80">
+                <li
+                  key={product.id}
+                  className={`hover:opacity-80 ${
+                    !product.active && `pointer-events-none`
+                  }`}
+                >
                   <Link href={`/product/fish/${product.id}`}>
                     <a>
                       <Image
@@ -43,6 +48,15 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
                         layout="responsive"
                         className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
                       />
+                      {!product.active && (
+                        <Badge
+                          color="gray"
+                          variant="filled"
+                          classNames={{ root: 'absolute top-4 right-5' }}
+                        >
+                          SOLD OUT
+                        </Badge>
+                      )}
                       <BaseText size="md">{product.name}</BaseText>
                       {product.prices.map((price, i) => {
                         return (

@@ -35,7 +35,7 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
                 <li
                   key={product.id}
                   className={`hover:opacity-80 ${
-                    !product.active && `pointer-events-none`
+                    !product.active && `pointer-events-none opacity-50`
                   }`}
                 >
                   <Link href={`/product/plant/${product.id}`}>
@@ -92,7 +92,7 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const productList = await loadStripeProduct();
   const productPlantList: StripeProduct[] = productList.filter((product) => {
-    if (product.unit_label === '植物' && product.active) {
+    if (product.unit_label === '植物') {
       return product;
     }
   });

@@ -36,15 +36,15 @@ export default async function handler(req, res) {
       mode: 'payment',
       line_items: lineItems,
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cart`,
       billing_address_collection: 'required',
     });
-
     if (!items) return res.redirect(301, session.url);
 
-    // items.map(async (item) => {
-    //   await stripe.products.update(item.productId, { active: false });
-    // });
+    // 商品のアーカイブ操作
+    items.map(async (item) => {
+      await stripe.products.update(item.productId, { active: false });
+    });
 
     res.status(200).json({
       url: session.url,
