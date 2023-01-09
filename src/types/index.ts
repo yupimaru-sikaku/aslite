@@ -44,10 +44,10 @@ export type EditedProfile = {
 };
 
 export type Contact = {
-  personal_name: string;
+  name: string;
   furigana: string;
   email: string;
-  phone_number: string;
+  phoneNumber?: string;
   content: string;
 };
 
