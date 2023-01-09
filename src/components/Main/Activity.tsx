@@ -9,12 +9,7 @@ import { ActivityCarousel } from 'src/components/Main/ActivityCarousel';
 export const Activity = () => {
   return (
     <>
-      <BaseText
-        size={100}
-        color="green"
-        align="center"
-        fontFamily="Work Sans"
-      >
+      <BaseText size={100} color="green" align="center" fontFamily="Work Sans">
         ACTIVITY
       </BaseText>
 
@@ -29,7 +24,7 @@ export const Activity = () => {
             isBudge={true}
           />
         </div>
-        <div className="text-md mt-10 w-full px-3 md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
+        <div className="text-md mt-10 w-full md:mt-0 md:ml-10 md:w-1/2 md:text-lg">
           <BaseText
             content="large"
             align="center"
@@ -67,7 +62,7 @@ export const Activity = () => {
       <div className="p-vw-48" />
 
       <div className="flex flex-col items-start md:flex-row-reverse">
-        <div className="w-full md:mr-10 md:w-1/2">
+        <div className="w-full md:ml-10 md:w-1/2">
           <ArticleCardImage
             image="/activity_cocerium.webp"
             title="Cocerium"
@@ -75,7 +70,7 @@ export const Activity = () => {
             isBudge={false}
           />
         </div>
-        <div className="text-md mt-10 w-full px-3 md:mt-0 md:ml-10 md:mr-10 md:w-1/2 md:text-lg">
+        <div className="text-md mt-10 w-full md:mt-0 md:mr-10 md:w-1/2 md:text-lg">
           <BaseText
             content="large"
             align="center"

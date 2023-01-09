@@ -7,7 +7,7 @@ import { BaseText } from 'src/components/Common/BaseText';
 export const MainContent = () => {
   const contentList = mainContentList;
   return (
-    <main id="mainContent" className="px-3">
+    <main id="mainContent">
       <BaseText size={100} color="green" align="center" fontFamily="Work Sans">
         LINE UP
       </BaseText>

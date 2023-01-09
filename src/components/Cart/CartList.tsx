@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Loader } from '@mantine/core';
+import { Button, Loader } from '@mantine/core';
 import { useShoppingCart } from 'use-shopping-cart';
 import { BaseText } from 'src/components/Common/BaseText';
 import Image from 'next/image';
@@ -28,7 +28,7 @@ export const CartList = () => {
   const checkoutSession = async () => {
     try {
       setIsLoading(true);
-      const session = await fetch(
+      const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkout_session`,
         {
           method: 'POST',
@@ -43,8 +43,9 @@ export const CartList = () => {
             })),
           }),
         }
-      ).then((response) => response.json());
-      router.push(session.url);
+      );
+      const result = await res.json();
+      router.push(result.url);
       setIsLoading(false);
     } catch (e: unknown) {
       if (e instanceof Error) window.alert(e.message);

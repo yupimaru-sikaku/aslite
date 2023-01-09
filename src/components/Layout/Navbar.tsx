@@ -16,16 +16,18 @@ export const Navbar = () => {
   const { cartCount } = useShoppingCart<CartEntry>();
 
   return (
-    <nav className="w-full border-b px-2 py-2.5 sm:px-4">
-      <div className="container mx-auto flex flex-wrap items-center justify-between">
+    <nav className="w-full py-5 px-6 xs:px-10 md:mx-auto md:max-w-screen-md lg:max-w-screen-lg lg:px-0">
+      <div className="flex items-center justify-between">
         <Link href="/">
           <a className="flex items-center">
-            <Image
-              src="/aslite_logo_2.webp"
-              alt="aslite_logo_2"
-              width={40}
-              height={40}
-            />
+            <div className="w-1/2">
+              <Image
+                src="/aslite_logo_2.webp"
+                alt="aslite_logo_2"
+                width={40}
+                height={40}
+              />
+            </div>
             <span
               className="ml-3 self-center whitespace-nowrap text-xl font-semibold"
               style={{ fontFamily: 'Work Sans' }}

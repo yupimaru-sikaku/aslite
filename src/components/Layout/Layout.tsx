@@ -15,7 +15,9 @@ export const Layout: FC<Props> = ({ title = 'あすらいと', children }) => {
         <title>{title}</title>
       </Head>
       <Navbar />
-      <main className="h-auto flex-grow">{children}</main>
+      <main className="h-auto flex-grow px-6 xs:px-10 md:mx-auto md:max-w-screen-md lg:max-w-screen-lg lg:px-0">
+        {children}
+      </main>
       <Footer />
     </div>
   );

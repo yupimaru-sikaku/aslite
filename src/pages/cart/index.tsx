@@ -6,21 +6,19 @@ import { Layout } from 'src/components/Layout/Layout';
 const Cart = () => {
   return (
     <Layout title="カート内商品">
-      <main className="p-3">
-        <div className="p-vw-24" />
-        <BaseText
-          size={100}
-          color="gray"
-          align="center"
-          fontFamily="Dela Gothic One"
-        >
-          カート内商品
-        </BaseText>
+      <div className="p-vw-12" />
+      <BaseText
+        size={100}
+        color="gray"
+        align="center"
+        fontFamily="Dela Gothic One"
+      >
+        カート内商品
+      </BaseText>
 
-        <div className="p-vw-8" />
+      <div className="p-vw-8" />
 
-        <CartList />
-      </main>
+      <CartList />
       <div className="p-vw-24" />
     </Layout>
   );

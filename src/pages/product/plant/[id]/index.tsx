@@ -47,6 +47,8 @@ const ProductPlantIndex: NextPage<Props> = ({ product }) => {
 
   return (
     <Layout title={product.name}>
+      <div className="p-vw-12" />
+
       <main className="flex flex-col justify-center p-3 xs:flex-row">
         <div className="xs:w-1/2 md:w-1/3">
           <Image
@@ -76,7 +78,7 @@ const ProductPlantIndex: NextPage<Props> = ({ product }) => {
           <hr></hr>
           <div className="p-vw-8" />
           <BaseText size="md">{product.description}</BaseText>
-          <div className="p-vw-24" />
+          <div className="p-vw-12" />
           <div className="text-center xs:text-start">
             {product.prices.map((price, index) => {
               return (

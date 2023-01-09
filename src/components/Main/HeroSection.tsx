@@ -3,7 +3,7 @@ import { BaseText } from '../Common/BaseText';
 
 export const HeroSection = () => {
   return (
-    <BackgroundImage src="/aslite_logo.webp">
+    <BackgroundImage src="/aslite_logo.webp" radius='lg'>
       <main className="p-3">
         <div className="p-vw-32" />
 

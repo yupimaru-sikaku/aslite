@@ -23,6 +23,7 @@ export const ArticleCardImage = ({
       alignItems: 'flex-start',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
+      borderRadius: '8px',
     },
 
     title: {

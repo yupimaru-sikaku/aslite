@@ -14,7 +14,7 @@ type Props = {
 const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
   return (
     <Layout title="植物一覧">
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
 
       <BaseText
         size={100}

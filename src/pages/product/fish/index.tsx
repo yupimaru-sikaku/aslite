@@ -14,7 +14,7 @@ type Props = {
 const ProductFish: NextPage<Props> = ({ productFishList }) => {
   return (
     <Layout title="魚類一覧">
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
 
       <BaseText
         size={100}
