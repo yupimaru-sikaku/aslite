@@ -9,6 +9,14 @@ type linkType = {
 
 export const headerLink: linkType[] = [
   {
+    title: 'Contact',
+    link: '/contact/create',
+    src: '/mail.webp',
+    alt: 'mail_icon',
+    width: 20,
+    height: 20,
+  },
+  {
     title: 'Instagram',
     link: 'https://www.instagram.com/accounts/login/?next=/asuright.llc/',
     src: '/instagram_logo.webp',

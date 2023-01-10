@@ -11,19 +11,19 @@ const Home: NextPage = () => {
       <div>
         <HeroSection />
 
-        <div className="p-vw-24" />
+        <div className="p-vw-12" />
 
         <MainContent />
 
-        <div className="p-vw-48" />
+        <div className="p-vw-24 " />
 
         <AboutUs />
 
-        <div className="p-vw-48" />
+        <div className="p-vw-24" />
 
         <Activity />
 
-        <div className="p-vw-48" />
+        <div className="p-vw-24" />
       </div>
     </Layout>
   );

@@ -29,17 +29,17 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
 
       <section className="px-10 text-center">
         {productPlantList.length ? (
-          <ul className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+          <ul className="grid grid-cols-1 gap-10 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
             {productPlantList.map((product) => {
               return (
                 <li
                   key={product.id}
-                  className={`hover:opacity-80 ${
+                  className={`  :opacity-80 ${
                     !product.active && `pointer-events-none opacity-50`
                   }`}
                 >
                   <Link href={`/product/plant/${product.id}`}>
-                    <a className="relative">
+                    <a>
                       <Image
                         src={product.images[0]}
                         alt={product.name}
@@ -48,15 +48,6 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
                         layout="responsive"
                         className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
                       />
-                      {!product.active && (
-                        <Badge
-                          color="red"
-                          variant="filled"
-                          classNames={{ root: 'absolute top-4 right-5' }}
-                        >
-                          SOLD OUT
-                        </Badge>
-                      )}
                       <BaseText>{product.name}</BaseText>
                       {product.prices.map((price, i) => {
                         return (
@@ -65,6 +56,11 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
                               {price.unit_amount &&
                                 `¥${price.unit_amount.toLocaleString()}`}
                             </BaseText>
+                            {!product.active && (
+                              <Badge color="gray" variant="filled">
+                                SOLD OUT
+                              </Badge>
+                            )}
                           </div>
                         );
                       })}
@@ -77,14 +73,14 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
         ) : (
           <BaseText>売り切れです</BaseText>
         )}
-        <div className="p-vw-24" />
+        <div className="p-vw-12" />
         <Link href="/">
           <a>
             <Button color="gray">一覧へ戻る</Button>
           </a>
         </Link>
       </section>
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
     </Layout>
   );
 };

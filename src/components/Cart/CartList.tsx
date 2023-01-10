@@ -61,7 +61,7 @@ export const CartList = () => {
       <main>
         <BaseText align="center">商品が入っていません</BaseText>
 
-        <div className="p-vw-24" />
+        <div className="p-vw-12" />
 
         <Link href="/">
           <a className="block text-center">

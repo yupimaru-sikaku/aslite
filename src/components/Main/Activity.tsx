@@ -53,13 +53,13 @@ export const Activity = () => {
         </div>
       </div>
 
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
 
       <div className="mx-4">
         <ActivityCarousel imageList={aquariumImageList} />
       </div>
 
-      <div className="p-vw-48" />
+      <div className="p-vw-24" />
 
       <div className="flex flex-col items-start md:flex-row-reverse">
         <div className="w-full md:ml-10 md:w-1/2">
@@ -101,7 +101,7 @@ export const Activity = () => {
         </div>
       </div>
 
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
 
       <div className="mx-4">
         <ActivityCarousel imageList={coceriumImageList} />

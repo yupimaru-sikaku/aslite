@@ -19,7 +19,7 @@ const Cart = () => {
       <div className="p-vw-8" />
 
       <CartList />
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
     </Layout>
   );
 };

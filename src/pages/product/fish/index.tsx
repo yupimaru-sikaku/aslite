@@ -48,23 +48,19 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
                         layout="responsive"
                         className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
                       />
-                      {!product.active && (
-                        <Badge
-                          color="gray"
-                          variant="filled"
-                          classNames={{ root: 'absolute top-4 right-5' }}
-                        >
-                          SOLD OUT
-                        </Badge>
-                      )}
                       <BaseText size="md">{product.name}</BaseText>
                       {product.prices.map((price, i) => {
                         return (
                           <div key={i}>
-                            <span>
+                            <BaseText>
                               {price.unit_amount &&
                                 `¥${price.unit_amount.toLocaleString()}`}
-                            </span>
+                            </BaseText>
+                            {!product.active && (
+                              <Badge color="gray" variant="filled">
+                                SOLD OUT
+                              </Badge>
+                            )}
                           </div>
                         );
                       })}
@@ -77,14 +73,14 @@ const ProductFish: NextPage<Props> = ({ productFishList }) => {
         ) : (
           <BaseText>売り切れです</BaseText>
         )}
-        <div className="p-vw-24" />
+        <div className="p-vw-12" />
         <Link href="/">
           <a>
             <Button color="gray">一覧へ戻る</Button>
           </a>
         </Link>
       </section>
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
     </Layout>
   );
 };

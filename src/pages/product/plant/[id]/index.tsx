@@ -98,7 +98,7 @@ const ProductPlantIndex: NextPage<Props> = ({ product }) => {
           </div>
         </div>
       </main>
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
     </Layout>
   );
 };
