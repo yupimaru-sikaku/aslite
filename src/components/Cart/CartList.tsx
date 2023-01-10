@@ -32,6 +32,7 @@ export const CartList = () => {
         id: detail.id,
         quantity: detail.quantity,
         productId: detail.product_id,
+        price: detail.price,
       }));
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/checkout_session/`,

@@ -6,24 +6,16 @@ export default async function handler(req, res) {
     return res.status(405).end();
   }
   try {
-    const { price, quantity, items } = req.body;
+    const { price, items } = req.body;
     const lineItems = items
       ? items.map((item) => ({
           price: item.id,
           quantity: item.quantity,
-          adjustable_quantity: {
-            enabled: true,
-            maximum: 1,
-          },
         }))
       : [
           {
             price,
             quantity,
-            adjustable_quantity: {
-              enabled: true,
-              maximum: 1,
-            },
           },
         ];
 
@@ -40,11 +32,6 @@ export default async function handler(req, res) {
       billing_address_collection: 'required',
     });
     if (!items) return res.redirect(301, session.url);
-
-    // 商品のアーカイブ操作
-    items.map(async (item) => {
-      await stripe.products.update(item.productId, { active: false });
-    });
 
     res.status(200).json({
       url: session.url,

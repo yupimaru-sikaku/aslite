@@ -36,8 +36,11 @@ export default async function handler(request, response) {
    * 支払いが完全に完了している場合のみ処理する
    **/
   if (data.payment_status === 'paid') {
-    const item = await stripe.checkout.sessions.listLineItems(data.id);
-    console.log(item);
+    const itemList = await stripe.checkout.sessions.listLineItems(data.id);
+    // 商品のアーカイブ操作
+    itemList.data.map(async (item) => {
+      await stripe.products.update(item.price.product, { active: false });
+    });
     /**
      * カートの中身の情報を利用して、発送業務などのシステムを呼び出す
      **/

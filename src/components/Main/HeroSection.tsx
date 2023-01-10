@@ -4,7 +4,7 @@ import { BaseText } from '../Common/BaseText';
 export const HeroSection = () => {
   return (
     <BackgroundImage src="/aslite_logo.webp" radius="lg">
-      <main className="flex h-[calc(100vh_-_100px)] flex-col justify-center p-10">
+      <main className="flex h-[calc(100svh_-_100px)] flex-col justify-center p-10">
         <BaseText size={100} color="white" fontFamily="Work Sans">
           Plant Medaka
           <br />

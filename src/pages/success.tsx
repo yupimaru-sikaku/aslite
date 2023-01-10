@@ -15,7 +15,7 @@ const Success = () => {
 
   return (
     <Layout title="決済完了画面">
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
       <main className="mx-5 flex items-center justify-center">
         <div className="rounded p-4 shadow-lg ring ring-green-600/50">
           <div className="flex flex-col items-center space-y-2">
@@ -26,6 +26,7 @@ const Success = () => {
             <BaseText size="sm">
               決済の詳細をメールにてお送りします。ご確認ください。
             </BaseText>
+            <div className="p-vw-2" />
             <Link href="/">
               <a>
                 <Button>トップに戻る</Button>
@@ -34,7 +35,7 @@ const Success = () => {
           </div>
         </div>
       </main>
-      <div className="p-vw-24" />
+      <div className="p-vw-12" />
     </Layout>
   );
 };
