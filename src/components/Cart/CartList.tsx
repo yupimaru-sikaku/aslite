@@ -150,7 +150,7 @@ export const CartList = () => {
       >
         <Link href="/privacy_policy" passHref>
           <a target="_blank" rel="noopener noreferrer">
-            商品購入に関する規約・プライバシーポリシーはこちら
+            規約・プライバシーポリシーはこちら
           </a>
         </Link>
       </Button>
