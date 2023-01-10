@@ -45,7 +45,7 @@ export const Navbar = () => {
                   className="mr-3 flex items-center rounded-lg bg-green-700 px-3 py-2.5 text-center text-sm font-medium text-white hover:opacity-80 md:mr-0 md:px-5"
                 >
                   <IconMailForward size={20} />
-                  <span className="ml-1">Contact</span>
+                  <span className="ml-1">お問い合わせ</span>
                 </button>
               </a>
             </Link>

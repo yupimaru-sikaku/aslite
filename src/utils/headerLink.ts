@@ -9,7 +9,7 @@ type linkType = {
 
 export const headerLink: linkType[] = [
   {
-    title: 'Contact',
+    title: 'お問い合わせ',
     link: '/contact/create',
     src: '/mail.webp',
     alt: 'mail_icon',
