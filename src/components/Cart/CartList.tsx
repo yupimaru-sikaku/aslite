@@ -142,6 +142,18 @@ export const CartList = () => {
           </a>
         </Link>
       </div>
+      <div className="p-vw-4" />
+      <Button
+        variant="subtle"
+        color="gray"
+        classNames={{ root: 'block mx-auto' }}
+      >
+        <Link href="/privacy_policy" passHref>
+          <a target="_blank" rel="noopener noreferrer">
+            商品購入に関する規約・プライバシーポリシーはこちら
+          </a>
+        </Link>
+      </Button>
     </main>
   );
 };
