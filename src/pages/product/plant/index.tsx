@@ -40,14 +40,25 @@ const ProductPlant: NextPage<Props> = ({ productPlantList }) => {
                 >
                   <Link href={`/product/plant/${product.id}`}>
                     <a>
-                      <Image
-                        src={product.images[0]}
-                        alt={product.name}
-                        width={100}
-                        height={100}
-                        layout="responsive"
-                        className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
-                      />
+                      {product.images[0] ? (
+                        <Image
+                          src={product.images[0]}
+                          alt={product.name}
+                          width={100}
+                          height={100}
+                          layout="responsive"
+                          className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
+                        />
+                      ) : (
+                        <Image
+                          src="/noImage.webp"
+                          alt="noImage"
+                          width={100}
+                          height={100}
+                          layout="responsive"
+                          className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
+                        />
+                      )}
                       <BaseText>{product.name}</BaseText>
                       {product.prices.map((price, i) => {
                         return (

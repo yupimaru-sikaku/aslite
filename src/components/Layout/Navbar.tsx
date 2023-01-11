@@ -86,7 +86,11 @@ export const Navbar = () => {
             {headerLink.map((link) => (
               <li key={link.link}>
                 <Link href={link.link}>
-                  <a target="_blank">
+                  <a
+                    target={
+                      link.title === 'お問い合わせ' ? undefined : '_blank'
+                    }
+                  >
                     <ActionIcon>
                       <Image
                         src={link.src}

@@ -51,13 +51,24 @@ const ProductPlantIndex: NextPage<Props> = ({ product }) => {
 
       <main className="flex flex-col justify-center p-3 xs:flex-row">
         <div className="xs:w-1/2 md:w-1/3">
-          <Image
-            src={product.images[0]}
-            alt={product.name}
-            width={100}
-            height={100}
-            layout="responsive"
-          />
+          {product.images[0] ? (
+            <Image
+              src={product.images[0]}
+              alt={product.name}
+              width={100}
+              height={100}
+              layout="responsive"
+            />
+          ) : (
+            <Image
+              src="/noImage.webp"
+              alt="noImage"
+              width={100}
+              height={100}
+              layout="responsive"
+              className="transition-all ease-in group-hover:scale-110 group-hover:opacity-50"
+            />
+          )}
         </div>
 
         <div className="p-vw-8" />
