@@ -33,6 +33,11 @@ export default async function handler(req, res) {
     });
     if (!items) return res.redirect(301, session.url);
 
+    // 商品のアーカイブ操作（暫定。Webhook適応で削除）
+    items.map(async (item) => {
+      await stripe.products.update(item.productId, { active: false });
+    });
+
     res.status(200).json({
       url: session.url,
     });
